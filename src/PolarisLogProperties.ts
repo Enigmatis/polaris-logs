@@ -1,94 +1,111 @@
 export class PolarisLogProperties {
 
-    private readonly message: string;
-    private readonly throwable: object;
-    private readonly elapsedTime: number;
-    private readonly logId: string;
-    private readonly customProperties: object;
-    private readonly realityId: string;
-    private readonly requestId: string;
-    private readonly upn: string;
-    private readonly eventKind: string;
-    private readonly request: string;
-    private readonly response: string;
-    private readonly applicationId: string;
-    private readonly applicationName: string;
-    private readonly repositoryVersion: string;
-    private readonly environment: string;
-    private readonly isTraceable: string;
-    private readonly eventKindDescription: string;
-    private readonly component: string;
-    private readonly reality: string;
-    private readonly requestingSystemId: string;
-    private readonly requestingSystemName: string;
-    private readonly requestIp: string;
-    private readonly recordId: string;
+    private message: string;
+    private throwable: object;
+    private elapsedTime: number;
+    private logId: string;
+    private customProperties: object;
+    private realityId: string;
+    private requestId: string;
+    private upn: string;
+    private eventKind: string;
+    private request: object;
+    private response: object;
+    private applicationId: string;
+    private applicationName: string;
+    private repositoryVersion: string;
+    private environment: string;
+    private isTraceable: boolean;
+    private eventKindDescription: string;
+    private component: string;
+    private reality: string;
+    private requestingSystemId: string;
+    private requestingSystemName: string;
+    private requestIp: string;
+    private recordId: string;
 
-    constructor(message, throwable, elapsedTime, logId,
-                customProperties, realityId, requestId, upn,
-                eventKind, request, response, applicationId,
-                applicationName, repositoryVersion, environment, component,
-                reality, requestingSystemId, requestingSystemName, requestIp,
-                eventKindDescription, isTraceable, recordId) {
-        this.message = message;
-        this.throwable = throwable;
-        this.elapsedTime = elapsedTime;
-        this.logId = logId;
-        this.customProperties = customProperties;
-        this.realityId = realityId;
-        this.requestId = requestId;
-        this.upn = upn;
-        this.eventKind = eventKind;
-        this.request = request;
-        this.response = response;
-        this.applicationId = applicationId;
-        this.applicationName = applicationName;
-        this.repositoryVersion = repositoryVersion;
-        this.environment = environment;
-        this.isTraceable = isTraceable;
-        this.eventKindDescription = eventKindDescription;
-        this.component = component;
-        this.reality = reality;
-        this.requestingSystemId = requestingSystemId;
-        this.requestingSystemName = requestingSystemName;
-        this.requestIp = requestIp;
-        this.recordId = recordId;
+    constructor() {
     }
 
     getMessage() {
         return this.message;
     }
 
+    setMessage(message: string): PolarisLogProperties {
+        this.message = message;
+        return this;
+    }
+
     getThrowable() {
         return this.throwable;
+    }
+
+    setThrowable(throwable: object): PolarisLogProperties {
+        this.throwable = throwable;
+        return this;
     }
 
     getElapsedTime() {
         return this.elapsedTime;
     }
 
+    setElapsedTime(elapsedTime: number): PolarisLogProperties {
+        this.elapsedTime = elapsedTime;
+        return this;
+    }
+
     getLogId() {
         return this.logId;
+    }
+
+    setLogId(logId: string): PolarisLogProperties {
+        this.logId = logId;
+        return this;
     }
 
     getCustomProperties() {
         return this.customProperties;
     }
 
+    setCustomProperties(customProperties: object): PolarisLogProperties {
+        this.customProperties = customProperties;
+        return this;
+    }
+
     getRealityId() {
         return this.realityId;
+    }
+
+    setRealityId(realityId: string): PolarisLogProperties {
+        this.realityId = realityId;
+        return this;
     }
 
     getRequestId() {
         return this.requestId;
     }
 
+    setRequestId(requestId: string): PolarisLogProperties {
+        this.requestId = requestId;
+        return this;
+    }
+
     getUpn() {
         return this.upn;
     }
 
+    setUpn(upn: string): PolarisLogProperties {
+        this.upn = upn;
+        return this;
+    }
+
     getEventKind() {
         return this.eventKind;
+    }
+
+    setEventKind(eventKind: string): PolarisLogProperties {
+        this.eventKind = eventKind;
+        return this;
     }
 
     getEventKindDescription() {
@@ -144,6 +161,6 @@ export class PolarisLogProperties {
     }
 
     getRecordId() {
-        return this.getRecordId;
+        return this.recordId;
     }
 }
