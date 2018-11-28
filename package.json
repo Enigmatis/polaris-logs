@@ -1,0 +1,34 @@
+{
+  "name": "@enigmatis/polaris-logs",
+  "version": "0.0.1",
+  "description": "A logging library",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register src/**/*.spec.ts",
+    "tsbuild": "tsc",
+    "buildDependents": "npm i && tsc && npm link",
+    "clean": "rimraf dist",
+    "rebuild": "rimraf dist && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Enigmatis/polaris-logs.git"
+  },
+  "keywords": [
+    "polaris-logs"
+  ],
+  "author": "Enigmatis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Enigmatis/polaris-logs/issues"
+  },
+  "homepage": "https://github.com/Enigmatis/polaris-logs#readme",
+  "dependencies": {
+    "reflect-metadata": "^0.1.12",
+    "rimraf": "^2.6.2",
+    "typescript": "^3.0.1"
+  },
+  "devDependencies": {
+    "ts-node": "^7.0.1"
+  }
+}
