@@ -1,6 +1,6 @@
 export class PolarisLogProperties {
 
-    //#region "Data members"
+    //#region Data members
 
     private message: string;
     private throwable: object;
@@ -28,7 +28,7 @@ export class PolarisLogProperties {
 
     //#endregion
 
-    //#region "Constructor"
+    //#region Constructor
 
     constructor(message: string) {
         this.message = message;
@@ -36,7 +36,7 @@ export class PolarisLogProperties {
 
     //#endregion
 
-    //#region "Getters"
+    //#region Getters
 
     getMessage() {
         return this.message;
@@ -132,7 +132,7 @@ export class PolarisLogProperties {
 
     //#endregion
 
-    //#region "Setters"
+    //#region Setters
 
     setMessage(message: string): PolarisLogProperties {
         this.message = message;
