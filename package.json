@@ -4,6 +4,7 @@
   "description": "A logging library",
   "main": "./dist/index.js",
   "scripts": {
+    "start": "tsc ./src/app.ts",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "tsbuild": "tsc",
     "buildDependents": "npm i && tsc && npm link",
@@ -27,9 +28,12 @@
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "typescript": "^3.0.1",
-    "winston": "^3.1.0"
+    "winston": "^3.1.0",
+    "app-root-path": "^2.1.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@types/winston": "^2.4.4",
     "ts-node": "^7.0.1"
   }
 }
