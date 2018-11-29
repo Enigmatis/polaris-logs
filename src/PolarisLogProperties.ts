@@ -1,5 +1,7 @@
 export class PolarisLogProperties {
 
+    //#region "Data members"
+
     private message: string;
     private throwable: object;
     private elapsedTime: number;
@@ -24,88 +26,52 @@ export class PolarisLogProperties {
     private requestIp: string;
     private recordId: string;
 
-    constructor() {
+    //#endregion
+
+    //#region "Constructor"
+
+    constructor(message: string) {
+        this.message = message;
     }
+
+    //#endregion
+
+    //#region "Getters"
 
     getMessage() {
         return this.message;
-    }
-
-    setMessage(message: string): PolarisLogProperties {
-        this.message = message;
-        return this;
     }
 
     getThrowable() {
         return this.throwable;
     }
 
-    setThrowable(throwable: object): PolarisLogProperties {
-        this.throwable = throwable;
-        return this;
-    }
-
     getElapsedTime() {
         return this.elapsedTime;
-    }
-
-    setElapsedTime(elapsedTime: number): PolarisLogProperties {
-        this.elapsedTime = elapsedTime;
-        return this;
     }
 
     getLogId() {
         return this.logId;
     }
 
-    setLogId(logId: string): PolarisLogProperties {
-        this.logId = logId;
-        return this;
-    }
-
     getCustomProperties() {
         return this.customProperties;
-    }
-
-    setCustomProperties(customProperties: object): PolarisLogProperties {
-        this.customProperties = customProperties;
-        return this;
     }
 
     getRealityId() {
         return this.realityId;
     }
 
-    setRealityId(realityId: string): PolarisLogProperties {
-        this.realityId = realityId;
-        return this;
-    }
-
     getRequestId() {
         return this.requestId;
-    }
-
-    setRequestId(requestId: string): PolarisLogProperties {
-        this.requestId = requestId;
-        return this;
     }
 
     getUpn() {
         return this.upn;
     }
 
-    setUpn(upn: string): PolarisLogProperties {
-        this.upn = upn;
-        return this;
-    }
-
     getEventKind() {
         return this.eventKind;
-    }
-
-    setEventKind(eventKind: string): PolarisLogProperties {
-        this.eventKind = eventKind;
-        return this;
     }
 
     getEventKindDescription() {
@@ -163,4 +129,125 @@ export class PolarisLogProperties {
     getRecordId() {
         return this.recordId;
     }
+
+    //#endregion
+
+    //#region "Setters"
+
+    setMessage(message: string): PolarisLogProperties {
+        this.message = message;
+        return this;
+    }
+
+    setThrowable(throwable: object): PolarisLogProperties {
+        this.throwable = throwable;
+        return this;
+    }
+
+    setElapsedTime(elapsedTime: number): PolarisLogProperties {
+        this.elapsedTime = elapsedTime;
+        return this;
+    }
+
+    setLogId(logId: string): PolarisLogProperties {
+        this.logId = logId;
+        return this;
+    }
+
+    setCustomProperties(customProperties: object): PolarisLogProperties {
+        this.customProperties = customProperties;
+        return this;
+    }
+
+    setRealityId(realityId: string): PolarisLogProperties {
+        this.realityId = realityId;
+        return this;
+    }
+
+    setRequestId(requestId: string): PolarisLogProperties {
+        this.requestId = requestId;
+        return this;
+    }
+
+    setRecordId(recordId: string): PolarisLogProperties {
+        this.recordId = recordId;
+        return this;
+    }
+
+    setUpn(upn: string): PolarisLogProperties {
+        this.upn = upn;
+        return this;
+    }
+
+    setEventKind(eventKind: string): PolarisLogProperties {
+        this.eventKind = eventKind;
+        return this;
+    }
+
+    setEventKindDescription(eventKindDescription: string): PolarisLogProperties {
+        this.eventKindDescription = eventKindDescription;
+        return this;
+    }
+
+    setRequest(request: object): PolarisLogProperties {
+        this.request = request;
+        return this;
+    }
+
+    setResponse(response: object): PolarisLogProperties {
+        this.response = response;
+        return this;
+    }
+
+    setApplicationId(applicationId: string): PolarisLogProperties {
+        this.applicationId = applicationId;
+        return this;
+    }
+
+    setApplicationName(applicationName: string): PolarisLogProperties {
+        this.applicationName = applicationName;
+        return this;
+    }
+
+    setRepositoryVersion(repositoryVersion: string): PolarisLogProperties {
+        this.repositoryVersion = repositoryVersion;
+        return this;
+    }
+
+    setEnvironment(environment: string): PolarisLogProperties {
+        this.environment = environment;
+        return this;
+    }
+
+    setComponent(component: string): PolarisLogProperties {
+        this.component = component;
+        return this;
+    }
+
+    setReality(reality: string): PolarisLogProperties {
+        this.reality = reality;
+        return this;
+    }
+
+    setRequestingSystemId(requestingSystemId: string): PolarisLogProperties {
+        this.requestingSystemId = requestingSystemId;
+        return this;
+    }
+
+    setRequestingSystemName(requestingSystemName: string): PolarisLogProperties {
+        this.requestingSystemName = requestingSystemName;
+        return this;
+    }
+
+    setRequestIp(requestIp: string): PolarisLogProperties {
+        this.requestIp = requestIp;
+        return this;
+    }
+
+    setTraceable(isTraceable: boolean): PolarisLogProperties {
+        this.isTraceable = isTraceable;
+        return this;
+    }
+
+    //#endregion
 }
