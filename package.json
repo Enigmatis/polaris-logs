@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@types/winston": "^2.4.4",
+    "@types/node": "^10.12.10",
     "ts-node": "^7.0.1"
   }
 }

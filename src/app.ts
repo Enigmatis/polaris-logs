@@ -1,6 +1,6 @@
-import { PolarisLogger } from "./PolarisLogger";
-import { PolarisLogProperties } from "./PolarisLogProperties";
+import {PolarisLogger} from "./PolarisLogger";
+import {PolarisLogProperties} from "./PolarisLogProperties";
 
 
-var polarisLogger = new PolarisLogger();
-polarisLogger.debug(new PolarisLogProperties().setMessage("hi"));
+let polarisLogger = new PolarisLogger();
+polarisLogger.debug(new PolarisLogProperties("hello world"));

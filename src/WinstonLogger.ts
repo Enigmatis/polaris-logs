@@ -1,8 +1,9 @@
 import * as winston from 'winston';
 import * as appRoot from "app-root-path";
 
-export class WinstonLogger{
-    private logger:winston.Logger;
+export class WinstonLogger {
+    private logger: winston.Logger;
+
     constructor() {
         var options = {
             file: {
@@ -27,13 +28,14 @@ export class WinstonLogger{
             format: winston.format.json(),
             transports: [
                 new winston.transports.Console(),
-                new winston.transports.File({ filename: 'somefile.log' })
+                new winston.transports.File({filename: 'somefile.log'})
             ],
             exitOnError: false, // do not exit on handled exceptions
         });
 
     }
-    getLogger(){
+
+    getLogger() {
         return this.logger;
     }
 }
