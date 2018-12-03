@@ -1,16 +1,21 @@
-//import {winston as logger}
 import {WinstonLogger as Logger} from "./WinstonLogger";
-import {LogPropertiesWrapper as logPropertiesWrapper} from "./LogPropertiesWrapper"
+import {LogPropertiesWrapper} from "./LogPropertiesWrapper"
 import {PolarisLogProperties} from "./PolarisLogProperties";
+import winston = require("winston");
 
 export class PolarisLogger {
-    private logger;
+    private logger: winston.Logger;
+    private readonly logPropertiesWrapper: LogPropertiesWrapper;
 
-    constructor() {
-        this.logger = (new Logger()).getLogger;
+    constructor(logPropertiesWrapper: LogPropertiesWrapper) {
+        this.logger = (new Logger()).getLogger();
+        this.logPropertiesWrapper = logPropertiesWrapper;
     }
 
-    //shouldlogrequestandresponse
+    shouldLogRequestAndResponse(logRequestAndResponse: boolean) {
+        this.logPropertiesWrapper.shouldLogRequestAndResponse(logRequestAndResponse);
+    }
+
     info(polarisLogProperties: PolarisLogProperties) {
         // if is info enabled
         this.logger.info(this.buildLog(polarisLogProperties));
@@ -33,11 +38,12 @@ export class PolarisLogger {
 
     //trace
     buildLog(polarisLogProperties: PolarisLogProperties) {
-        if (logPropertiesWrapper != null) {
-            //propertiesBuilder = logPropertiesWrapper.wrapPropertiesBuilder(propertiesBuilder);
+        if (this.logPropertiesWrapper != null) {
+            polarisLogProperties = this.logPropertiesWrapper.wrapLogProperties(polarisLogProperties);
         }
         // TODO: propertiesBuilder.applicationProperties()
+
         return polarisLogProperties;
-        //return JsonFormatter.getAsJsonFormat(foundationLogProperties,propertiesBuilder.getPropertiesSerializer());
+        // return JSON.stringify(polarisLogProperties);
     }
 }
