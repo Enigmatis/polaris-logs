@@ -8,5 +8,6 @@ let props = new PolarisLogProperties("hello world").setCustomProperties({
     "json": {
         "secret": true
     }
-});
+}).setElapsedTime(939393).setRealityType("foo").setRealityId("123123");
+
 polarisLogger.info(props);

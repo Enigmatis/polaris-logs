@@ -1,3 +1,5 @@
+import {RealityLogProperty} from "./entities/RealityLogProperty";
+
 export class PolarisLogProperties {
 
     //#region Data members
@@ -7,7 +9,6 @@ export class PolarisLogProperties {
     private elapsedTime: number;
     private logId: string;
     private customProperties: object;
-    private realityId: string;
     private requestId: string;
     private upn: string;
     private eventKind: string;
@@ -20,11 +21,11 @@ export class PolarisLogProperties {
     private isTraceable: boolean;
     private eventKindDescription: string;
     private component: string;
-    private reality: string;
     private requestingSystemId: string;
     private requestingSystemName: string;
     private requestIp: string;
     private recordId: string;
+    private reality: RealityLogProperty;
 
     //#endregion
 
@@ -32,6 +33,7 @@ export class PolarisLogProperties {
 
     constructor(message: string) {
         this.message = message;
+        this.reality = new RealityLogProperty();
     }
 
     //#endregion
@@ -56,10 +58,6 @@ export class PolarisLogProperties {
 
     getCustomProperties() {
         return this.customProperties;
-    }
-
-    getRealityId() {
-        return this.realityId;
     }
 
     getRequestId() {
@@ -106,10 +104,6 @@ export class PolarisLogProperties {
         return this.component;
     }
 
-    getReality() {
-        return this.reality;
-    }
-
     getRequestingSystemId() {
         return this.requestingSystemId;
     }
@@ -128,6 +122,14 @@ export class PolarisLogProperties {
 
     getRecordId() {
         return this.recordId;
+    }
+
+    getRealityType() {
+        return this.reality.getType();
+    }
+
+    getRealityId() {
+        return this.reality.getId();
     }
 
     //#endregion
@@ -156,11 +158,6 @@ export class PolarisLogProperties {
 
     setCustomProperties(customProperties: object): PolarisLogProperties {
         this.customProperties = customProperties;
-        return this;
-    }
-
-    setRealityId(realityId: string): PolarisLogProperties {
-        this.realityId = realityId;
         return this;
     }
 
@@ -224,11 +221,6 @@ export class PolarisLogProperties {
         return this;
     }
 
-    setReality(reality: string): PolarisLogProperties {
-        this.reality = reality;
-        return this;
-    }
-
     setRequestingSystemId(requestingSystemId: string): PolarisLogProperties {
         this.requestingSystemId = requestingSystemId;
         return this;
@@ -246,6 +238,16 @@ export class PolarisLogProperties {
 
     setTraceable(isTraceable: boolean): PolarisLogProperties {
         this.isTraceable = isTraceable;
+        return this;
+    }
+
+    setRealityType(reality: string): PolarisLogProperties {
+        this.reality.setType(reality);
+        return this;
+    }
+
+    setRealityId(realityId: string): PolarisLogProperties {
+        this.reality.setId(realityId);
         return this;
     }
 

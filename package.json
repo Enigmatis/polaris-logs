@@ -9,7 +9,8 @@
     "tsbuild": "tsc",
     "buildDependents": "npm i && tsc && npm link",
     "clean": "rimraf dist",
-    "rebuild": "rimraf dist && tsc"
+    "rebuild": "rimraf dist && tsc",
+    "run": "npm run tsbuild && npm run start"
   },
   "repository": {
     "type": "git",
@@ -25,12 +26,12 @@
   },
   "homepage": "https://github.com/Enigmatis/polaris-logs#readme",
   "dependencies": {
+    "clean-deep": "^3.0.2",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "typescript": "^3.0.1",
-    "winston": "^3.1.0",
-    "app-root-path": "^2.1.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "winston": "^3.1.0"
   },
   "devDependencies": {
     "@types/winston": "^2.4.4",

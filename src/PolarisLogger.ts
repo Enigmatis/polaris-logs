@@ -1,6 +1,8 @@
 import {WinstonLogger as Logger} from "./WinstonLogger";
 import {LogPropertiesWrapper} from "./LogPropertiesWrapper"
 import {PolarisLogProperties} from "./PolarisLogProperties";
+import {ParserUtil} from "./utils/ParserUtil";
+import cleanDeep = require("clean-deep");
 import winston = require("winston");
 
 export class PolarisLogger {
@@ -36,14 +38,12 @@ export class PolarisLogger {
         this.logger.debug(this.buildLog(polarisLogProperties));
     }
 
-    //trace
     buildLog(polarisLogProperties: PolarisLogProperties) {
         if (this.logPropertiesWrapper != null) {
             polarisLogProperties = this.logPropertiesWrapper.wrapLogProperties(polarisLogProperties);
         }
-        // TODO: propertiesBuilder.applicationProperties()
 
-        return polarisLogProperties;
-        // return JSON.stringify(polarisLogProperties);
+        let propertiesAsObject = ParserUtil.parseClassToObject(polarisLogProperties);
+        return cleanDeep(propertiesAsObject);
     }
 }
