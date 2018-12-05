@@ -1,4 +1,7 @@
 import {RealityLogProperty} from "./entities/RealityLogProperty";
+import {SystemLogProperty} from "./entities/SystemLogProperty";
+import {RequestLogProperty} from "./entities/RequestLogProperty";
+import {EventKindDescriptionLogProperty} from "./entities/EventKindDescriptionLogProperty";
 
 export class PolarisLogProperties {
 
@@ -12,19 +15,19 @@ export class PolarisLogProperties {
     private requestId: string;
     private upn: string;
     private eventKind: string;
-    private request: object;
     private response: object;
     private applicationId: string;
     private applicationName: string;
     private repositoryVersion: string;
     private environment: string;
     private isTraceable: boolean;
-    private eventKindDescription: string;
     private component: string;
     private requestingSystemId: string;
     private requestingSystemName: string;
     private requestIp: string;
     private recordId: string;
+    private eventKindDescription: EventKindDescriptionLogProperty;
+    private request: RequestLogProperty;
     private reality: RealityLogProperty;
 
     //#endregion
@@ -34,6 +37,8 @@ export class PolarisLogProperties {
     constructor(message: string) {
         this.message = message;
         this.reality = new RealityLogProperty();
+        this.request = new RequestLogProperty();
+        this.request.setRequestingSystem(new SystemLogProperty());
     }
 
     //#endregion
@@ -60,24 +65,8 @@ export class PolarisLogProperties {
         return this.customProperties;
     }
 
-    getRequestId() {
-        return this.requestId;
-    }
-
     getUpn() {
         return this.upn;
-    }
-
-    getEventKind() {
-        return this.eventKind;
-    }
-
-    getEventKindDescription() {
-        return this.eventKindDescription;
-    }
-
-    getRequest() {
-        return this.request;
     }
 
     getResponse() {
@@ -104,24 +93,36 @@ export class PolarisLogProperties {
         return this.component;
     }
 
-    getRequestingSystemId() {
-        return this.requestingSystemId;
-    }
-
-    getRequestingSystemName() {
-        return this.requestingSystemName;
-    }
-
-    getRequestIp() {
-        return this.requestIp;
-    }
-
     getIsTraceable() {
         return this.isTraceable;
     }
 
     getRecordId() {
         return this.recordId;
+    }
+
+    getEventKind() {
+        return this.eventKind;
+    }
+
+    getEventKindDescription() {
+        return this.eventKindDescription;
+    }
+
+    getRequestId() {
+        return this.requestId;
+    }
+
+    getRequestIp() {
+        return this.requestIp;
+    }
+
+    getRequestingSystemName() {
+        return this.request.getRequestingSystem().getName();
+    }
+
+    getRequestingSystemId() {
+        return this.request.getRequestingSystem().getId();
     }
 
     getRealityType() {
@@ -181,13 +182,8 @@ export class PolarisLogProperties {
         return this;
     }
 
-    setEventKindDescription(eventKindDescription: string): PolarisLogProperties {
+    setEventKindDescription(eventKindDescription: EventKindDescriptionLogProperty): PolarisLogProperties {
         this.eventKindDescription = eventKindDescription;
-        return this;
-    }
-
-    setRequest(request: object): PolarisLogProperties {
-        this.request = request;
         return this;
     }
 
@@ -221,13 +217,8 @@ export class PolarisLogProperties {
         return this;
     }
 
-    setRequestingSystemId(requestingSystemId: string): PolarisLogProperties {
-        this.requestingSystemId = requestingSystemId;
-        return this;
-    }
-
-    setRequestingSystemName(requestingSystemName: string): PolarisLogProperties {
-        this.requestingSystemName = requestingSystemName;
+    setTraceable(isTraceable: boolean): PolarisLogProperties {
+        this.isTraceable = isTraceable;
         return this;
     }
 
@@ -236,8 +227,13 @@ export class PolarisLogProperties {
         return this;
     }
 
-    setTraceable(isTraceable: boolean): PolarisLogProperties {
-        this.isTraceable = isTraceable;
+    setRequestingSystemName(requestingSystemName: string): PolarisLogProperties {
+        this.request.getRequestingSystem().setName(requestingSystemName);
+        return this;
+    }
+
+    setRequestingSystemId(requestingSystemId: string): PolarisLogProperties {
+        this.request.getRequestingSystem().setId(requestingSystemId);
         return this;
     }
 
