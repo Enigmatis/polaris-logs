@@ -16,3 +16,5 @@ let props = new PolarisLogProperties("hello world").setCustomProperties({
 polarisLogger.info(props);
 polarisLogger.warn(props);
 polarisLogger.debug(props);
+polarisLogger.trace(props);
+polarisLogger.error(props);

@@ -6,7 +6,7 @@ import cleanDeep = require("clean-deep");
 import winston = require("winston");
 
 export class PolarisLogger {
-    private logger: winston.Logger;
+    private logger;
     private readonly logPropertiesWrapper: LogPropertiesWrapper;
 
     constructor(logPropertiesWrapper: LogPropertiesWrapper) {
@@ -32,7 +32,10 @@ export class PolarisLogger {
         // if is info enabled
         this.logger.error(this.buildLog(polarisLogProperties));
     }
-
+    trace(polarisLogProperties: PolarisLogProperties) {
+        // if is info enabled
+        this.logger.trace(this.buildLog(polarisLogProperties));
+    }
     debug(polarisLogProperties: PolarisLogProperties) {
         // if is info enabled
         this.logger.debug(this.buildLog(polarisLogProperties));
