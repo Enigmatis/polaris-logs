@@ -2,6 +2,7 @@ import {RealityLogProperty} from "./entities/RealityLogProperty";
 import {SystemLogProperty} from "./entities/SystemLogProperty";
 import {RequestLogProperty} from "./entities/RequestLogProperty";
 import {EventKindDescriptionLogProperty} from "./entities/EventKindDescriptionLogProperty";
+import {ApplicationLogProperties} from "./entities/ApplicationLogProperties";
 
 export class PolarisLogProperties {
 
@@ -22,8 +23,6 @@ export class PolarisLogProperties {
     private environment: string;
     private isTraceable: boolean;
     private component: string;
-    private requestingSystemId: string;
-    private requestingSystemName: string;
     private requestIp: string;
     private recordId: string;
     private eventKindDescription: EventKindDescriptionLogProperty;
@@ -39,6 +38,7 @@ export class PolarisLogProperties {
         this.reality = new RealityLogProperty();
         this.request = new RequestLogProperty();
         this.request.setRequestingSystem(new SystemLogProperty());
+        this.eventKindDescription = new EventKindDescriptionLogProperty();
     }
 
     //#endregion
@@ -137,6 +137,13 @@ export class PolarisLogProperties {
 
     //#region Setters
 
+    setApplicaton(app: ApplicationLogProperties){
+        this.setComponent(app.getComponent());
+        this.setApplicationId(app.getId());
+        this.setRepositoryVersion(app.getRepositoryVersion());
+        this.setEnvironment(app.getEnvironment());
+        this.setApplicationName(app.getName());
+    }
     setMessage(message: string): PolarisLogProperties {
         this.message = message;
         return this;
@@ -194,6 +201,7 @@ export class PolarisLogProperties {
 
     setApplicationId(applicationId: string): PolarisLogProperties {
         this.applicationId = applicationId;
+        this.eventKindDescription.setSystemId(applicationId);
         return this;
     }
 
@@ -233,6 +241,7 @@ export class PolarisLogProperties {
     }
 
     setRequestingSystemId(requestingSystemId: string): PolarisLogProperties {
+        this.eventKindDescription.setRequestingSystemId(requestingSystemId);
         this.request.getRequestingSystem().setId(requestingSystemId);
         return this;
     }
