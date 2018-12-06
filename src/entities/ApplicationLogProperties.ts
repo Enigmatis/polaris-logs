@@ -12,7 +12,7 @@ export class ApplicationLogProperties {
 
     //#region Constructor
 
-    constructor(id: string, name: string, repositoryVersion: string, environment: string, component: string) {
+    public constructor(id: string, name: string, repositoryVersion: string, environment: string, component: string) {
         this.id = id;
         this.name = name;
         this.repositoryVersion = repositoryVersion;
@@ -24,23 +24,23 @@ export class ApplicationLogProperties {
 
     //#region Getters
 
-    getId(): string {
+    public getId(): string {
         return this.id;
     }
 
-    getName(): string {
+    public getName(): string {
         return this.name;
     }
 
-    getRepositoryVersion(): string {
+    public getRepositoryVersion(): string {
         return this.repositoryVersion;
     }
 
-    getEnvironment(): string {
+    public getEnvironment(): string {
         return this.environment;
     }
 
-    getComponent(): string {
+    public getComponent(): string {
         return this.component;
     }
 
@@ -48,23 +48,23 @@ export class ApplicationLogProperties {
 
     //#region Setters
 
-    setId(value: string) {
+    public setId(value: string) {
         this.id = value;
     }
 
-    setName(value: string) {
+    public setName(value: string) {
         this.name = name;
     }
 
-    setRepositoryVersion(value: string) {
+    public setRepositoryVersion(value: string) {
         this.repositoryVersion = value;
     }
 
-    setEnvironment(value: string) {
+    public setEnvironment(value: string) {
         this.environment = value;
     }
 
-    setComponent(value: string) {
+    public setComponent(value: string) {
         this.component = value;
     }
 

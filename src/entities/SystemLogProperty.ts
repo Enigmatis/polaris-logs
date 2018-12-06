@@ -9,18 +9,18 @@ export class SystemLogProperty {
 
     //#region Constructor
 
-    constructor() {
+    public constructor() {
     }
 
     //#endregion
 
     //#region Getters
 
-    getName(): string {
+    public getName(): string {
         return this.name;
     }
 
-    getId(): string {
+    public getId(): string {
         return this.id;
     }
 
@@ -28,11 +28,11 @@ export class SystemLogProperty {
 
     //#region Setters
 
-    setName(value: string) {
+    public setName(value: string) {
         this.name = value;
     }
 
-    setId(value: string) {
+    public setId(value: string) {
         this.id = value;
     }
 

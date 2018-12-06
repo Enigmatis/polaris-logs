@@ -7,34 +7,8 @@ export class WinstonLogger {
     private readonly logger;
 
     constructor() {
-        const myFormat = winston.format.combine(
-            winston.format.timestamp(),
-            winston.format.align(),
-            winston.format.printf((info) => {
-                const {
-                    timestamp, level, message, ...args
-                } = info;
-
-                const ts = timestamp.slice(0, 19).replace('T', ' ');
-                return `${ts} [${level}]: ${message}\n${Object.keys(args).length ? JSON.stringify(args, null, 2) : ''}`;
-            }));
-
-        const customLevels = {
-            levels: {
-                error: 0,
-                warn: 1,
-                info: 2,
-                debug: 3,
-                trace: 4
-            },
-            colors: {
-                error: 'red',
-                warn: 'yellow',
-                info: 'green',
-                trace: 'magenta',
-                debug: 'blue',
-            }
-        };
+        const myFormat = WinstonLogger.getFormat();
+        const customLevels = WinstonLogger.getCustomLevels();
 
         this.logger = createLogger({
             level: 'trace',
@@ -56,7 +30,40 @@ export class WinstonLogger {
         }));
     }
 
-    getLogger() {
+    private static getFormat() {
+        return winston.format.combine(
+            winston.format.timestamp(),
+            winston.format.align(),
+            winston.format.printf((info) => {
+                const {
+                    timestamp, level, message, ...args
+                } = info;
+
+                const ts = timestamp.slice(0, 19).replace('T', ' ');
+                return `${ts} [${level}]: ${message}\n${Object.keys(args).length ? JSON.stringify(args, null, 2) : ''}`;
+            }));
+    }
+
+    private static getCustomLevels() {
+        return {
+            levels: {
+                error: 0,
+                warn: 1,
+                info: 2,
+                debug: 3,
+                trace: 4
+            },
+            colors: {
+                error: 'red',
+                warn: 'yellow',
+                info: 'green',
+                trace: 'magenta',
+                debug: 'blue',
+            }
+        };
+    }
+
+    public getLogger() {
         return this.logger;
     }
 }

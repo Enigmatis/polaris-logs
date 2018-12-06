@@ -9,18 +9,18 @@ export class EventKindDescriptionLogProperty {
 
     //#region Constructor
 
-    constructor() {
+    public constructor() {
     }
 
     //#endregion
 
     //#region Getters
 
-    getSystemId(): string {
+    public getSystemId(): string {
         return this.systemId;
     }
 
-    getRequestingSystemId(): string {
+    public getRequestingSystemId(): string {
         return this.requestingSystemId;
     }
 
@@ -28,12 +28,12 @@ export class EventKindDescriptionLogProperty {
 
     //#region Setters
 
-    setSystemId(value: string) {
+    public setSystemId(value: string) {
         this.systemId = value;
         return this;
     }
 
-    setRequestingSystemId(value: string) {
+    public setRequestingSystemId(value: string) {
         this.requestingSystemId = value;
         return this;
     }

@@ -11,18 +11,18 @@ export class RequestLogProperty {
 
     //#region Constructor
 
-    constructor() {
+    public constructor() {
     }
 
     //#endregion
 
     //#region Getters
 
-    getRequestingIp(): string {
+    public getRequestingIp(): string {
         return this.requestingIp;
     }
 
-    getRequestingSystem(): SystemLogProperty {
+    public getRequestingSystem(): SystemLogProperty {
         return this.requestingSystem;
     }
 
@@ -30,11 +30,11 @@ export class RequestLogProperty {
 
     //#region Setters
 
-    setRequestingIp(value: string) {
+    public setRequestingIp(value: string) {
         this.requestingIp = value;
     }
 
-    setRequestingSystem(value: SystemLogProperty) {
+    public setRequestingSystem(value: SystemLogProperty) {
         this.requestingSystem = value;
     }
 

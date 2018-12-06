@@ -9,18 +9,18 @@ export class RealityLogProperty {
 
     //#region Constructor
 
-    constructor() {
+    public constructor() {
     }
 
     //#endregion
 
     //#region Getters
 
-    getType(): string {
+    public getType(): string {
         return this.type;
     }
 
-    getId(): string {
+    public getId(): string {
         return this.id;
     }
 
@@ -28,11 +28,11 @@ export class RealityLogProperty {
 
     //#region Setters
 
-    setType(value: string) {
+    public setType(value: string) {
         this.type = value;
     }
 
-    setId(value: string) {
+    public setId(value: string) {
         this.id = value;
     }
 

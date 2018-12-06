@@ -31,7 +31,7 @@ export class PolarisLogProperties {
 
     //#region Constructor
 
-    constructor(message: string) {
+    public constructor(message: string) {
         this.message = message;
         this.eventKindDescription = new EventKindDescriptionLogProperty();
         this.reality = new RealityLogProperty();
@@ -43,95 +43,95 @@ export class PolarisLogProperties {
 
     //#region Getters
 
-    getMessage() {
+    public getMessage(): string {
         return this.message;
     }
 
-    getThrowable() {
+    public getThrowable(): object {
         return this.throwable;
     }
 
-    getElapsedTime() {
+    public getElapsedTime(): number {
         return this.elapsedTime;
     }
 
-    getLogId() {
+    public getLogId(): string {
         return this.logId;
     }
 
-    getCustomProperties() {
+    public getCustomProperties(): object {
         return this.customProperties;
     }
 
-    getRequestId() {
+    public getRequestId(): string {
         return this.requestId;
     }
 
-    getUpn() {
+    public getUpn(): string {
         return this.upn;
     }
 
-    getResponse() {
+    public getResponse(): object {
         return this.response;
     }
 
-    getRepositoryVersion() {
+    public getRepositoryVersion(): string {
         return this.repositoryVersion;
     }
 
-    getEnvironment() {
+    public getEnvironment(): string {
         return this.environment;
     }
 
-    getComponent() {
+    public getComponent(): string {
         return this.component;
     }
 
-    getIsTraceable() {
+    public getIsTraceable(): boolean {
         return this.isTraceable;
     }
 
-    getRecordId() {
+    public getRecordId(): string {
         return this.recordId;
     }
 
-    getEventKind() {
+    public getEventKind(): string {
         return this.eventKind;
     }
 
-    getEventKindDescriptionSystemId() {
+    public getEventKindDescriptionSystemId(): string {
         return this.eventKindDescription.getSystemId();
     }
 
-    getEventKindDescriptionRequestingSystemId() {
+    public getEventKindDescriptionRequestingSystemId(): string {
         return this.eventKindDescription.getRequestingSystemId();
     }
 
-    getRealityId() {
+    public getRealityId(): string {
         return this.reality.getId();
     }
 
-    getRealityType() {
+    public getRealityType(): string {
         return this.reality.getType();
     }
 
-    getRequestingIp() {
+    public getRequestingIp(): string {
         return this.request.getRequestingIp();
     }
 
-    getRequestingSystemName() {
+    public getRequestingSystemName(): string {
         return this.request.getRequestingSystem().getName();
     }
 
-    getRequestingSystemId() {
+    public getRequestingSystemId(): string {
         return this.request.getRequestingSystem().getId();
     }
 
-    getSystemName() {
+    public getSystemName(): string {
         return this.system.getName();
     }
 
-    getSystemId() {
+    public getSystemId(): string {
         return this.system.getId();
     }
 
@@ -139,42 +139,42 @@ export class PolarisLogProperties {
 
     //#region Setters
 
-    setMessage(message: string): PolarisLogProperties {
+    public setMessage(message: string): PolarisLogProperties {
         this.message = message;
         return this;
     }
 
-    setThrowable(throwable: object): PolarisLogProperties {
+    public setThrowable(throwable: object): PolarisLogProperties {
         this.throwable = throwable;
         return this;
     }
 
-    setElapsedTime(elapsedTime: number): PolarisLogProperties {
+    public setElapsedTime(elapsedTime: number): PolarisLogProperties {
         this.elapsedTime = elapsedTime;
         return this;
     }
 
-    setLogId(logId: string): PolarisLogProperties {
+    public setLogId(logId: string): PolarisLogProperties {
         this.logId = logId;
         return this;
     }
 
-    setCustomProperties(customProperties: object): PolarisLogProperties {
+    public setCustomProperties(customProperties: object): PolarisLogProperties {
         this.customProperties = customProperties;
         return this;
     }
 
-    setRequestId(requestId: string): PolarisLogProperties {
+    public setRequestId(requestId: string): PolarisLogProperties {
         this.requestId = requestId;
         return this;
     }
 
-    setUpn(upn: string): PolarisLogProperties {
+    public setUpn(upn: string): PolarisLogProperties {
         this.upn = upn;
         return this;
     }
 
-    setResponse(response: object): PolarisLogProperties {
+    public setResponse(response: object): PolarisLogProperties {
         this.response = response;
         return this;
     }
@@ -194,17 +194,17 @@ export class PolarisLogProperties {
         return this;
     }
 
-    setIsTraceable(isTraceable: boolean): PolarisLogProperties {
+    public setIsTraceable(isTraceable: boolean): PolarisLogProperties {
         this.isTraceable = isTraceable;
         return this;
     }
 
-    setRecordId(recordId: string): PolarisLogProperties {
+    public setRecordId(recordId: string): PolarisLogProperties {
         this.recordId = recordId;
         return this;
     }
 
-    setEventKind(eventKind: string): PolarisLogProperties {
+    public setEventKind(eventKind: string): PolarisLogProperties {
         this.eventKind = eventKind;
         return this;
     }
@@ -219,12 +219,12 @@ export class PolarisLogProperties {
         return this;
     }
 
-    setRealityId(realityId: string): PolarisLogProperties {
+    public setRealityId(realityId: string): PolarisLogProperties {
         this.reality.setId(realityId);
         return this;
     }
 
-    setRealityType(realityType: string): PolarisLogProperties {
+    public setRealityType(realityType: string): PolarisLogProperties {
         this.reality.setType(realityType);
         return this;
     }
@@ -254,7 +254,7 @@ export class PolarisLogProperties {
         return this;
     }
 
-    setApplicationProperties(appProps: ApplicationLogProperties): PolarisLogProperties {
+    public setApplicationProperties(appProps: ApplicationLogProperties): PolarisLogProperties {
         this.setSystemId(appProps.getId());
         this.setEventKindDescriptionSystemId(appProps.getId());
         this.setSystemName(appProps.getName());
