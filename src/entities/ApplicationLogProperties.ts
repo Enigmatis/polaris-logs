@@ -12,7 +12,12 @@ export class ApplicationLogProperties {
 
     //#region Constructor
 
-    constructor() {
+    constructor(id: string, name: string, repositoryVersion: string, environment: string, component: string) {
+        this.id = id;
+        this.name = name;
+        this.repositoryVersion = repositoryVersion;
+        this.environment = environment;
+        this.component = component;
     }
 
     //#endregion

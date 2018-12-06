@@ -15,19 +15,17 @@ export class PolarisLogProperties {
     private customProperties: object;
     private requestId: string;
     private upn: string;
-    private eventKind: string;
     private response: object;
-    private applicationId: string;
-    private applicationName: string;
     private repositoryVersion: string;
     private environment: string;
-    private isTraceable: boolean;
     private component: string;
-    private requestIp: string;
+    private isTraceable: boolean;
     private recordId: string;
+    private eventKind: string;
     private eventKindDescription: EventKindDescriptionLogProperty;
-    private request: RequestLogProperty;
     private reality: RealityLogProperty;
+    private request: RequestLogProperty;
+    private system: SystemLogProperty;
 
     //#endregion
 
@@ -35,10 +33,10 @@ export class PolarisLogProperties {
 
     constructor(message: string) {
         this.message = message;
+        this.eventKindDescription = new EventKindDescriptionLogProperty();
         this.reality = new RealityLogProperty();
         this.request = new RequestLogProperty();
-        this.request.setRequestingSystem(new SystemLogProperty());
-        this.eventKindDescription = new EventKindDescriptionLogProperty();
+        this.system = new SystemLogProperty();
     }
 
     //#endregion
@@ -65,20 +63,16 @@ export class PolarisLogProperties {
         return this.customProperties;
     }
 
+    getRequestId() {
+        return this.requestId;
+    }
+
     getUpn() {
         return this.upn;
     }
 
     getResponse() {
         return this.response;
-    }
-
-    getApplicationId() {
-        return this.applicationId;
-    }
-
-    getApplicationName() {
-        return this.applicationName;
     }
 
     getRepositoryVersion() {
@@ -105,16 +99,24 @@ export class PolarisLogProperties {
         return this.eventKind;
     }
 
-    getEventKindDescription() {
-        return this.eventKindDescription;
+    getEventKindDescriptionSystemId() {
+        return this.eventKindDescription.getSystemId();
     }
 
-    getRequestId() {
-        return this.requestId;
+    getEventKindDescriptionRequestingSystemId() {
+        return this.eventKindDescription.getRequestingSystemId();
     }
 
-    getRequestIp() {
-        return this.requestIp;
+    getRealityId() {
+        return this.reality.getId();
+    }
+
+    getRealityType() {
+        return this.reality.getType();
+    }
+
+    getRequestingIp() {
+        return this.request.getRequestingIp();
     }
 
     getRequestingSystemName() {
@@ -125,25 +127,18 @@ export class PolarisLogProperties {
         return this.request.getRequestingSystem().getId();
     }
 
-    getRealityType() {
-        return this.reality.getType();
+    getSystemName() {
+        return this.system.getName();
     }
 
-    getRealityId() {
-        return this.reality.getId();
+    getSystemId() {
+        return this.system.getId();
     }
 
     //#endregion
 
     //#region Setters
 
-    setApplicaton(app: ApplicationLogProperties){
-        this.setComponent(app.getComponent());
-        this.setApplicationId(app.getId());
-        this.setRepositoryVersion(app.getRepositoryVersion());
-        this.setEnvironment(app.getEnvironment());
-        this.setApplicationName(app.getName());
-    }
     setMessage(message: string): PolarisLogProperties {
         this.message = message;
         return this;
@@ -174,23 +169,8 @@ export class PolarisLogProperties {
         return this;
     }
 
-    setRecordId(recordId: string): PolarisLogProperties {
-        this.recordId = recordId;
-        return this;
-    }
-
     setUpn(upn: string): PolarisLogProperties {
         this.upn = upn;
-        return this;
-    }
-
-    setEventKind(eventKind: string): PolarisLogProperties {
-        this.eventKind = eventKind;
-        return this;
-    }
-
-    setEventKindDescription(eventKindDescription: EventKindDescriptionLogProperty): PolarisLogProperties {
-        this.eventKindDescription = eventKindDescription;
         return this;
     }
 
@@ -199,60 +179,88 @@ export class PolarisLogProperties {
         return this;
     }
 
-    setApplicationId(applicationId: string): PolarisLogProperties {
-        this.applicationId = applicationId;
-        this.eventKindDescription.setSystemId(applicationId);
-        return this;
-    }
-
-    setApplicationName(applicationName: string): PolarisLogProperties {
-        this.applicationName = applicationName;
-        return this;
-    }
-
-    setRepositoryVersion(repositoryVersion: string): PolarisLogProperties {
+    private setRepositoryVersion(repositoryVersion: string): PolarisLogProperties {
         this.repositoryVersion = repositoryVersion;
         return this;
     }
 
-    setEnvironment(environment: string): PolarisLogProperties {
+    private setEnvironment(environment: string): PolarisLogProperties {
         this.environment = environment;
         return this;
     }
 
-    setComponent(component: string): PolarisLogProperties {
+    private setComponent(component: string): PolarisLogProperties {
         this.component = component;
         return this;
     }
 
-    setTraceable(isTraceable: boolean): PolarisLogProperties {
+    setIsTraceable(isTraceable: boolean): PolarisLogProperties {
         this.isTraceable = isTraceable;
         return this;
     }
 
-    setRequestIp(requestIp: string): PolarisLogProperties {
-        this.requestIp = requestIp;
+    setRecordId(recordId: string): PolarisLogProperties {
+        this.recordId = recordId;
         return this;
     }
 
-    setRequestingSystemName(requestingSystemName: string): PolarisLogProperties {
-        this.request.getRequestingSystem().setName(requestingSystemName);
+    setEventKind(eventKind: string): PolarisLogProperties {
+        this.eventKind = eventKind;
         return this;
     }
 
-    setRequestingSystemId(requestingSystemId: string): PolarisLogProperties {
-        this.eventKindDescription.setRequestingSystemId(requestingSystemId);
-        this.request.getRequestingSystem().setId(requestingSystemId);
+    private setEventKindDescriptionSystemId(eventKindDescriptionSystemId: string): PolarisLogProperties {
+        this.eventKindDescription.setSystemId(eventKindDescriptionSystemId);
         return this;
     }
 
-    setRealityType(reality: string): PolarisLogProperties {
-        this.reality.setType(reality);
+    private setEventKindDescriptionRequestingSystemId(eventKindDescriptionRequestingSystemId: string): PolarisLogProperties {
+        this.eventKindDescription.setRequestingSystemId(eventKindDescriptionRequestingSystemId);
         return this;
     }
 
     setRealityId(realityId: string): PolarisLogProperties {
         this.reality.setId(realityId);
+        return this;
+    }
+
+    setRealityType(realityType: string): PolarisLogProperties {
+        this.reality.setType(realityType);
+        return this;
+    }
+
+    private setRequestingIp(requestingIp: string): PolarisLogProperties {
+        this.request.setRequestingIp(requestingIp);
+        return this;
+    }
+
+    private setRequestingSystemName(requestingSystemName: string): PolarisLogProperties {
+        this.request.getRequestingSystem().setName(requestingSystemName);
+        return this;
+    }
+
+    private setRequestingSystemId(requestingSystemId: string): PolarisLogProperties {
+        this.request.getRequestingSystem().setId(requestingSystemId);
+        return this;
+    }
+
+    private setSystemName(systemName: string): PolarisLogProperties {
+        this.system.setName(systemName);
+        return this;
+    }
+
+    private setSystemId(systemId: string): PolarisLogProperties {
+        this.system.setId(systemId);
+        return this;
+    }
+
+    setApplicationProperties(appProps: ApplicationLogProperties): PolarisLogProperties {
+        this.setSystemId(appProps.getId());
+        this.setEventKindDescriptionSystemId(appProps.getId());
+        this.setSystemName(appProps.getName());
+        this.setRepositoryVersion(appProps.getRepositoryVersion());
+        this.setEnvironment(appProps.getEnvironment());
+        this.setComponent(appProps.getComponent());
         return this;
     }
 

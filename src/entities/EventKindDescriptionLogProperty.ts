@@ -1,5 +1,3 @@
-import {SystemLogProperty} from "./SystemLogProperty";
-
 export class EventKindDescriptionLogProperty {
 
     //#region Data members

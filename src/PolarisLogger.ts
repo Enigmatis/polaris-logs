@@ -3,7 +3,6 @@ import {LogPropertiesWrapper} from "./LogPropertiesWrapper"
 import {PolarisLogProperties} from "./PolarisLogProperties";
 import {ParserUtil} from "./utils/ParserUtil";
 import cleanDeep = require("clean-deep");
-import winston = require("winston");
 
 export class PolarisLogger {
     private logger;
@@ -32,10 +31,12 @@ export class PolarisLogger {
         // if is info enabled
         this.logger.error(this.buildLog(polarisLogProperties));
     }
+
     trace(polarisLogProperties: PolarisLogProperties) {
         // if is info enabled
         this.logger.trace(this.buildLog(polarisLogProperties));
     }
+
     debug(polarisLogProperties: PolarisLogProperties) {
         // if is info enabled
         this.logger.debug(this.buildLog(polarisLogProperties));

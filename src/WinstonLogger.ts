@@ -1,13 +1,13 @@
 import * as winston from 'winston';
-import {ParserUtil} from "./utils/ParserUtil";
 
-const { createLogger, format, transports } = require('winston');
-const { combine, timestamp, colorize, printf, splat } = format;
+const {createLogger, format, transports} = require('winston');
+const {combine} = format;
+
 export class WinstonLogger {
-    private logger;
+    private readonly logger;
 
     constructor() {
-        const myFormat =  winston.format.combine(
+        const myFormat = winston.format.combine(
             winston.format.timestamp(),
             winston.format.align(),
             winston.format.printf((info) => {
@@ -18,6 +18,7 @@ export class WinstonLogger {
                 const ts = timestamp.slice(0, 19).replace('T', ' ');
                 return `${ts} [${level}]: ${message} ${Object.keys(args).length ? JSON.stringify(args, null, 2) : ''}`;
             }));
+
         const customLevels = {
             levels: {
                 error: 0,
@@ -26,24 +27,27 @@ export class WinstonLogger {
                 debug: 3,
                 trace: 4
             },
-            colors:{
+            colors: {
                 error: 'red',
-                warn: 'green',
-                info: 'yellow',
+                warn: 'yellow',
+                info: 'green',
                 trace: 'magenta',
                 debug: 'blue',
-            }}
+            }
+        };
+
         this.logger = createLogger({
             level: 'trace',
             levels: customLevels.levels,
             format: format.json(),
             transports: [
-                new transports.File({filename: 'somefile.log', format: combine(
-                        myFormat
-                    )}, )
+                new transports.File({
+                    filename: 'somefile.log', format: combine(myFormat)
+                })
             ],
             exitOnError: false, // do not exit on handled exceptions
         });
+
         winston.addColors(customLevels.colors);
         this.logger.add(new winston.transports.Console({
             format: winston.format.combine(
@@ -51,7 +55,6 @@ export class WinstonLogger {
                 myFormat)
         }));
     }
-
 
     getLogger() {
         return this.logger;
