@@ -16,7 +16,7 @@ export class WinstonLogger {
                 } = info;
 
                 const ts = timestamp.slice(0, 19).replace('T', ' ');
-                return `${ts} [${level}]: ${message} ${Object.keys(args).length ? JSON.stringify(args, null, 2) : ''}`;
+                return `${ts} [${level}]: ${message}\n${Object.keys(args).length ? JSON.stringify(args, null, 2) : ''}`;
             }));
 
         const customLevels = {

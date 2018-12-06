@@ -3,7 +3,7 @@ import {PolarisLogProperties} from "./PolarisLogProperties";
 import {ApplicationLogProperties} from "./entities/ApplicationLogProperties";
 
 let polarisLogger = new PolarisLogger(null);
-let applicationProps = new ApplicationLogProperties("p0laris-l0g3s", "polaris-logs", "v1", "dev", "component");
+let applicationProps = new ApplicationLogProperties("p01aris-10gs", "polaris-logs", "v1", "dev", "component");
 let props = new PolarisLogProperties("hello world").setCustomProperties({
     "foo": "bar",
     "number": 123,
