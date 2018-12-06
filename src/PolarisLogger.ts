@@ -1,4 +1,4 @@
-import {WinstonLogger as Logger} from "./WinstonLogger";
+import {WinstonLogger} from "./WinstonLogger";
 import {LogPropertiesWrapper} from "./LogPropertiesWrapper"
 import {PolarisLogProperties} from "./PolarisLogProperties";
 import {ParserUtil} from "./utils/ParserUtil";
@@ -11,34 +11,39 @@ export class PolarisLogger {
     private readonly applicationLogProperties: ApplicationLogProperties;
 
     public constructor(logPropertiesWrapper: LogPropertiesWrapper, applicationProperties: ApplicationLogProperties) {
-        this.logger = (new Logger()).getLogger();
+        this.logger = new WinstonLogger().getLogger();
         this.logPropertiesWrapper = logPropertiesWrapper;
         this.applicationLogProperties = applicationProperties;
     }
 
     public info(polarisLogProperties: PolarisLogProperties) {
-        // if is info enabled
-        this.logger.info(this.buildLog(polarisLogProperties));
+        if (this.logger.isInfoEnabled()) {
+            this.logger.info(this.buildLog(polarisLogProperties));
+        }
     }
 
     public warn(polarisLogProperties: PolarisLogProperties) {
-        // if is info enabled
-        this.logger.warn(this.buildLog(polarisLogProperties));
+        if (this.logger.isWarnEnabled()) {
+            this.logger.warn(this.buildLog(polarisLogProperties));
+        }
     }
 
     public error(polarisLogProperties: PolarisLogProperties) {
-        // if is info enabled
-        this.logger.error(this.buildLog(polarisLogProperties));
+        if (this.logger.isErrorEnabled()) {
+            this.logger.error(this.buildLog(polarisLogProperties));
+        }
     }
 
     public trace(polarisLogProperties: PolarisLogProperties) {
-        // if is info enabled
-        this.logger.trace(this.buildLog(polarisLogProperties));
+        if (this.logger.isTraceEnabled()) {
+            this.logger.trace(this.buildLog(polarisLogProperties));
+        }
     }
 
     public debug(polarisLogProperties: PolarisLogProperties) {
-        // if is info enabled
-        this.logger.debug(this.buildLog(polarisLogProperties));
+        if (this.logger.isDebugEnabled()) {
+            this.logger.debug(this.buildLog(polarisLogProperties));
+        }
     }
 
     private shouldLogRequestAndResponse(logRequestAndResponse: boolean) {
