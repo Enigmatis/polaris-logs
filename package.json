@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/Enigmatis/polaris-logs#readme",
   "dependencies": {
+    "@types/node": "10.12.12",
     "clean-deep": "^3.0.2",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
@@ -35,7 +36,6 @@
   },
   "devDependencies": {
     "@types/winston": "^2.4.4",
-    "@types/node": "^10.12.10",
     "ts-node": "^7.0.1"
   }
 }
