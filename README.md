@@ -1,7 +1,7 @@
 # polaris-logs
 A node.js library that helps you create and use loggers according to a certain standard.
 
-###ApplicationLogProperties
+### ApplicationLogProperties
 This class represent the log properties that comes from a properties file.
 
 Those properties are:
@@ -11,10 +11,10 @@ Those properties are:
  + environment
  + component
 
-###PolarisLoggerProperties
+### PolarisLoggerProperties
 This class represent the log properties that will be logged through the ```PolarisLogger```.
 
-###PolarisLogger
+### PolarisLogger
 This class interacts with the actual winston logger and responsible for logging the properties that was provided to him.
 
 ### Example
