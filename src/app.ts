@@ -32,6 +32,7 @@ let props = new MyProperties("hello world").setNum(1).setBool(false)
     .setElapsedTime(939393).setRealityType("foo").setRealityId("123123")
     .setCustomProperties({
         "foo": "bar",
+        "hello": "world",
         "number": 123,
         "json": {
             "secret": true
