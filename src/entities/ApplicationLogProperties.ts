@@ -53,7 +53,7 @@ export class ApplicationLogProperties {
     }
 
     public setName(value: string) {
-        this.name = name;
+        this.name = value;
     }
 
     public setRepositoryVersion(value: string) {

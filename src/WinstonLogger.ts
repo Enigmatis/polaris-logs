@@ -7,7 +7,8 @@ export class WinstonLogger {
     private readonly logger;
 
     constructor() {
-        const myFormat = WinstonLogger.getFormat();
+        const consoleFormat = WinstonLogger.getConsoleFormat();
+        const fileFormat = WinstonLogger.getFileFormat();
         const customLevels = WinstonLogger.getCustomLevels();
 
         this.logger = createLogger({
@@ -16,7 +17,7 @@ export class WinstonLogger {
             format: format.json(),
             transports: [
                 new transports.File({
-                    filename: 'somefile.log', format: combine(myFormat)
+                    filename: 'somefile.log', format: fileFormat
                 })
             ],
             exitOnError: false, // do not exit on handled exceptions
@@ -26,11 +27,11 @@ export class WinstonLogger {
         this.logger.add(new winston.transports.Console({
             format: winston.format.combine(
                 winston.format.colorize(),
-                myFormat)
+                consoleFormat)
         }));
     }
 
-    private static getFormat() {
+    private static getConsoleFormat() {
         return winston.format.combine(
             winston.format.timestamp(),
             winston.format.align(),
@@ -41,6 +42,13 @@ export class WinstonLogger {
 
                 const ts = timestamp.slice(0, 19).replace('T', ' ');
                 return `${ts} [${level}]: ${message}\n${Object.keys(args).length ? JSON.stringify(args, null, 2) : ''}`;
+            }));
+    } 
+    private static getFileFormat() {
+        return winston.format.combine(
+            winston.format.timestamp(),
+            winston.format.printf((info) => {
+                return JSON.stringify(info, null, 2) ;
             }));
     }
 
