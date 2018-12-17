@@ -6,7 +6,7 @@ const {combine} = format;
 export class WinstonLogger {
     private readonly logger;
 
-    constructor() {
+    constructor(filePath :string) {
         const consoleFormat = WinstonLogger.getConsoleFormat();
         const fileFormat = WinstonLogger.getFileFormat();
         const customLevels = WinstonLogger.getCustomLevels();
@@ -17,7 +17,9 @@ export class WinstonLogger {
             format: format.json(),
             transports: [
                 new transports.File({
-                    filename: 'somefile.log', format: fileFormat
+                    filename: filePath,
+                    format: fileFormat,
+                    maxsize: 1024000
                 })
             ],
             exitOnError: false, // do not exit on handled exceptions

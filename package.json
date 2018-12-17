@@ -4,7 +4,7 @@
   "description": "A logging library",
   "main": "./dist/index.js",
   "scripts": {
-    "start": "node ./dist/app.js",
+    "start": "node ./dist/index.js",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "tsbuild": "tsc",
     "buildDependents": "npm i && tsc && npm link",

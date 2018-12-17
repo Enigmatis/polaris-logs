@@ -4,7 +4,7 @@ import {ApplicationLogProperties} from "./entities/ApplicationLogProperties";
 
 class MyLogger extends PolarisLogger {
     constructor() {
-        super(null, MyLogger.getApplicationProperties());
+        super(null, MyLogger.getApplicationProperties(),'log-file.log');
     }
 
     private static getApplicationProperties(): ApplicationLogProperties {

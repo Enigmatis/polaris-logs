@@ -10,8 +10,9 @@ export class PolarisLogger {
     private readonly logPropertiesWrapper: LogPropertiesWrapper;
     private readonly applicationLogProperties: ApplicationLogProperties;
 
-    public constructor(logPropertiesWrapper: LogPropertiesWrapper, applicationProperties: ApplicationLogProperties) {
-        this.logger = new WinstonLogger().getLogger();
+    public constructor(logPropertiesWrapper: LogPropertiesWrapper, applicationProperties: ApplicationLogProperties,
+                       filePath: string) {
+        this.logger = new WinstonLogger(filePath).getLogger();
         this.logPropertiesWrapper = logPropertiesWrapper;
         this.applicationLogProperties = applicationProperties;
     }
