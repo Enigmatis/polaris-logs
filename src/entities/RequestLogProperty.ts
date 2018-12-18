@@ -6,6 +6,7 @@ export class RequestLogProperty {
 
     private requestingIp: string;
     private requestingSystem: SystemLogProperty;
+    private requestQuery: object;
 
     //#endregion
 
@@ -26,6 +27,10 @@ export class RequestLogProperty {
         return this.requestingSystem;
     }
 
+    public getRequestQuery(): object {
+        return this.requestQuery;
+    }
+
     //#endregion
 
     //#region Setters
@@ -36,6 +41,10 @@ export class RequestLogProperty {
 
     public setRequestingSystem(value: SystemLogProperty) {
         this.requestingSystem = value;
+    }
+
+    public setRequestQuery(value: object) {
+        this.requestQuery = value;
     }
 
     //#endregion
