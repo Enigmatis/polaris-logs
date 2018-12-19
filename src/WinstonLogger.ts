@@ -1,22 +1,19 @@
-import * as winston from 'winston';
-
-const {createLogger, format, transports} = require('winston');
-const {combine} = format;
+import winston = require("winston");
 
 export class WinstonLogger {
     private readonly logger;
 
-    constructor(filePath :string) {
+    constructor(filePath: string) {
         const consoleFormat = WinstonLogger.getConsoleFormat();
         const fileFormat = WinstonLogger.getFileFormat();
         const customLevels = WinstonLogger.getCustomLevels();
 
-        this.logger = createLogger({
+        this.logger = winston.createLogger({
             level: 'trace',
             levels: customLevels.levels,
-            format: format.json(),
+            format: winston.format.json(),
             transports: [
-                new transports.File({
+                new winston.transports.File({
                     filename: filePath,
                     format: fileFormat,
                     maxsize: 1024000
@@ -45,12 +42,13 @@ export class WinstonLogger {
                 const ts = timestamp.slice(0, 19).replace('T', ' ');
                 return `${ts} [${level}]: ${message}\n${Object.keys(args).length ? JSON.stringify(args, null, 2) : ''}`;
             }));
-    } 
+    }
+
     private static getFileFormat() {
         return winston.format.combine(
             winston.format.timestamp(),
             winston.format.printf((info) => {
-                return JSON.stringify(info, null, 2) ;
+                return JSON.stringify(info, null, 2);
             }));
     }
 
