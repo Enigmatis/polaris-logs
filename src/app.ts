@@ -4,7 +4,7 @@ import {ApplicationLogProperties} from "./entities/ApplicationLogProperties";
 
 class MyLogger extends PolarisLogger {
     constructor() {
-        super(null, MyLogger.getApplicationProperties(),'log-file.log');
+        super(null, MyLogger.getApplicationProperties(), 'logstash-host', 12345);
     }
 
     private static getApplicationProperties(): ApplicationLogProperties {

@@ -11,8 +11,8 @@ export class PolarisLogger {
     private readonly applicationLogProperties: ApplicationLogProperties;
 
     public constructor(logPropertiesWrapper: LogPropertiesWrapper, applicationProperties: ApplicationLogProperties,
-                       filePath: string) {
-        this.logger = new WinstonLogger(filePath).getLogger();
+                       logstashHost: string, logstashPort: number) {
+        this.logger = new WinstonLogger(logstashHost, logstashPort).getLogger();
         this.logPropertiesWrapper = logPropertiesWrapper;
         this.applicationLogProperties = applicationProperties;
     }

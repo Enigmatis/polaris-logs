@@ -1,11 +1,12 @@
 import winston = require("winston");
+import {LogstashTransport} from "winston-logstash-transport";
 
 export class WinstonLogger {
     private readonly logger;
 
-    constructor(filePath: string) {
+    constructor(logstashHost: string, logstashPort: number) {
         const consoleFormat = WinstonLogger.getConsoleFormat();
-        const fileFormat = WinstonLogger.getFileFormat();
+        const logstashFormat = WinstonLogger.getLogstashFormat();
         const customLevels = WinstonLogger.getCustomLevels();
 
         this.logger = winston.createLogger({
@@ -13,11 +14,7 @@ export class WinstonLogger {
             levels: customLevels.levels,
             format: winston.format.json(),
             transports: [
-                new winston.transports.File({
-                    filename: filePath,
-                    format: fileFormat,
-                    maxsize: 1024000
-                })
+                new LogstashTransport({host: logstashHost, port: logstashPort, format: logstashFormat})
             ],
             exitOnError: false, // do not exit on handled exceptions
         });
@@ -44,7 +41,7 @@ export class WinstonLogger {
             }));
     }
 
-    private static getFileFormat() {
+    private static getLogstashFormat() {
         return winston.format.combine(
             winston.format.timestamp(),
             winston.format.printf((info) => {
