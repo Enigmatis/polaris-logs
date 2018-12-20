@@ -4,7 +4,7 @@ import {ApplicationLogProperties} from "./entities/ApplicationLogProperties";
 
 class MyLogger extends PolarisLogger {
     constructor() {
-        super(null, MyLogger.getApplicationProperties(), 'logstash-host', 12345);
+        super(null, MyLogger.getApplicationProperties(), 'trace', 'logstash-host', 12345);
     }
 
     private static getApplicationProperties(): ApplicationLogProperties {
@@ -39,8 +39,9 @@ let props = new MyProperties("hello world").setNum(1).setBool(false)
         }
     });
 
-myLogger.info(props);
-myLogger.warn(props);
-myLogger.debug(props);
-myLogger.trace(props);
+myLogger.fatal(props);
 myLogger.error(props);
+myLogger.warn(props);
+myLogger.info(props);
+myLogger.trace(props);
+myLogger.debug(props);

@@ -1,5 +1,7 @@
+import cleanDeep = require("clean-deep");
+
 export class ParserUtil {
-    public static parseClassToObject(classToParse: any): object {
-        return JSON.parse(JSON.stringify(classToParse));
+    public static parseClassToCleansedObject(classToParse: any): object {
+        return cleanDeep(JSON.parse(JSON.stringify(classToParse)));
     }
 }

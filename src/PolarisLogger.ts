@@ -3,7 +3,6 @@ import {LogPropertiesWrapper} from "./LogPropertiesWrapper"
 import {PolarisLogProperties} from "./PolarisLogProperties";
 import {ParserUtil} from "./utils/ParserUtil";
 import {ApplicationLogProperties} from "./entities/ApplicationLogProperties";
-import cleanDeep = require("clean-deep");
 
 export class PolarisLogger {
     private logger;
@@ -11,15 +10,21 @@ export class PolarisLogger {
     private readonly applicationLogProperties: ApplicationLogProperties;
 
     public constructor(logPropertiesWrapper: LogPropertiesWrapper, applicationProperties: ApplicationLogProperties,
-                       logstashHost: string, logstashPort: number) {
-        this.logger = new WinstonLogger(logstashHost, logstashPort).getLogger();
+                       loggerLevel: string, logstashHost: string, logstashPort: number) {
+        this.logger = new WinstonLogger(loggerLevel, logstashHost, logstashPort).getLogger();
         this.logPropertiesWrapper = logPropertiesWrapper;
         this.applicationLogProperties = applicationProperties;
     }
 
-    public info(polarisLogProperties: PolarisLogProperties) {
-        if (this.logger.isInfoEnabled()) {
-            this.logger.info(this.buildLog(polarisLogProperties));
+    public fatal(polarisLogProperties: PolarisLogProperties) {
+        if (this.logger.isFatalEnabled()) {
+            this.logger.fatal(this.buildLog(polarisLogProperties));
+        }
+    }
+
+    public error(polarisLogProperties: PolarisLogProperties) {
+        if (this.logger.isErrorEnabled()) {
+            this.logger.error(this.buildLog(polarisLogProperties));
         }
     }
 
@@ -29,9 +34,9 @@ export class PolarisLogger {
         }
     }
 
-    public error(polarisLogProperties: PolarisLogProperties) {
-        if (this.logger.isErrorEnabled()) {
-            this.logger.error(this.buildLog(polarisLogProperties));
+    public info(polarisLogProperties: PolarisLogProperties) {
+        if (this.logger.isInfoEnabled()) {
+            this.logger.info(this.buildLog(polarisLogProperties));
         }
     }
 
@@ -60,7 +65,18 @@ export class PolarisLogger {
             polarisLogProperties.setApplicationProperties(this.applicationLogProperties);
         }
 
-        let propertiesAsObject = ParserUtil.parseClassToObject(polarisLogProperties);
-        return cleanDeep(propertiesAsObject);
+        this.handleCustomProperties(polarisLogProperties);
+
+        return ParserUtil.parseClassToCleansedObject(polarisLogProperties);
+    }
+
+    private handleCustomProperties(polarisLogProperties: object) {
+        let customProperties = polarisLogProperties["customProperties"];
+        if (customProperties != null) {
+            Object.keys(customProperties).forEach(function (key) {
+                polarisLogProperties[key] = customProperties[key];
+            });
+            delete polarisLogProperties["customProperties"];
+        }
     }
 }

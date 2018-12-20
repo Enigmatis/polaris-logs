@@ -4,13 +4,13 @@ import {LogstashTransport} from "winston-logstash-transport";
 export class WinstonLogger {
     private readonly logger;
 
-    constructor(logstashHost: string, logstashPort: number) {
+    constructor(loggerLevel: string, logstashHost: string, logstashPort: number) {
         const consoleFormat = WinstonLogger.getConsoleFormat();
         const logstashFormat = WinstonLogger.getLogstashFormat();
         const customLevels = WinstonLogger.getCustomLevels();
 
         this.logger = winston.createLogger({
-            level: 'trace',
+            level: loggerLevel,
             levels: customLevels.levels,
             format: winston.format.json(),
             transports: [
@@ -52,13 +52,15 @@ export class WinstonLogger {
     private static getCustomLevels() {
         return {
             levels: {
-                error: 0,
-                warn: 1,
-                info: 2,
-                debug: 3,
-                trace: 4
+                fatal: 0,
+                error: 1,
+                warn: 2,
+                info: 3,
+                debug: 4,
+                trace: 5
             },
             colors: {
+                fatal: 'bold',
                 error: 'red',
                 warn: 'yellow',
                 info: 'green',
