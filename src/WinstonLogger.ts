@@ -1,20 +1,25 @@
 import winston = require("winston");
 import {LogstashTransport} from "winston-logstash-transport";
+import {LoggerConfiguration} from "./LoggerConfiguration";
 
 export class WinstonLogger {
     private readonly logger;
 
-    constructor(loggerLevel: string, logstashHost: string, logstashPort: number) {
+    constructor(loggerConfiguration: LoggerConfiguration) {
         const consoleFormat = WinstonLogger.getConsoleFormat();
         const logstashFormat = WinstonLogger.getLogstashFormat();
         const customLevels = WinstonLogger.getCustomLevels();
 
         this.logger = winston.createLogger({
-            level: loggerLevel,
+            level: loggerConfiguration.loggerLevel,
             levels: customLevels.levels,
             format: winston.format.json(),
             transports: [
-                new LogstashTransport({host: logstashHost, port: logstashPort, format: logstashFormat})
+                new LogstashTransport({
+                    host: loggerConfiguration.logstashHost,
+                    port: loggerConfiguration.logstashPort,
+                    format: logstashFormat
+                })
             ],
             exitOnError: false, // do not exit on handled exceptions
         });
