@@ -3,6 +3,7 @@ import {LogPropertiesWrapper} from "./LogPropertiesWrapper"
 import {PolarisLogProperties} from "./PolarisLogProperties";
 import {ParserUtil} from "./utils/ParserUtil";
 import {ApplicationLogProperties} from "./entities/ApplicationLogProperties";
+import {LoggerConfiguration} from "./LoggerConfiguration";
 
 export class PolarisLogger {
     private logger;
@@ -10,8 +11,8 @@ export class PolarisLogger {
     private readonly applicationLogProperties: ApplicationLogProperties;
 
     public constructor(logPropertiesWrapper: LogPropertiesWrapper, applicationProperties: ApplicationLogProperties,
-                       loggerLevel: string, logstashHost: string, logstashPort: number) {
-        this.logger = new WinstonLogger(loggerLevel, logstashHost, logstashPort).getLogger();
+                       loggerConfiguration: LoggerConfiguration) {
+        this.logger = new WinstonLogger(loggerConfiguration).getLogger();
         this.logPropertiesWrapper = logPropertiesWrapper;
         this.applicationLogProperties = applicationProperties;
     }
