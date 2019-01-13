@@ -4,13 +4,15 @@
   "description": "A logging library",
   "main": "./dist/index.js",
   "scripts": {
-    "start": "node ./dist/index.js",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "tsbuild": "tsc",
     "buildDependents": "npm i && tsc && npm link",
     "clean": "rimraf dist",
     "rebuild": "rimraf dist && tsc",
-    "run": "npm run tsbuild && npm run start"
+    "run": "npm run tsbuild && npm run start",
+    "lint": "npm run tslint-check && tslint -p .",
+    "lint:fix": "npm run tslint-check && tslint -p . --fix",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "repository": {
     "type": "git",
@@ -26,7 +28,6 @@
   },
   "homepage": "https://github.com/Enigmatis/polaris-logs#readme",
   "dependencies": {
-    "@types/node": "10.12.12",
     "clean-deep": "^3.0.2",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
@@ -36,7 +37,14 @@
     "winston-logstash-transport": "^2.0.0"
   },
   "devDependencies": {
+    "@types/node": "10.12.12",
     "@types/winston": "^2.4.4",
-    "ts-node": "^7.0.1"
+    "prettier": "^1.15.3",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-consistent-codestyle": "^1.14.1",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-plugin-prettier": "^2.0.1"
   }
 }
