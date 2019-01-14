@@ -1,17 +1,26 @@
+import * as winston from 'winston';
 import { LogstashTransport } from 'winston-logstash-transport';
 import { LoggerConfiguration } from './logger-configuration';
-import * as winston from 'winston';
 
-const consoleFormat = winston.format.combine(
+const consoleFullFormat = winston.format.combine(
     winston.format.timestamp(),
     winston.format.align(),
     winston.format.printf(info => {
         const { timestamp, level, message, ...args } = info;
-
         const ts = timestamp.slice(0, 19).replace('T', ' ');
         return `${ts} [${level}]: ${message}\n${
             Object.keys(args).length ? JSON.stringify(args, null, 2) : ''
             }`;
+    }),
+);
+
+const consoleShortFormat = winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.align(),
+    winston.format.printf(info => {
+        const { timestamp, level, message } = info;
+        const ts = timestamp.slice(0, 19).replace('T', ' ');
+        return `${ts} [${level}]: ${message}`;
     }),
 );
 
@@ -60,7 +69,7 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
     if (loggerConfiguration.writeToConsole) {
         logger.add(
             new winston.transports.Console({
-                format: winston.format.combine(winston.format.colorize(), consoleFormat),
+                format: winston.format.combine(winston.format.colorize(), loggerConfiguration.writeFullMessageToConsole ? consoleFullFormat : consoleShortFormat),
             }),
         );
     }

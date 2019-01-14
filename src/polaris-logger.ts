@@ -1,16 +1,32 @@
+import { Logger } from 'winston';
 import { ApplicationLogProperties } from './entities/application-log-properties';
 import { LoggerConfiguration } from './logger-configuration';
 import { PolarisLogProperties } from './polaris-log-properties';
 import { createLogger } from './winston-logger';
-import { Logger } from 'winston';
 
-const cleanDeep = require('clean-deep');
+import cleanDeep = require('clean-deep');
 
 export class PolarisLogger {
+    private static getAppPropertiesToAssign(applicationProperties: ApplicationLogProperties) {
+        return {
+            system: {
+                id: applicationProperties.id,
+                name: applicationProperties.name,
+            },
+            eventKindDescription: {
+                _systemId: applicationProperties.id,
+            },
+            repositoryVersion: applicationProperties.repositoryVersion,
+            environment: applicationProperties.environment,
+            component: applicationProperties.component,
+        };
+    }
     private logger: Logger;
 
-    public constructor(readonly applicationLogProperties: ApplicationLogProperties,
-                       loggerConfiguration: LoggerConfiguration) {
+    public constructor(
+        readonly applicationLogProperties: ApplicationLogProperties,
+        loggerConfiguration: LoggerConfiguration,
+    ) {
         this.logger = createLogger(loggerConfiguration);
     }
 
@@ -39,29 +55,14 @@ export class PolarisLogger {
     }
 
     private buildLog(message: string, polarisLogProperties?: PolarisLogProperties) {
-        const propertiesWithCustom = Object.assign({},
-            { message },
-            polarisLogProperties && polarisLogProperties.customProperties,
-            polarisLogProperties,
-            PolarisLogger.getAppPropertiesToAssign(this.applicationLogProperties),
-            { customProperties: undefined },
-        );
+        const propertiesWithCustom = {
+            message,
+            ...(polarisLogProperties && polarisLogProperties.customProperties),
+            ...polarisLogProperties,
+            ...PolarisLogger.getAppPropertiesToAssign(this.applicationLogProperties),
+            customProperties: undefined,
+        };
 
         return cleanDeep(propertiesWithCustom);
-    }
-
-    private static getAppPropertiesToAssign(applicationProperties: ApplicationLogProperties) {
-        return {
-            system: {
-                id: applicationProperties.id,
-                name: applicationProperties.name,
-            },
-            eventKindDescription: {
-                _systemId: applicationProperties.id,
-            },
-            repositoryVersion: applicationProperties.repositoryVersion,
-            environment: applicationProperties.environment,
-            component: applicationProperties.component,
-        };
     }
 }

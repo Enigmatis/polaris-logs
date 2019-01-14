@@ -4,7 +4,7 @@ export interface RequestLogProperty {
     requestingIp?: string;
     requestingSystem?: SystemLogProperty;
     requestQuery?: {
-        body?: any,
-        query?: any,
+        body?: any;
+        query?: any;
     };
 }

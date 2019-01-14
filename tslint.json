@@ -1,23 +1,27 @@
 {
-    "defaultSeverity": "error",
-    "rulesDirectory": [
-        "tslint-plugin-prettier"
+  "defaultSeverity": "error",
+  "rulesDirectory": [
+    "tslint-plugin-prettier"
+  ],
+  "jsRules": {},
+  "extends": [
+    "tslint:latest",
+    "tslint-eslint-rules",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "file-name-casing": [
+      true,
+      "kebab-case"
     ],
-    "jsRules": {},
-    "extends": [
-        "tslint:latest",
-        "tslint-eslint-rules",
-        "tslint-config-prettier"
+    "prettier": [
+      true,
+      ".prettierrc"
     ],
-    "rules": {
-        "file-name-casing": [
-            true,
-            "kebab-case"
-        ],
-        "prettier": [
-            true,
-            ".prettierrc"
-        ],
-        "object-literal-sort-keys": false
-    }
+    "interface-name": [
+      true,
+      "never-prefix"
+    ],
+    "object-literal-sort-keys": false
+  }
 }

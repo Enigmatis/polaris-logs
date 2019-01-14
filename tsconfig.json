@@ -6,8 +6,8 @@
     "outDir": "./dist",
     "strict": true,
     "moduleResolution": "node",
-    "types": [
-      "reflect-metadata"
+    "typeRoots": [
+      "src/type-declarations"
     ],
     "lib": [
       "es6",
