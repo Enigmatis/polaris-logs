@@ -1,6 +1,6 @@
 declare module 'winston-logstash-transport' {
-    import { TransportStreamOptions } from 'winston-transport';
     import * as Transport from 'winston-transport';
+    import {TransportStreamOptions} from 'winston-transport';
 
     interface logstashTransportOptions extends TransportStreamOptions {
         host?: string,
@@ -12,5 +12,4 @@ declare module 'winston-logstash-transport' {
     export class LogstashTransport extends Transport{
         constructor({}: logstashTransportOptions)
     }
-
 }
