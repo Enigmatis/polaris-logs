@@ -1,9 +1,8 @@
-import { Logger } from 'winston';
-import { ApplicationLogProperties } from './entities/application-log-properties';
-import { LoggerConfiguration } from './logger-configuration';
-import { PolarisLogProperties } from './polaris-log-properties';
-import { createLogger } from './winston-logger';
-
+import {Logger} from 'winston';
+import {ApplicationLogProperties} from './entities/application-log-properties';
+import {LoggerConfiguration} from './logger-configuration';
+import {PolarisLogProperties} from './polaris-log-properties';
+import {createLogger} from './winston-logger';
 import cleanDeep = require('clean-deep');
 
 export class PolarisLogger {
@@ -14,13 +13,14 @@ export class PolarisLogger {
                 name: applicationProperties.name,
             },
             eventKindDescription: {
-                _systemId: applicationProperties.id,
+                systemId: applicationProperties.id,
             },
             repositoryVersion: applicationProperties.repositoryVersion,
             environment: applicationProperties.environment,
             component: applicationProperties.component,
         };
     }
+
     private logger: Logger;
 
     public constructor(
