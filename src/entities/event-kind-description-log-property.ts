@@ -1,4 +1,4 @@
 export interface EventKindDescriptionLogProperty {
-    _systemId?: string;
+    systemId?: string;
     requestingSystemId?: string;
 }

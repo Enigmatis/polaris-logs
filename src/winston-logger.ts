@@ -10,7 +10,7 @@ const consoleFullFormat = winston.format.combine(
         const ts = timestamp.slice(0, 19).replace('T', ' ');
         return `${ts} [${level}]: ${message}\n${
             Object.keys(args).length ? JSON.stringify(args, null, 2) : ''
-            }`;
+        }`;
     }),
 );
 
@@ -69,7 +69,12 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
     if (loggerConfiguration.writeToConsole) {
         logger.add(
             new winston.transports.Console({
-                format: winston.format.combine(winston.format.colorize(), loggerConfiguration.writeFullMessageToConsole ? consoleFullFormat : consoleShortFormat),
+                format: winston.format.combine(
+                    winston.format.colorize(),
+                    loggerConfiguration.writeFullMessageToConsole
+                        ? consoleFullFormat
+                        : consoleShortFormat,
+                ),
             }),
         );
     }
