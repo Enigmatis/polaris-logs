@@ -1,13 +1,4 @@
-import {PolarisLogProperties} from "./src/PolarisLogProperties"
-import {PolarisLogger} from "./src/PolarisLogger"
-import {ApplicationLogProperties} from "./src/entities/ApplicationLogProperties"
-import {LogPropertiesWrapper} from "./src/LogPropertiesWrapper"
-import {LoggerConfiguration} from "./src/LoggerConfiguration";
-
-export {
-    PolarisLogger,
-    PolarisLogProperties,
-    ApplicationLogProperties,
-    LogPropertiesWrapper,
-    LoggerConfiguration
-};
+export { ApplicationLogProperties } from './src/entities/application-log-properties';
+export { PolarisLogProperties } from './src/polaris-log-properties';
+export { PolarisLogger } from './src/polaris-logger';
+export { LoggerConfiguration } from './src/logger-configuration';
