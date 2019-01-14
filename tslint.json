@@ -1,0 +1,27 @@
+{
+  "defaultSeverity": "error",
+  "rulesDirectory": [
+    "tslint-plugin-prettier"
+  ],
+  "jsRules": {},
+  "extends": [
+    "tslint:latest",
+    "tslint-eslint-rules",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "file-name-casing": [
+      true,
+      "kebab-case"
+    ],
+    "prettier": [
+      true,
+      ".prettierrc"
+    ],
+    "interface-name": [
+      true,
+      "never-prefix"
+    ],
+    "object-literal-sort-keys": false
+  }
+}
