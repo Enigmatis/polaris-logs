@@ -1,5 +1,8 @@
 language: nodejs
 
+node_js:
+  - "iojs"
+
 before_script:
   - npm run setup
   - npm run build
