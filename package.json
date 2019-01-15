@@ -2,22 +2,21 @@
   "name": "@enigmatis/polaris-logs",
   "version": "0.5.0",
   "description": "A logging library",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "setup": "npm install",
-    "build": "tsc -p tsconfig.json",
+    "build": "rimraf dist && tsc -p tsconfig.json",
     "build-watch": "tsc --watch -p tsconfig.json",
     "clean": "shx rm -rf node_modules/ dist/ docs/",
-    "typedoc": "typedoc --out ./docs --mode modules --tsconfig ./tsconfig.json ./dev/src/",
+    "typedoc": "typedoc --out ./docs --mode modules --tsconfig ./tsconfig.json ./src/",
     "posttypedoc": "shx cp .nojekyll docs/.nojekyll",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "buildDependents": "npm i && tsc && npm link",
     "prepare": "npm run lint:fix && npm run rebuild",
-    "rebuild": "rimraf dist && tsc -p tsconfig.json",
     "lint": "npm run tslint-check && tslint -p .",
     "lint:fix": "npm run tslint-check && tslint -p . --fix",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
