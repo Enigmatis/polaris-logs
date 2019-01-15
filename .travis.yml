@@ -1,7 +1,7 @@
 language: nodejs
 
 node_js:
-  - "iojs"
+  - "lts/*"
 
 before_script:
   - npm run setup
