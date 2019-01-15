@@ -1,7 +1,7 @@
-language: nodejs
-
+language: node_js
 node_js:
-  - "lts/dubnium"
+  - "iojs"
+  - "10"
 
 before_script:
   - npm run setup
