@@ -1,0 +1,28 @@
+language: nodejs
+
+before_script:
+  - npm run setup
+  - npm run build
+  - npm run typedoc
+  - npm pack
+
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    local_dir: docs/
+    github_token: $GITHUB_TOKEN
+    on:
+      tags: true
+  - provider: releases
+    api_key: $GITHUB_TOKEN
+    file_glob: true
+    file: "@enigmatis/polaris-logs-*.tgz"
+    skip_cleanup: true
+    on:
+      tags: true
+  - provider: npm
+    skip_cleanup: true
+    email: "bikov95@gmail.com"
+    api_key: $NPM_TOKEN
+    on:
+      tags: true
