@@ -1,8 +1,20 @@
 # polaris-logs
 A node.js library that helps you create and use loggers according to a certain standard.
 
+### LoggerConfiguration
+Through this interface you should set the following configuration to the ``PolarisLogger``:
+
++ **loggerLevel** (*string*) - The level the logger is listening on, can be one of the following levels: ``fatal`` / 
+``error`` / ``warn`` / ``info`` / ``trace`` / ``debug``
++ **logstashHost** (*string*)
++ **logstashPort** (*number*)
++ **writeToConsole** (*boolean - optional*) - Determines if the logger should write the logs to the console.
++ **writeFullMessageToConsole** (*boolean - optional*) - If you do decide to write logs to console, only the timestamp 
+accompanied by the log level and message will be written, in order to see the whole log, which includes the properties 
+that would be sent to the logstash, set this property to ``true``.
+
 ### ApplicationLogProperties
-This class represent the log properties that comes from a properties file.
+This interface represent the application configurable log properties.
 
 Those properties are:
  + systemId
@@ -11,41 +23,41 @@ Those properties are:
  + environment
  + component
 
-### PolarisLoggerProperties
-This class represent the log properties that will be logged through the ```PolarisLogger```.
+### PolarisLogProperties
+This interface represent the log properties that will be logged through the ``PolarisLogger``.
 
 ### PolarisLogger
 This class interacts with the actual winston logger and responsible for logging the properties that was provided to him.
 
 ### Example
 
-If you would like to add your own properties you can extend those classes like this:
-
 ```TypeScript
-class MyLogger extends PolarisLogger {
-    constructor() {
-        super(null, MyLogger.getApplicationProperties());
-    }
 
-    private static getApplicationProperties(): ApplicationLogProperties {
-        return new ApplicationLogProperties("p01aris-10gs", "polaris-logs", "v1", "dev", "component");
-    }
-}
+import { ApplicationLogProperties, PolarisLogger, LoggerConfiguration } from '@enigmatis/polaris-logs';
 
-class MyProperties extends PolarisLogProperties {
-    private num: number;
-    private bool: boolean;
+const appProps: ApplicationLogProperties = {
+    id: 'p0laris-l0gs',
+    name: 'polaris-logs',
+    repositoryVersion: 'v1',
+    environment: 'environment',
+    component: 'component',
+};
+const logConf: LoggerConfiguration = {
+    loggerLevel: 'trace',
+    logstashHost: '127.0.0.1',
+    logstashPort: 3000,
+    writeToConsole: true,
+    writeFullMessageToConsole: true,
+};
 
-    setNum(num: number): MyProperties {
-        this.num = num;
-        return this;
-    }
+const logger = new PolarisLogger(appProps, logConf);
 
-    setBool(bool: boolean): MyProperties {
-        this.bool = bool;
-        return this;
-    }
-}
+logger.fatal('hello world!');
+logger.error('hello world!');
+logger.warn('hello world!');
+logger.info('hello world!');
+logger.trace('hello world!');
+logger.debug('hello world!');
 
 ```
 
