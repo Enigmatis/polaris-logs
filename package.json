@@ -1,6 +1,6 @@
 {
   "name": "@enigmatis/polaris-logs",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "A logging library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,7 @@
     "tsbuild": "tsc",
     "buildDependents": "npm i && tsc && npm link",
     "clean": "rimraf dist",
-    "prepublish": "npm run lint:fix && npm run rebuild",
+    "prepare": "npm run lint:fix && npm run rebuild",
     "rebuild": "rimraf dist && tsc -p tsconfig.json",
     "lint": "npm run tslint-check && tslint -p .",
     "lint:fix": "npm run tslint-check && tslint -p . --fix",

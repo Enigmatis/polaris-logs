@@ -1,9 +1,9 @@
 import cleanDeep = require('clean-deep');
-import {Logger} from 'winston';
-import {ApplicationLogProperties} from './entities/application-log-properties';
-import {LoggerConfiguration} from './logger-configuration';
-import {PolarisLogProperties} from './polaris-log-properties';
-import {createLogger} from './winston-logger';
+import { Logger } from 'winston';
+import { ApplicationLogProperties } from './entities/application-log-properties';
+import { LoggerConfiguration } from './logger-configuration';
+import { PolarisLogProperties } from './polaris-log-properties';
+import { createLogger } from './winston-logger';
 
 export class PolarisLogger {
     private static getAppPropertiesToAssign(applicationProperties: ApplicationLogProperties) {
