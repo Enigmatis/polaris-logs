@@ -16,7 +16,7 @@
     "posttypedoc": "shx cp .nojekyll docs/.nojekyll",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "buildDependents": "npm i && tsc && npm link",
-    "prepare": "npm run lint:fix && npm run rebuild",
+    "prepare": "npm run lint:fix && npm run build",
     "lint": "npm run tslint-check && tslint -p .",
     "lint:fix": "npm run tslint-check && tslint -p . --fix",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
