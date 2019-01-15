@@ -14,19 +14,29 @@ after_success:
   - npm pack
 
 before_deploy:
-  - npm version patch
+  - >
+    if ! [ "$BEFORE_DEPLOY_RUN" ]; then
+      export BEFORE_DEPLOY_RUN=1;
+      npm version patch
+    fi
 
 deploy:
   - provider: pages
     skip_cleanup: true
     local_dir: docs/
     github_token: $GITHUB_TOKEN
+    on:
+        tags: false
   - provider: releases
     api_key: $GITHUB_TOKEN
     file_glob: true
     file: "@enigmatis/polaris-logs-*.tgz"
     skip_cleanup: true
+    on:
+        tags: false
   - provider: npm
     skip_cleanup: true
     email: "bikov95@gmail.com"
     api_key: $NPM_TOKEN
+    on:
+        tags: false
