@@ -1,6 +1,6 @@
 {
   "name": "@enigmatis/polaris-logs",
-  "version": "1.0.4",
+  "version": "0.0.0-development",
   "description": "A logging library",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -18,14 +18,15 @@
     "prepare": "npm run lint:fix && npm run build",
     "lint": "npm run tslint-check && tslint -p .",
     "lint:fix": "npm run tslint-check && tslint -p . --fix",
-    "tslint-check": "tslint-config-prettier-check ./tslint.json"
+    "tslint-check": "tslint-config-prettier-check ./tslint.json",
+    "semantic-release": "semantic-release"
   },
   "pre-commit": [
     "lint:fix"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Enigmatis/polaris-logs.git"
+    "url": "https://github.com/Enigmatis/polaris-logs.git"
   },
   "keywords": [
     "polaris-logs"
@@ -34,6 +35,11 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Enigmatis/polaris-logs/issues"
+  },
+  "release": {
+    "analyzeCommits": "semantic-release-tamia/analyzeCommits",
+    "generateNotes": "semantic-release-tamia/generateNotes",
+    "verifyRelease": "semantic-release-tamia/verifyRelease"
   },
   "homepage": "https://github.com/Enigmatis/polaris-logs#readme",
   "dependencies": {
@@ -47,6 +53,8 @@
   "devDependencies": {
     "pre-commit": "^1.2.2",
     "prettier": "^1.15.3",
+    "semantic-release": "^15.13.3",
+    "semantic-release-tamia": "^2.2.4",
     "shx": "^0.3.2",
     "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.17.0",
