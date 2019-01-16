@@ -20,7 +20,7 @@ deploy:
     local_dir: docs/
     github_token: $GITHUB_TOKEN
     on:
-        branch: master
+      branch: master
   - provider: releases
     api_key: $GITHUB_TOKEN
     file_glob: true
@@ -33,14 +33,14 @@ deploy:
     email: "bikov95@gmail.com"
     api_key: $NPM_TOKEN
     on:
-        branch: master
+      branch: master
   - provider: npm
       skip_cleanup: true
       email: "bikov95@gmail.com"
       api_key: $NPM_TOKEN
       tag: next
       on:
-          branch: develop
+        branch: develop
 
 after_deploy:
   - git push
