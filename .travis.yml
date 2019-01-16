@@ -10,11 +10,9 @@ script:
   - npm run lint
 
 after_success:
+  - npm version patch
   - npm run typedoc
   - npm pack
-
-before_deploy:
-  - npm version patch
 
 deploy:
   - provider: pages
