@@ -34,3 +34,5 @@ deploy:
     api_key: $NPM_TOKEN
     on:
       branch: master
+after_deploy:
+  - git push
