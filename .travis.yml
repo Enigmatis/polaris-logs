@@ -34,5 +34,13 @@ deploy:
     api_key: $NPM_TOKEN
     on:
       branch: master
+  - provider: npm
+    skip_cleanup: true
+    email: "bikov95@gmail.com"
+    api_key: $NPM_TOKEN
+    tag: next
+    on:
+      branch: develop
+
 after_deploy:
   - git push
