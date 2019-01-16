@@ -44,4 +44,4 @@ deploy:
       branch: develop
 
 after_deploy:
-  - git push
+  -  git push --follow-tags origin HEAD:$TRAVIS_BRANCH
