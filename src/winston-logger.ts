@@ -78,5 +78,15 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
             }),
         );
     }
+
+    if (loggerConfiguration.logsFilePath) {
+        logger.add(
+            new winston.transports.File({
+                format: logstashFormat,
+                filename: loggerConfiguration.logsFilePath,
+            }),
+        );
+    }
+
     return logger;
 };
