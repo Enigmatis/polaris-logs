@@ -17,7 +17,19 @@ before_deploy:
   - |
     if ! [ "$BEFORE_DEPLOY_RUN" ]; then
       export BEFORE_DEPLOY_RUN=1;
-      npm version patch;
+      rvm --default use system;
+      wget https://github.com/spf13/hugo/releases/download/v0.25.1/hugo_0.25.1_Linux-64bit.deb;
+      sudo dpkg -i hugo_0.25.1_Linux-64bit.deb;
+      rm *.deb;
+      sudo apt-get install -y ruby ruby-dev;
+      sudo gem install --no-ri --no-rdoc fpm;
+      make documentation;
+      GOOS=linux GOARCH=amd64 make package package-deb;
+      GOOS=linux GOARCH=386 make package package-deb;
+      GOOS=linux GOARCH=arm make package package-deb;
+      GOOS=darwin GOARCH=amd64 make package;
+      GOOS=windows BINEXT=.exe GOARCH=386 make package;
+      GOOS=windows BINEXT=.exe GOARCH=amd64 make package;
     fi
 
 deploy:
