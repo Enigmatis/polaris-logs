@@ -18,6 +18,7 @@ before_deploy:
     if ! [ "$BEFORE_DEPLOY_RUN" ]; then
       export BEFORE_DEPLOY_RUN=1;
       npm version patch
+
     fi
 
 deploy:
@@ -26,17 +27,26 @@ deploy:
     local_dir: docs/
     github_token: $GITHUB_TOKEN
     on:
-        tags: false
+        branch: master
   - provider: releases
     api_key: $GITHUB_TOKEN
     file_glob: true
     file: "@enigmatis/polaris-logs-*.tgz"
     skip_cleanup: true
     on:
-        tags: false
+      branch: master
   - provider: npm
     skip_cleanup: true
     email: "bikov95@gmail.com"
     api_key: $NPM_TOKEN
     on:
-        tags: false
+        branch: master
+  - provider: npm
+      skip_cleanup: true
+      email: "bikov95@gmail.com"
+      api_key: $NPM_TOKEN
+      tag: next
+      on:
+          branch: develop
+after_deploy:
+  - git push
