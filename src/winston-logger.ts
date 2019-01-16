@@ -1,6 +1,8 @@
 import * as winston from 'winston';
+import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LogstashTransport } from 'winston-logstash-transport';
 import { LoggerConfiguration } from './logger-configuration';
+import { appendSuffixToFilePath } from './utils/path-util';
 
 const consoleFullFormat = winston.format.combine(
     winston.format.timestamp(),
@@ -79,13 +81,23 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
         );
     }
 
-    if (loggerConfiguration.logsFilePath) {
-        logger.add(
-            new winston.transports.File({
-                format: logstashFormat,
-                filename: loggerConfiguration.logsFilePath,
-            }),
-        );
+    if (loggerConfiguration.logFilePath) {
+        if (loggerConfiguration.dailyLogFile) {
+            logger.add(
+                new DailyRotateFile({
+                    format: logstashFormat,
+                    filename: appendSuffixToFilePath(loggerConfiguration.logFilePath, '-%DATE%'),
+                    datePattern: 'YYYY-MM-DD',
+                }),
+            );
+        } else {
+            logger.add(
+                new winston.transports.File({
+                    format: logstashFormat,
+                    filename: loggerConfiguration.logFilePath,
+                }),
+            );
+        }
     }
 
     return logger;

@@ -4,5 +4,6 @@ export interface LoggerConfiguration {
     logstashPort: number;
     writeToConsole?: boolean;
     writeFullMessageToConsole?: boolean;
-    logsFilePath?: string;
+    logFilePath?: string;
+    dailyLogFile?: boolean;
 }
