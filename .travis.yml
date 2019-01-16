@@ -10,9 +10,11 @@ script:
   - npm run lint
 
 after_success:
-  - npm version patch
   - npm run typedoc
   - npm pack
+
+before_deploy:
+  - npm version patch
 
 deploy:
   - provider: pages
@@ -34,13 +36,3 @@ deploy:
     api_key: $NPM_TOKEN
     on:
       branch: master
-  - provider: npm
-      skip_cleanup: true
-      email: "bikov95@gmail.com"
-      api_key: $NPM_TOKEN
-      tag: next
-      on:
-        branch: develop
-
-after_deploy:
-  - git push
