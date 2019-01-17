@@ -6,4 +6,5 @@ export interface LoggerConfiguration {
     writeFullMessageToConsole?: boolean;
     logFilePath?: string;
     dailyLogFile?: boolean;
+    numberOfDaysToDeleteFile?: number;
 }
