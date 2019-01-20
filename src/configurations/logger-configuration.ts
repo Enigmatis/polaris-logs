@@ -1,3 +1,5 @@
+import { DailyRotateFileConfiguration } from './daily-rotate-file-configuration';
+
 export interface LoggerConfiguration {
     loggerLevel: string;
     logstashHost: string;
@@ -5,6 +7,5 @@ export interface LoggerConfiguration {
     writeToConsole?: boolean;
     writeFullMessageToConsole?: boolean;
     logFilePath?: string;
-    dailyLogFile?: boolean;
-    numberOfDaysToDeleteFile?: number;
+    dailyRotateFileConfiguration?: DailyRotateFileConfiguration;
 }

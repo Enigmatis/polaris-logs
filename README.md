@@ -13,9 +13,15 @@ Through this interface you should set the following configuration to the ``Polar
 accompanied by the log level and message will be written, in order to see the whole log, which includes the properties 
 that would be sent to the logstash, set this property to ``true``.
 + **logFilePath** (*string - optional*) - If provided, the logs will be written to the specified path.
-+ **dailyLogFile** (*boolean - optional*) - Set this to ``true``, if you wish to create a new log file each day.
-+ **numberOfDaysToDeleteFile** (*number - optional*) - Daily log files will be deleted after this number of days,
-default is 30 days.
++ **dailyRotateFileConfiguration** (*DailyRotateFileConfiguration - optional*) - If you are interested in daily log file
+instead of just **one** log file, see the configuration section below.
+
+### DailyRotateFileConfiguration
++ **directoryPath** (*string*) - The directory path, where the daily files will be located.
++ **fileNamePrefix** (*string*) - The current date in the format of *DD-MM-YYYY* will be added to the name prefix.
+If the file name prefix does not contain an extension, the extension '.log' will be added.
++ **numberOfDaysToDeleteFile** (*number - optional*) - Number of days till old log files will be deleted, default is 30
+days.
 
 ### ApplicationLogProperties
 This interface represent the application configurable log properties.
@@ -53,9 +59,12 @@ const logConf: LoggerConfiguration = {
     logstashPort: 3000,
     writeToConsole: true,
     writeFullMessageToConsole: true,
-    logFilePath: 'D:\\example.log',
-    dailyLogFile: true,
-    numberOfDaysToDeleteFile: 60,
+    // logFilePath: 'D:\\example.log',
+    dailyRotateFileConfiguration: {
+        directoryPath: 'D:\\',
+        fileNamePrefix: 'polaris.txt',
+        numberOfDaysToDeleteFile: 60,
+    },
 };
 
 const logger = new PolarisLogger(appProps, logConf);

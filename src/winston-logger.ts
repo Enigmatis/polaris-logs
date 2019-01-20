@@ -1,7 +1,7 @@
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LogstashTransport } from 'winston-logstash-transport';
-import { LoggerConfiguration } from './logger-configuration';
+import { LoggerConfiguration } from './configurations/logger-configuration';
 import { appendSuffixToFileName } from './utils/path-util';
 
 const consoleFullFormat = winston.format.combine(
@@ -81,25 +81,28 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
         );
     }
 
-    if (loggerConfiguration.logFilePath) {
-        if (loggerConfiguration.dailyLogFile) {
-            logger.add(
-                new DailyRotateFile({
-                    format: logstashFormat,
-                    filename: appendSuffixToFileName(loggerConfiguration.logFilePath, '-%DATE%'),
-                    maxFiles: loggerConfiguration.numberOfDaysToDeleteFile
-                        ? `${loggerConfiguration.numberOfDaysToDeleteFile}${'d'}`
-                        : '30d',
-                }),
-            );
-        } else {
-            logger.add(
-                new winston.transports.File({
-                    format: logstashFormat,
-                    filename: loggerConfiguration.logFilePath,
-                }),
-            );
-        }
+    if (loggerConfiguration.dailyRotateFileConfiguration) {
+        const dailyFileConf = loggerConfiguration.dailyRotateFileConfiguration;
+        logger.add(
+            new DailyRotateFile({
+                format: logstashFormat,
+                datePattern: 'DD-MM-YYYY',
+                filename: appendSuffixToFileName(
+                    `${dailyFileConf.directoryPath}${dailyFileConf.fileNamePrefix}`,
+                    '-%DATE%',
+                ),
+                maxFiles: dailyFileConf.numberOfDaysToDeleteFile
+                    ? `${dailyFileConf.numberOfDaysToDeleteFile}${'d'}`
+                    : '30d',
+            }),
+        );
+    } else if (loggerConfiguration.logFilePath) {
+        logger.add(
+            new winston.transports.File({
+                format: logstashFormat,
+                filename: loggerConfiguration.logFilePath,
+            }),
+        );
     }
 
     return logger;
