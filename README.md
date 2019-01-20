@@ -1,4 +1,7 @@
 # polaris-logs
+[![Build Status](https://travis-ci.com/Enigmatis/polaris-logs.svg?branch=develop)](https://travis-ci.com/Enigmatis/polaris-logs)
+[![npm version](https://badge.fury.io/js/survey-monkey-streams.svg)](//npmjs.com/package/@enigmatis/polaris-logs?)
+
 A node.js library that helps you create and use loggers according to a certain standard.
 
 ### LoggerConfiguration
