@@ -22,7 +22,7 @@
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once",
-    "test": "echo \"not implemented yet\" && exit 0"
+    "test": "npm run lint"
   },
   "pre-commit": [
     "lint:fix"
