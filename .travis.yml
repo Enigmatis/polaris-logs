@@ -1,32 +1,18 @@
 language: node_js
+
 node_js:
-  - "10"
+  - 10
+  - 8
 
-before_script:
-  - npm run setup
-  - npm run build
-
-script:
-  - npm run lint
-
-after_success:
-  - npm run typedoc
-  - npm pack
-
-before_deploy:
-  - npm version patch
-
-deploy:
-  - provider: pages
-    skip_cleanup: true
-    local_dir: docs/
-    github_token: $GITHUB_TOKEN
-  - provider: releases
-    api_key: $GITHUB_TOKEN
-    file_glob: true
-    file: "@enigmatis/polaris-logs-*.tgz"
-    skip_cleanup: true
-  - provider: npm
-    skip_cleanup: true
-    email: "bikov95@gmail.com"
-    api_key: $NPM_TOKEN
+jobs:
+  include:
+    # Define the release stage that runs semantic-release
+    - stage: release
+      node_js: lts/*
+      # Advanced: optionally overwrite your default `script` step to skip the tests
+      # script: skip
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
