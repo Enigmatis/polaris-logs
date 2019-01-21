@@ -2,8 +2,8 @@
   "name": "@enigmatis/polaris-logs",
   "version": "0.0.0-development",
   "description": "A logging library",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
