@@ -21,8 +21,8 @@ instead of just **one** log file, see the configuration section below.
 
 ### DailyRotateFileConfiguration
 + **directoryPath** (*string*) - The directory path, where the daily files will be located.
-+ **fileNamePrefix** (*string*) - The current date in the format of *DD-MM-YYYY* will be added to the name prefix.
-If the file name prefix does not contain an extension, the extension '.log' will be added.
++ **fileNamePrefix** (*string*) - The current date in the format of ``DD-MM-YYYY`` will be added to the name prefix.
++ **fileExtension** (*string*) - The extension of the log file (without the dot).
 + **numberOfDaysToDeleteFile** (*number - optional*) - Number of days till old log files will be deleted, default is 30
 days.
 
@@ -65,7 +65,8 @@ const logConf: LoggerConfiguration = {
     // logFilePath: 'D:\\example.log',
     dailyRotateFileConfiguration: {
         directoryPath: 'D:\\',
-        fileNamePrefix: 'polaris.txt',
+        fileNamePrefix: 'polaris',
+        fileExtension: 'txt',
         numberOfDaysToDeleteFile: 60,
     },
 };

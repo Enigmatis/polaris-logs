@@ -2,7 +2,6 @@ import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LogstashTransport } from 'winston-logstash-transport';
 import { LoggerConfiguration } from './configurations/logger-configuration';
-import { appendSuffixToFileName } from './utils/path-util';
 
 const consoleFullFormat = winston.format.combine(
     winston.format.timestamp(),
@@ -87,10 +86,9 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
             new DailyRotateFile({
                 format: logstashFormat,
                 datePattern: 'DD-MM-YYYY',
-                filename: appendSuffixToFileName(
-                    `${dailyFileConf.directoryPath}${dailyFileConf.fileNamePrefix}`,
-                    '-%DATE%',
-                ),
+                filename: `${dailyFileConf.directoryPath}${
+                    dailyFileConf.fileNamePrefix
+                }${'-%DATE%'}.${dailyFileConf.fileExtension}`,
                 maxFiles: dailyFileConf.numberOfDaysToDeleteFile
                     ? `${dailyFileConf.numberOfDaysToDeleteFile}${'d'}`
                     : '30d',
