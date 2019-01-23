@@ -1,6 +1,6 @@
 {
   "name": "@enigmatis/polaris-logs",
-  "version": "1.0.6",
+  "version": "0.0.0-development",
   "description": "A logging library",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -8,6 +8,7 @@
     "access": "public"
   },
   "scripts": {
+    "cz": "git-cz",
     "setup": "npm ci",
     "build": "rimraf dist && tsc -p tsconfig.json",
     "build-watch": "tsc --watch -p tsconfig.json",
@@ -18,14 +19,17 @@
     "prepare": "npm run lint:fix && npm run build",
     "lint": "npm run tslint-check && tslint -p .",
     "lint:fix": "npm run tslint-check && tslint -p . --fix",
-    "tslint-check": "tslint-config-prettier-check ./tslint.json"
+    "tslint-check": "tslint-config-prettier-check ./tslint.json",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once",
+    "test": "echo \"not implemented yet\" && exit 0"
   },
   "pre-commit": [
     "lint:fix"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Enigmatis/polaris-logs.git"
+    "url": "https://github.com/Enigmatis/polaris-logs.git"
   },
   "keywords": [
     "polaris-logs"
@@ -34,6 +38,11 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Enigmatis/polaris-logs/issues"
+  },
+  "release": {
+    "analyzeCommits": "semantic-release-tamia/analyzeCommits",
+    "generateNotes": "semantic-release-tamia/generateNotes",
+    "verifyRelease": "semantic-release-tamia/verifyRelease"
   },
   "homepage": "https://github.com/Enigmatis/polaris-logs#readme",
   "dependencies": {
@@ -46,9 +55,13 @@
     "winston-logstash-transport": "^2.0.0"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0",
     "pre-commit": "^1.2.2",
     "prettier": "^1.15.3",
+    "semantic-release": "^15.13.3",
+    "semantic-release-tamia": "^2.2.4",
     "shx": "^0.3.2",
+    "travis-deploy-once": "^5.0.11",
     "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.17.0",
     "tslint-consistent-codestyle": "^1.14.1",
@@ -57,5 +70,10 @@
     "typedoc": "^0.14.1",
     "typescript": "^3.2.2",
     "winston-transport": "^4.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
