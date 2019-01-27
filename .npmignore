@@ -1,0 +1,22 @@
+node_modules/
+*.log
+*.tgz
+
+src/
+test/
+docs/
+gulpfile.js
+tsconfig.json
+tslint.json
+.prettierrc
+typings.json
+typings
+dist/test
+.idea
+index.ts
+.travis.yml
+.nojekyll
+.npmignore
+
+// npm pack
+@enigmatis/polaris-logs-*.tgz

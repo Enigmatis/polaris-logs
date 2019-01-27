@@ -1,21 +1,35 @@
 {
   "name": "@enigmatis/polaris-logs",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "description": "A logging library",
-  "main": "./dist/index.js",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "test": "mocha -r ts-node/register src/**/*.spec.ts",
-    "tsbuild": "tsc",
+    "cz": "git-cz",
+    "setup": "npm ci",
+    "build": "rimraf dist && tsc -p tsconfig.json",
+    "build-watch": "tsc --watch -p tsconfig.json",
+    "clean": "shx rm -rf node_modules/ dist/ docs/",
+    "typedoc": "typedoc --out ./docs --mode modules --tsconfig ./tsconfig.json ./src/",
+    "posttypedoc": "shx cp .nojekyll docs/.nojekyll",
     "buildDependents": "npm i && tsc && npm link",
-    "clean": "rimraf dist",
-    "rebuild": "rimraf dist && tsc",
+    "prepare": "npm run lint:fix && npm run build",
     "lint": "npm run tslint-check && tslint -p .",
     "lint:fix": "npm run tslint-check && tslint -p . --fix",
-    "tslint-check": "tslint-config-prettier-check ./tslint.json"
+    "tslint-check": "tslint-config-prettier-check ./tslint.json",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once",
+    "test": "npm run lint"
   },
+  "pre-commit": [
+    "lint:fix"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Enigmatis/polaris-logs.git"
+    "url": "https://github.com/Enigmatis/polaris-logs.git"
   },
   "keywords": [
     "polaris-logs"
@@ -25,24 +39,70 @@
   "bugs": {
     "url": "https://github.com/Enigmatis/polaris-logs/issues"
   },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      "@semantic-release/github"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "package-lock.json",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ]
+  },
   "homepage": "https://github.com/Enigmatis/polaris-logs#readme",
   "dependencies": {
+    "@types/node": "10.12.12",
+    "@types/winston": "^2.4.4",
     "clean-deep": "^3.0.2",
-    "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
-    "typescript": "^3.0.1",
-    "uuid": "^3.3.2",
     "winston": "^3.1.0",
     "winston-logstash-transport": "^2.0.0"
   },
   "devDependencies": {
-    "@types/node": "10.12.12",
-    "@types/winston": "^2.4.4",
+    "@commitlint/cli": "^7.3.2",
+    "@commitlint/config-conventional": "^7.3.1",
+    "@semantic-release/changelog": "^3.0.2",
+    "@semantic-release/git": "^7.0.8",
+    "cz-conventional-changelog": "^2.1.0",
+    "husky": "^1.3.1",
+    "pre-commit": "^1.2.2",
     "prettier": "^1.15.3",
+    "semantic-release": "^15.13.3",
+    "shx": "^0.3.2",
+    "travis-deploy-once": "^5.0.11",
     "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.17.0",
     "tslint-consistent-codestyle": "^1.14.1",
     "tslint-eslint-rules": "^5.4.0",
-    "tslint-plugin-prettier": "^2.0.1"
+    "tslint-plugin-prettier": "^2.0.1",
+    "typedoc": "^0.14.1",
+    "typescript": "^3.2.2",
+    "winston-transport": "^4.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }

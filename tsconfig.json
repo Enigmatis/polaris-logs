@@ -9,6 +9,7 @@
     "typeRoots": [
       "src/type-declarations"
     ],
+    "declaration": true,
     "lib": [
       "es6",
       "es2017",
