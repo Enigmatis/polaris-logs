@@ -1,3 +1,15 @@
+# [2.1.0](https://github.com/Enigmatis/polaris-logs/compare/v2.0.1...v2.1.0) (2019-01-21)
+
+
+### Bug Fixes
+
+* **import:** now you can import from '[@enigmatis](https://github.com/enigmatis)/polaris-logs' ([5ca80bc](https://github.com/Enigmatis/polaris-logs/commit/5ca80bc))
+
+
+### Features
+
+* **import:** export now all entities ([f3e87dc](https://github.com/Enigmatis/polaris-logs/commit/f3e87dc))
+
 ## [2.0.1](https://github.com/Enigmatis/polaris-logs/compare/v2.0.0...v2.0.1) (2019-01-21)
 
 
