@@ -17,7 +17,8 @@ accompanied by the log level and message will be written, in order to see the wh
 that would be sent to the logstash, set this property to ``true``.
 + **logFilePath** (*string - optional*) - If provided, the logs will be written to the specified path.
 + **dailyRotateFileConfiguration** (*DailyRotateFileConfiguration - optional*) - If you are interested in daily log file
-instead of just **one** log file, see the configuration section below.
+instead of just **one** log file, see the configuration section below. It creates a log file for each day. Those daily
+log files deleted after ``X`` days after being created. **If provided, it ignores the logFilePath property.**
 
 ### DailyRotateFileConfiguration
 + **directoryPath** (*string*) - The directory path, where the daily files will be located.
