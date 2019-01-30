@@ -9,6 +9,9 @@
     "typeRoots": [
       "src/type-declarations"
     ],
+    "types": [
+      "jest"
+    ],
     "declaration": true,
     "lib": [
       "es6",
