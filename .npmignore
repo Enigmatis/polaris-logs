@@ -17,6 +17,8 @@ index.ts
 .travis.yml
 .nojekyll
 .npmignore
+commitlint.config.js
+jest.config.js
 
 // npm pack
 @enigmatis/polaris-logs-*.tgz

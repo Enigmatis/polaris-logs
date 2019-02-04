@@ -1,3 +1,37 @@
+# [2.2.0](https://github.com/Enigmatis/polaris-logs/compare/v2.1.0...v2.2.0) (2019-01-31)
+
+
+### Bug Fixes
+
+* jest configuration standard fixes ([16131f0](https://github.com/Enigmatis/polaris-logs/commit/16131f0))
+* pre-commit changes ([d08db44](https://github.com/Enigmatis/polaris-logs/commit/d08db44))
+* removed tsx and transform in jest config ([b1bb53d](https://github.com/Enigmatis/polaris-logs/commit/b1bb53d))
+
+
+### Features
+
+* added jest-ts module to the project ([358e84a](https://github.com/Enigmatis/polaris-logs/commit/358e84a))
+* fixed jest configuration ([5e7200d](https://github.com/Enigmatis/polaris-logs/commit/5e7200d))
+
+# [2.1.0](https://github.com/Enigmatis/polaris-logs/compare/v2.0.1...v2.1.0) (2019-01-21)
+
+
+### Bug Fixes
+
+* **import:** now you can import from '[@enigmatis](https://github.com/enigmatis)/polaris-logs' ([5ca80bc](https://github.com/Enigmatis/polaris-logs/commit/5ca80bc))
+
+
+### Features
+
+* **import:** export now all entities ([f3e87dc](https://github.com/Enigmatis/polaris-logs/commit/f3e87dc))
+
+## [2.0.1](https://github.com/Enigmatis/polaris-logs/compare/v2.0.0...v2.0.1) (2019-01-21)
+
+
+### Bug Fixes
+
+* **tooling:** ci publish into npm ([cd690f3](https://github.com/Enigmatis/polaris-logs/commit/cd690f3)), closes [#25](https://github.com/Enigmatis/polaris-logs/issues/25)
+
 # [2.0.0](https://github.com/Enigmatis/polaris-logs/compare/v1.0.6...v2.0.0) (2019-01-21)
 
 
