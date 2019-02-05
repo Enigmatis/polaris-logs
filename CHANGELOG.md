@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/Enigmatis/polaris-logs/compare/v2.2.0...v2.2.1) (2019-02-05)
+
+
+### Bug Fixes
+
+* **global:** fix bug where unable to import this package ([f675ee8](https://github.com/Enigmatis/polaris-logs/commit/f675ee8))
+
 # [2.2.0](https://github.com/Enigmatis/polaris-logs/compare/v2.1.0...v2.2.0) (2019-01-31)
 
 
