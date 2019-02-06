@@ -1,7 +1,7 @@
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LogstashTransport } from 'winston-logstash-transport';
-import { LoggerConfiguration } from '../src';
+import { LoggerConfiguration } from '../src/configurations/logger-configuration';
 import * as winstonLogger from '../src/winston-logger';
 
 jest.mock('winston', () => {
@@ -42,6 +42,10 @@ describe('winston-logger tests', () => {
     const fileNamePrefix: string = 'rotate-file-test';
     const fileExtension: string = 'txt';
     const numberOfDaysToDeleteFile: number = 55;
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
     test('createLogger_basicConfiguration_createsTheLoggerWithBasicConfiguration', () => {
         const config: LoggerConfiguration = {
