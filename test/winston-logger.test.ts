@@ -43,7 +43,7 @@ describe('winston-logger tests', () => {
     const fileExtension: string = 'txt';
     const numberOfDaysToDeleteFile: number = 55;
 
-    test('createLogger_basicConfiguration_createsTheLoggerWithBasicConfiguration', () => {
+    test('createLogger - basic configuration - creates the logger with basic configuration', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
             logstashHost,
@@ -75,7 +75,7 @@ describe('winston-logger tests', () => {
         );
     });
 
-    test('createLogger_configurationWithConsoleWriting_consoleTransportHaveBeenCalled', () => {
+    test('createLogger - configuration with console writing - console transport have been called', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
             logstashHost,
@@ -88,7 +88,7 @@ describe('winston-logger tests', () => {
         expect(winston.transports.Console).toHaveBeenCalled();
     });
 
-    test('createLogger_configurationWithFileWriting_fileTransportHaveBeenCalledWithConfiguration', () => {
+    test('createLogger - configuration with file writing - file transport have been called with configuration', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
             logstashHost,
@@ -105,7 +105,7 @@ describe('winston-logger tests', () => {
         );
     });
 
-    test('createLogger_configurationWithRotateFileWriting_rotateFileTransportHaveBeenCalledWithConfiguration', () => {
+    test('createLogger - configuration with rotate file writing - rotate file transport have been called with configuration', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
             logstashHost,
@@ -129,7 +129,7 @@ describe('winston-logger tests', () => {
         );
     });
 
-    test('createLogger_configurationWithDefaultDaysForRotateFileWriting_rotateFileTransportHaveBeenCalledWithDefaultDays', () => {
+    test('createLogger - configuration with default days for rotate file writing - rotate file transport have been called with default days', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
             logstashHost,
@@ -150,7 +150,7 @@ describe('winston-logger tests', () => {
         );
     });
 
-    test('createLogger_configurationWithConsoleAndFileWriting_bothConsoleAndFileTransportHaveBeenCalled', () => {
+    test('createLogger - configuration with console and file writing - both console and file transports have been called', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
             logstashHost,
@@ -165,7 +165,7 @@ describe('winston-logger tests', () => {
         expect(winston.transports.File).toHaveBeenCalled();
     });
 
-    test('createLogger_configurationWithConsoleAndRotateFileWriting_bothConsoleAndRotateFileTransportHaveBeenCalled', () => {
+    test('createLogger - configuration with console and rotate file writing - both console and rotate file transports have been called', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
             logstashHost,
@@ -184,7 +184,7 @@ describe('winston-logger tests', () => {
         expect(DailyRotateFile).toHaveBeenCalled();
     });
 
-    test('createLogger_configurationWithFileAndRotateFile_onlyRotateFileTransportHaveBeenCalled', () => {
+    test('createLogger - configuration with file and rotate file - only rotate file transport have been called', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
             logstashHost,
@@ -203,7 +203,7 @@ describe('winston-logger tests', () => {
         expect(DailyRotateFile).toHaveBeenCalled();
     });
 
-    test('createLogger_configurationWithConsoleAndFileAndRotateFileWriting_onlyConsoleAndRotateFileTransportHaveBeenCalled', () => {
+    test('createLogger - configuration with console and file and rotate file writing - only console and rotate file transports have been called', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
             logstashHost,

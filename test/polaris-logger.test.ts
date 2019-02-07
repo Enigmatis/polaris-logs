@@ -35,13 +35,13 @@ describe('polaris-logger tests', () => {
     };
     const message: string = 'log message';
 
-    test('constructor', () => {
+    test('creating a polaris logger with application properties and configuration - winston createLogger was called with configuration', () => {
         const logger = new PolarisLogger(appProps, config);
 
         expect(createLogger).toHaveBeenCalledWith(config);
     });
 
-    test('fatal_loggingMessage_messageAndApplicationPropertiesAreInTheLog', () => {
+    test('fatal - logging message - message and application properties are in the log', () => {
         const logger = new PolarisLogger(appProps, config);
         logger.fatal(message);
         expect(loggerImplMock.fatal).toHaveBeenCalledWith({
@@ -54,7 +54,7 @@ describe('polaris-logger tests', () => {
         });
     });
 
-    test('error_loggingMessage_messageAndApplicationPropertiesAreInTheLog', () => {
+    test('error - logging message - message and application properties are in the log', () => {
         const logger = new PolarisLogger(appProps, config);
         logger.error(message);
         expect(loggerImplMock.error).toHaveBeenCalledWith({
@@ -67,7 +67,7 @@ describe('polaris-logger tests', () => {
         });
     });
 
-    test('warn_loggingMessage_messageAndApplicationPropertiesAreInTheLog', () => {
+    test('warn - logging message - message and application properties are in the log', () => {
         const logger = new PolarisLogger(appProps, config);
         logger.warn(message);
         expect(loggerImplMock.warn).toHaveBeenCalledWith({
@@ -80,7 +80,7 @@ describe('polaris-logger tests', () => {
         });
     });
 
-    test('info_loggingMessage_messageAndApplicationPropertiesAreInTheLog', () => {
+    test('info - logging message - message and application properties are in the log', () => {
         const logger = new PolarisLogger(appProps, config);
         logger.info(message);
         expect(loggerImplMock.info).toHaveBeenCalledWith({
@@ -93,7 +93,7 @@ describe('polaris-logger tests', () => {
         });
     });
 
-    test('debug_loggingMessage_messageAndApplicationPropertiesAreInTheLog', () => {
+    test('debug - logging message - message and application properties are in the log', () => {
         const logger = new PolarisLogger(appProps, config);
         logger.debug(message);
         expect(loggerImplMock.debug).toHaveBeenCalledWith({
@@ -106,7 +106,7 @@ describe('polaris-logger tests', () => {
         });
     });
 
-    test('trace_loggingMessage_messageAndApplicationPropertiesAreInTheLog', () => {
+    test('trace - logging message - message and application properties are in the log', () => {
         const logger = new PolarisLogger(appProps, config);
         logger.trace(message);
         expect(loggerImplMock.trace).toHaveBeenCalledWith({
