@@ -8,11 +8,7 @@ declare module 'winston-logstash-transport' {
         trailingLineFeedChar?: string
     }
 
-    interface LogstashTransportInstance extends Transport {
-        options: LogstashTransportOptions;
-
-        new(options?: LogstashTransportOptions): LogstashTransportInstance;
+    export class LogstashTransport extends Transport {
+        constructor({}: LogstashTransportOptions)
     }
-
-    export const LogstashTransport: LogstashTransportInstance;
 }
