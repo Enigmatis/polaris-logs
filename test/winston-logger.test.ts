@@ -43,10 +43,6 @@ describe('winston-logger tests', () => {
     const fileExtension: string = 'txt';
     const numberOfDaysToDeleteFile: number = 55;
 
-    afterEach(() => {
-        jest.clearAllMocks();
-    });
-
     test('createLogger_basicConfiguration_createsTheLoggerWithBasicConfiguration', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
