@@ -1,4 +1,5 @@
 import cleanDeep = require('clean-deep');
+import * as serializeError from 'serialize-error';
 import { Logger } from 'winston';
 import { LoggerConfiguration } from './configurations/logger-configuration';
 import { ApplicationLogProperties } from './entities';
@@ -61,6 +62,7 @@ export class PolarisLogger {
             ...polarisLogProperties,
             ...PolarisLogger.getAppPropertiesToAssign(this.applicationLogProperties),
             customProperties: undefined,
+            throwable: serializeError(polarisLogProperties && polarisLogProperties.throwable),
         };
 
         return cleanDeep(propertiesWithCustom);

@@ -9,12 +9,12 @@ Through this interface you should set the following configuration to the ``Polar
 
 + **loggerLevel** (*string*) - The level the logger is listening on, can be one of the following levels: ``fatal`` / 
 ``error`` / ``warn`` / ``info`` / ``trace`` / ``debug``
-+ **logstashHost** (*string*)
-+ **logstashPort** (*number*)
++ **logstashConfiguration** (*LogstashConfiguration - optional*) - Through this property you can set your logstashHost 
+and logstashPort (**Notice that we use UDP to write logs to the logstash service**).
 + **writeToConsole** (*boolean - optional*) - Determines if the logger should write the logs to the console.
-+ **writeFullMessageToConsole** (*boolean - optional*) - If you do decide to write logs to console, only the timestamp 
-accompanied by the log level and message will be written, in order to see the whole log, which includes the properties 
-that would be sent to the logstash, set this property to ``true``.
++ **writeFullMessageToConsole** (*boolean - optional*) - Set this property to ``true``, if you decide to write full 
+detailed logs to the console, since only the ``timestamp`` accompanied by the ``log level``, ``message`` and 
+``throwable`` will be written by default.
 + **logFilePath** (*string - optional*) - If provided, the logs will be written to the specified path.
 + **dailyRotateFileConfiguration** (*DailyRotateFileConfiguration - optional*) - If you are interested in daily log file
 instead of just **one** log file, see the configuration section below. It creates a log file for each day. Those daily
@@ -57,13 +57,17 @@ const appProps: ApplicationLogProperties = {
     component: 'component',
 };
 
-const logConf: LoggerConfiguration = {
-    loggerLevel: 'trace',
+const logstashConf = {
     logstashHost: '127.0.0.1',
     logstashPort: 3000,
+};
+
+const logConf: LoggerConfiguration = {
+    loggerLevel: 'trace',
+    logstashConfiguration: logstashConf,
     writeToConsole: true,
-    writeFullMessageToConsole: true,
-    // logFilePath: 'D:\\example.log',
+    writeFullMessageToConsole: false,
+    // logFilePath: 'D:\\example.txt',
     dailyRotateFileConfiguration: {
         directoryPath: 'D:\\',
         fileNamePrefix: 'polaris',

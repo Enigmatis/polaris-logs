@@ -30,8 +30,6 @@ describe('polaris-logger tests', () => {
     };
     const config: LoggerConfiguration = {
         loggerLevel: 'info',
-        logstashHost: '127.0.0.1',
-        logstashPort: 8080,
     };
     const message: string = 'log message';
 

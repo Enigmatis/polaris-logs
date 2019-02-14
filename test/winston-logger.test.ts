@@ -46,8 +46,6 @@ describe('winston-logger tests', () => {
     test('createLogger - basic configuration - creates the logger with basic configuration', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
-            logstashHost,
-            logstashPort,
         };
 
         winstonLogger.createLogger(config);
@@ -66,6 +64,18 @@ describe('winston-logger tests', () => {
                 exitOnError: false,
             }),
         );
+    });
+
+    test('createLogger - configuration with logstash - logstash transport have been called with configured properties', () => {
+        const config: LoggerConfiguration = {
+            loggerLevel,
+            logstashConfiguration: {
+                logstashHost,
+                logstashPort,
+            },
+        };
+
+        winstonLogger.createLogger(config);
 
         expect(LogstashTransport).toHaveBeenCalledWith(
             expect.objectContaining({
@@ -78,8 +88,6 @@ describe('winston-logger tests', () => {
     test('createLogger - configuration with console writing - console transport have been called', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
-            logstashHost,
-            logstashPort,
             writeToConsole: true,
         };
 
@@ -88,11 +96,9 @@ describe('winston-logger tests', () => {
         expect(winston.transports.Console).toHaveBeenCalled();
     });
 
-    test('createLogger - configuration with file writing - file transport have been called with configuration', () => {
+    test('createLogger - configuration with file writing - file transport have been called with configured properties', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
-            logstashHost,
-            logstashPort,
             logFilePath: filePath,
         };
 
@@ -105,11 +111,9 @@ describe('winston-logger tests', () => {
         );
     });
 
-    test('createLogger - configuration with rotate file writing - rotate file transport have been called with configuration', () => {
+    test('createLogger - configuration with rotate file writing - rotate file transport have been called with configured properties', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
-            logstashHost,
-            logstashPort,
             dailyRotateFileConfiguration: {
                 directoryPath,
                 fileNamePrefix,
@@ -132,8 +136,6 @@ describe('winston-logger tests', () => {
     test('createLogger - configuration with default days for rotate file writing - rotate file transport have been called with default days', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
-            logstashHost,
-            logstashPort,
             dailyRotateFileConfiguration: {
                 directoryPath,
                 fileNamePrefix,
@@ -153,8 +155,6 @@ describe('winston-logger tests', () => {
     test('createLogger - configuration with console and file writing - both console and file transports have been called', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
-            logstashHost,
-            logstashPort,
             writeToConsole: true,
             logFilePath: filePath,
         };
@@ -168,8 +168,6 @@ describe('winston-logger tests', () => {
     test('createLogger - configuration with console and rotate file writing - both console and rotate file transports have been called', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
-            logstashHost,
-            logstashPort,
             writeToConsole: true,
             dailyRotateFileConfiguration: {
                 directoryPath,
@@ -187,8 +185,6 @@ describe('winston-logger tests', () => {
     test('createLogger - configuration with file and rotate file - only rotate file transport have been called', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
-            logstashHost,
-            logstashPort,
             logFilePath: filePath,
             dailyRotateFileConfiguration: {
                 directoryPath,
@@ -206,8 +202,6 @@ describe('winston-logger tests', () => {
     test('createLogger - configuration with console and file and rotate file writing - only console and rotate file transports have been called', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
-            logstashHost,
-            logstashPort,
             writeToConsole: true,
             logFilePath: filePath,
             dailyRotateFileConfiguration: {
