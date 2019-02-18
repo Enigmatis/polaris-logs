@@ -62,9 +62,11 @@ export class PolarisLogger {
             ...polarisLogProperties,
             ...PolarisLogger.getAppPropertiesToAssign(this.applicationLogProperties),
             customProperties: undefined,
-            throwable: serializeError(polarisLogProperties && polarisLogProperties.throwable),
+            throwable:
+                polarisLogProperties &&
+                polarisLogProperties.throwable &&
+                serializeError(polarisLogProperties.throwable),
         };
-
         return cleanDeep(propertiesWithCustom);
     }
 }
