@@ -1,3 +1,11 @@
+## [2.2.2](https://github.com/Enigmatis/polaris-logs/compare/v2.2.1...v2.2.2) (2019-02-18)
+
+
+### Bug Fixes
+
+* fixed a bug about throwable serialization ([4c3b5d6](https://github.com/Enigmatis/polaris-logs/commit/4c3b5d6))
+* throwable is now serialized appropriately, made logstash optional ([ea8ffe6](https://github.com/Enigmatis/polaris-logs/commit/ea8ffe6))
+
 ## [2.2.1](https://github.com/Enigmatis/polaris-logs/compare/v2.2.0...v2.2.1) (2019-02-05)
 
 
