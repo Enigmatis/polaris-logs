@@ -19,9 +19,11 @@ const consoleShortFormat = winston.format.combine(
     winston.format.timestamp(),
     winston.format.align(),
     winston.format.printf(info => {
-        const { timestamp, level, message } = info;
+        const { timestamp, level, message, throwable } = info;
         const ts = timestamp.slice(0, 19).replace('T', ' ');
-        return `${ts} [${level}]: ${message}`;
+        return `${ts} [${level}]: ${message} \n ${
+            throwable ? JSON.stringify(throwable, null, 2) : ''
+        }`;
     }),
 );
 
@@ -56,15 +58,18 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
         level: loggerConfiguration.loggerLevel,
         levels: customLevels.levels,
         format: winston.format.json(),
-        transports: [
-            new LogstashTransport({
-                host: loggerConfiguration.logstashHost,
-                port: loggerConfiguration.logstashPort,
-                format: logstashFormat,
-            }),
-        ],
         exitOnError: false, // do not exit on handled exceptions
     });
+
+    if (loggerConfiguration.logstashConfiguration) {
+        logger.add(
+            new LogstashTransport({
+                host: loggerConfiguration.logstashConfiguration.logstashHost,
+                port: loggerConfiguration.logstashConfiguration.logstashPort,
+                format: logstashFormat,
+            }),
+        );
+    }
 
     winston.addColors(customLevels.colors);
     if (loggerConfiguration.writeToConsole) {

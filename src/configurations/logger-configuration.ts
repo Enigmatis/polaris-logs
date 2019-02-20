@@ -1,9 +1,9 @@
 import { DailyRotateFileConfiguration } from './daily-rotate-file-configuration';
+import { LogstashConfiguration } from './logstash-configuration';
 
 export interface LoggerConfiguration {
     loggerLevel: string;
-    logstashHost: string;
-    logstashPort: number;
+    logstashConfiguration?: LogstashConfiguration;
     writeToConsole?: boolean;
     writeFullMessageToConsole?: boolean;
     logFilePath?: string;
