@@ -1,4 +1,4 @@
 export interface RealityLogProperty {
     type?: string;
-    id?: string;
+    id?: number;
 }
