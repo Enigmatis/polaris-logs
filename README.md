@@ -66,7 +66,7 @@ const logConf: LoggerConfiguration = {
     loggerLevel: 'trace',
     logstashConfiguration: logstashConf,
     writeToConsole: true,
-    writeFullMessageToConsole: false,
+    writeFullMessageToConsole: true,
     // logFilePath: 'D:\\example.txt',
     dailyRotateFileConfiguration: {
         directoryPath: 'D:\\',
