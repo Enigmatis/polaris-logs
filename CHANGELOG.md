@@ -1,3 +1,10 @@
+## [2.2.3](https://github.com/Enigmatis/polaris-logs/compare/v2.2.2...v2.2.3) (2019-02-24)
+
+
+### Bug Fixes
+
+* readme fixes ([7ee9e05](https://github.com/Enigmatis/polaris-logs/commit/7ee9e05))
+
 ## [2.2.2](https://github.com/Enigmatis/polaris-logs/compare/v2.2.1...v2.2.2) (2019-02-18)
 
 
