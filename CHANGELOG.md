@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/Enigmatis/polaris-logs/compare/v2.2.3...v2.3.0) (2019-03-05)
+
+
+### Features
+
+* added support for multiple logstash services ([b21fbb5](https://github.com/Enigmatis/polaris-logs/commit/b21fbb5))
+
 ## [2.2.3](https://github.com/Enigmatis/polaris-logs/compare/v2.2.2...v2.2.3) (2019-02-24)
 
 
