@@ -61,14 +61,16 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
         exitOnError: false, // do not exit on handled exceptions
     });
 
-    if (loggerConfiguration.logstashConfiguration) {
-        logger.add(
-            new LogstashTransport({
-                host: loggerConfiguration.logstashConfiguration.logstashHost,
-                port: loggerConfiguration.logstashConfiguration.logstashPort,
-                format: logstashFormat,
-            }),
-        );
+    if (loggerConfiguration.logstashConfigurations) {
+        loggerConfiguration.logstashConfigurations.forEach(logstashConfiguration => {
+            logger.add(
+                new LogstashTransport({
+                    host: logstashConfiguration.logstashHost,
+                    port: logstashConfiguration.logstashPort,
+                    format: logstashFormat,
+                }),
+            );
+        });
     }
 
     winston.addColors(customLevels.colors);

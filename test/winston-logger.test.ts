@@ -66,21 +66,61 @@ describe('winston-logger tests', () => {
         );
     });
 
-    test('createLogger - configuration with logstash - logstash transport have been called with configured properties', () => {
+    test('createLogger - configuration with single logstash - logstash transport have been called with configured properties', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
-            logstashConfiguration: {
-                logstashHost,
-                logstashPort,
-            },
+            logstashConfigurations: [
+                {
+                    logstashHost,
+                    logstashPort,
+                },
+            ],
         };
 
         winstonLogger.createLogger(config);
 
+        expect(LogstashTransport).toHaveBeenCalledTimes(1);
         expect(LogstashTransport).toHaveBeenCalledWith(
             expect.objectContaining({
                 host: logstashHost,
                 port: logstashPort,
+            }),
+        );
+    });
+
+    test('createLogger - configuration with multiple logstash - logstash transport have been called with configured properties', () => {
+        const anotherLogstashHost: string = 'wow';
+        const anotherLogstashPort: number = 5050;
+
+        const config: LoggerConfiguration = {
+            loggerLevel,
+            logstashConfigurations: [
+                {
+                    logstashHost,
+                    logstashPort,
+                },
+                {
+                    logstashHost: anotherLogstashHost,
+                    logstashPort: anotherLogstashPort,
+                },
+            ],
+        };
+
+        winstonLogger.createLogger(config);
+
+        expect(LogstashTransport).toHaveBeenCalledTimes(2);
+        expect(LogstashTransport).toHaveBeenNthCalledWith(
+            1,
+            expect.objectContaining({
+                host: logstashHost,
+                port: logstashPort,
+            }),
+        );
+        expect(LogstashTransport).toHaveBeenNthCalledWith(
+            2,
+            expect.objectContaining({
+                host: anotherLogstashHost,
+                port: anotherLogstashPort,
             }),
         );
     });

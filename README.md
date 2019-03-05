@@ -8,9 +8,9 @@ A node.js library that helps you create and use loggers according to a certain s
 Through this interface you should set the following configuration to the ``PolarisLogger``:
 
 + **loggerLevel** (*string*) - The level the logger is listening on, can be one of the following levels: ``fatal`` / 
-``error`` / ``warn`` / ``info`` / ``trace`` / ``debug``
-+ **logstashConfiguration** (*LogstashConfiguration - optional*) - Through this property you can set your logstashHost 
-and logstashPort (**Notice that we use UDP to write logs to the logstash service**).
+``error`` / ``warn`` / ``info`` / ``trace`` / ``debug``.
++ **logstashConfigurations** (*LogstashConfiguration[] - optional*) - Through this property you can set multiple logstash
+hosts and ports (**Notice that we use UDP to write logs to the logstash services**).
 + **writeToConsole** (*boolean - optional*) - Determines if the logger should write the logs to the console.
 + **writeFullMessageToConsole** (*boolean - optional*) - Set this property to ``true``, if you decide to write full 
 detailed logs to the console, since only the ``timestamp`` accompanied by the ``log level``, ``message`` and 
@@ -57,14 +57,17 @@ const appProps: ApplicationLogProperties = {
     component: 'component',
 };
 
-const logstashConf = {
+const logstashConf = [{
     logstashHost: '127.0.0.1',
     logstashPort: 3000,
-};
+}, {
+    logstashHost: '8.8.8.8',
+    logstashPort: 6000,
+}];
 
 const logConf: LoggerConfiguration = {
     loggerLevel: 'trace',
-    logstashConfiguration: logstashConf,
+    logstashConfigurations: logstashConf,
     writeToConsole: true,
     writeFullMessageToConsole: true,
     // logFilePath: 'D:\\example.txt',
