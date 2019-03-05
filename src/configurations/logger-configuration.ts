@@ -3,7 +3,7 @@ import { LogstashConfiguration } from './logstash-configuration';
 
 export interface LoggerConfiguration {
     loggerLevel: string;
-    logstashConfiguration?: LogstashConfiguration;
+    logstashConfigurations?: LogstashConfiguration[];
     writeToConsole?: boolean;
     writeFullMessageToConsole?: boolean;
     logFilePath?: string;
