@@ -110,5 +110,11 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
         );
     }
 
+    if (loggerConfiguration.customTransports) {
+        loggerConfiguration.customTransports.forEach(customTransport => {
+            logger.add(customTransport);
+        });
+    }
+
     return logger;
 };

@@ -19,6 +19,7 @@ detailed logs to the console, since only the ``timestamp`` accompanied by the ``
 + **dailyRotateFileConfiguration** (*DailyRotateFileConfiguration - optional*) - If you are interested in daily log file
 instead of just **one** log file, see the configuration section below. It creates a log file for each day. Those daily
 log files deleted after ``X`` days after being created. **If provided, it ignores the logFilePath property.**
++ **customTransports** (*Transport[] - optional*) - Array of custom transports you can provide to the winston logger.
 
 ### DailyRotateFileConfiguration
 + **directoryPath** (*string*) - The directory path, where the daily files will be located.
