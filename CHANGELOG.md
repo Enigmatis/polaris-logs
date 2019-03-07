@@ -1,3 +1,11 @@
+# [2.4.0](https://github.com/Enigmatis/polaris-logs/compare/v2.3.0...v2.4.0) (2019-03-07)
+
+
+### Features
+
+* added support for custom transports ([8766b03](https://github.com/Enigmatis/polaris-logs/commit/8766b03))
+* moved rimraf to devDependencies ([ac5bc44](https://github.com/Enigmatis/polaris-logs/commit/ac5bc44))
+
 # [2.3.0](https://github.com/Enigmatis/polaris-logs/compare/v2.2.3...v2.3.0) (2019-03-05)
 
 
