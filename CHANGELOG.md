@@ -1,3 +1,15 @@
+# [2.5.0](https://github.com/Enigmatis/polaris-logs/compare/v2.4.0...v2.5.0) (2019-03-07)
+
+
+### Bug Fixes
+
+* fixed redundant line separator when using short format ([7ee332c](https://github.com/Enigmatis/polaris-logs/commit/7ee332c))
+
+
+### Features
+
+* added support for multiple logstash services ([a79fd3f](https://github.com/Enigmatis/polaris-logs/commit/a79fd3f))
+
 # [2.4.0](https://github.com/Enigmatis/polaris-logs/compare/v2.3.0...v2.4.0) (2019-03-07)
 
 
