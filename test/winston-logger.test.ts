@@ -24,6 +24,7 @@ jest.mock('winston', () => {
         },
     };
 });
+
 jest.mock('winston-daily-rotate-file', () => {
     return jest.fn().mockImplementation(() => ({
         DailyRotateFile: jest.fn(),
@@ -31,6 +32,12 @@ jest.mock('winston-daily-rotate-file', () => {
 });
 jest.mock('winston-logstash-transport', () => {
     return { LogstashTransport: jest.fn() };
+});
+
+jest.mock('../src/timezone-formatter.ts', () => {
+    return {
+        appendTimestamp: jest.fn(),
+    };
 });
 
 describe('winston-logger tests', () => {

@@ -2,9 +2,10 @@ import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LogstashTransport } from 'winston-logstash-transport';
 import { LoggerConfiguration } from './configurations/logger-configuration';
+import { appendTimestamp } from './timezone-formatter';
 
 const consoleFullFormat = winston.format.combine(
-    winston.format.timestamp(),
+    appendTimestamp(),
     winston.format.align(),
     winston.format.printf(info => {
         const { timestamp, level, message, ...args } = info;
@@ -16,7 +17,7 @@ const consoleFullFormat = winston.format.combine(
 );
 
 const consoleShortFormat = winston.format.combine(
-    winston.format.timestamp(),
+    appendTimestamp(),
     winston.format.align(),
     winston.format.printf(info => {
         const { timestamp, level, message, throwable } = info;
@@ -28,7 +29,7 @@ const consoleShortFormat = winston.format.combine(
 );
 
 const logstashFormat = winston.format.combine(
-    winston.format.timestamp(),
+    appendTimestamp(),
     winston.format.printf(info => {
         return JSON.stringify(info);
     }),
