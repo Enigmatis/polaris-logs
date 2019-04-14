@@ -1,3 +1,10 @@
+## [2.5.1](https://github.com/Enigmatis/polaris-logs/compare/v2.5.0...v2.5.1) (2019-04-14)
+
+
+### Bug Fixes
+
+* fix timezone to match israel ([155faa5](https://github.com/Enigmatis/polaris-logs/commit/155faa5))
+
 # [2.5.0](https://github.com/Enigmatis/polaris-logs/compare/v2.4.0...v2.5.0) (2019-03-07)
 
 
