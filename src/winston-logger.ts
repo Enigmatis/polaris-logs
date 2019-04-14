@@ -4,36 +4,42 @@ import { LogstashTransport } from 'winston-logstash-transport';
 import { LoggerConfiguration } from './configurations/logger-configuration';
 import { appendTimestamp } from './timezone-formatter';
 
-const consoleFullFormat = winston.format.combine(
-    appendTimestamp(),
-    winston.format.align(),
-    winston.format.printf(info => {
-        const { timestamp, level, message, ...args } = info;
-        const ts = timestamp.slice(0, 19).replace('T', ' ');
-        return `${ts} [${level}]: ${message} ${
-            Object.keys(args).length ? `\n${JSON.stringify(args, null, 2)}` : ''
-        }`;
-    }),
-);
+const consoleFullFormat = (timezone: string) => {
+    return winston.format.combine(
+        appendTimestamp(timezone)(),
+        winston.format.align(),
+        winston.format.printf(info => {
+            const { timestamp, level, message, ...args } = info;
+            const ts = timestamp.slice(0, 19).replace('T', ' ');
+            return `${ts} [${level}]: ${message} ${
+                Object.keys(args).length ? `\n${JSON.stringify(args, null, 2)}` : ''
+            }`;
+        }),
+    );
+};
 
-const consoleShortFormat = winston.format.combine(
-    appendTimestamp(),
-    winston.format.align(),
-    winston.format.printf(info => {
-        const { timestamp, level, message, throwable } = info;
-        const ts = timestamp.slice(0, 19).replace('T', ' ');
-        return `${ts} [${level}]: ${message} ${
-            throwable ? `\n${JSON.stringify(throwable, null, 2)}` : ''
-        }`;
-    }),
-);
+const consoleShortFormat = (timezone: string) => {
+    return winston.format.combine(
+        appendTimestamp(timezone)(),
+        winston.format.align(),
+        winston.format.printf(info => {
+            const { timestamp, level, message, throwable } = info;
+            const ts = timestamp.slice(0, 19).replace('T', ' ');
+            return `${ts} [${level}]: ${message} ${
+                throwable ? `\n${JSON.stringify(throwable, null, 2)}` : ''
+            }`;
+        }),
+    );
+};
 
-const logstashFormat = winston.format.combine(
-    appendTimestamp(),
-    winston.format.printf(info => {
-        return JSON.stringify(info);
-    }),
-);
+const logstashFormat = (timezone: string) => {
+    return winston.format.combine(
+        appendTimestamp(timezone)(),
+        winston.format.printf(info => {
+            return JSON.stringify(info);
+        }),
+    );
+};
 
 const customLevels = {
     levels: {
@@ -55,6 +61,7 @@ const customLevels = {
 };
 
 export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
+    const timezone = loggerConfiguration.timezone || 'Israel';
     const logger = winston.createLogger({
         level: loggerConfiguration.loggerLevel,
         levels: customLevels.levels,
@@ -68,7 +75,7 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
                 new LogstashTransport({
                     host: logstashConfiguration.logstashHost,
                     port: logstashConfiguration.logstashPort,
-                    format: logstashFormat,
+                    format: logstashFormat(timezone),
                 }),
             );
         });
@@ -81,8 +88,8 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
                 format: winston.format.combine(
                     winston.format.colorize(),
                     loggerConfiguration.writeFullMessageToConsole
-                        ? consoleFullFormat
-                        : consoleShortFormat,
+                        ? consoleFullFormat(timezone)
+                        : consoleShortFormat(timezone),
                 ),
             }),
         );
@@ -92,7 +99,7 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
         const dailyFileConf = loggerConfiguration.dailyRotateFileConfiguration;
         logger.add(
             new DailyRotateFile({
-                format: logstashFormat,
+                format: logstashFormat(timezone),
                 datePattern: 'DD-MM-YYYY',
                 filename: `${dailyFileConf.directoryPath}${
                     dailyFileConf.fileNamePrefix
@@ -105,7 +112,7 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
     } else if (loggerConfiguration.logFilePath) {
         logger.add(
             new winston.transports.File({
-                format: logstashFormat,
+                format: logstashFormat(timezone),
                 filename: loggerConfiguration.logFilePath,
             }),
         );

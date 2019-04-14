@@ -36,7 +36,7 @@ jest.mock('winston-logstash-transport', () => {
 
 jest.mock('../src/timezone-formatter.ts', () => {
     return {
-        appendTimestamp: jest.fn(),
+        appendTimestamp: jest.fn().mockImplementation(() => jest.fn()),
     };
 });
 
