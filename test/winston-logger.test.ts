@@ -34,12 +34,6 @@ jest.mock('winston-logstash-transport', () => {
     return { LogstashTransport: jest.fn() };
 });
 
-jest.mock('../src/timezone-formatter.ts', () => {
-    return {
-        appendTimestamp: jest.fn().mockImplementation(() => jest.fn()),
-    };
-});
-
 describe('winston-logger tests', () => {
     const loggerLevel: string = 'info';
     const logstashHost: string = 'test';
