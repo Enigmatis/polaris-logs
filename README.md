@@ -3,7 +3,9 @@
 [![Build Status](https://travis-ci.com/Enigmatis/polaris-logs.svg?branch=develop)](https://travis-ci.com/Enigmatis/polaris-logs)
 [![NPM version](https://img.shields.io/npm/v/@enigmatis/polaris-logs.svg?style=flat-square)](https://www.npmjs.com/package/@enigmatis/polaris-logs)
 
-A node.js library that helps you create and use loggers according to a certain standard.
+Write your logs easily in a standardic manner!
+
+Ever wanted your logs to look pretty, to contain all the data you need in order to monitor your system, and to be written in an extremely easy way? You can now do this, using this library.
 
 ### LoggerConfiguration
 Through this interface you should set the following configuration to the ``PolarisLogger``:
