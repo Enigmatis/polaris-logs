@@ -1,7 +1,7 @@
 export interface ApplicationLogProperties {
     id: string;
     name: string;
-    repositoryVersion: string;
+    version: string;
     environment: string;
     component: string;
 }

@@ -9,6 +9,5 @@ export interface LoggerConfiguration {
     writeFullMessageToConsole?: boolean;
     logFilePath?: string;
     dailyRotateFileConfiguration?: DailyRotateFileConfiguration;
-    timezone?: string;
     customTransports?: Transport[];
 }

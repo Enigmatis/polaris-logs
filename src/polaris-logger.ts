@@ -16,7 +16,7 @@ export class PolarisLogger {
             eventKindDescription: {
                 systemId: applicationProperties.id,
             },
-            repositoryVersion: applicationProperties.repositoryVersion,
+            version: applicationProperties.version,
             environment: applicationProperties.environment,
             component: applicationProperties.component,
         };

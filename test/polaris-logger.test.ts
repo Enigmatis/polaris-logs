@@ -24,7 +24,7 @@ describe('polaris-logger tests', () => {
     const appProps: ApplicationLogProperties = {
         id: 'p0laris-l0gs',
         name: 'polaris-logs',
-        repositoryVersion: 'v1',
+        version: 'v1',
         environment: 'environment',
         component: 'component',
     };
@@ -46,7 +46,7 @@ describe('polaris-logger tests', () => {
             message,
             component: appProps.component,
             environment: appProps.environment,
-            repositoryVersion: appProps.repositoryVersion,
+            version: appProps.version,
             eventKindDescription: { systemId: appProps.id },
             system: { id: appProps.id, name: appProps.name },
         });
@@ -59,7 +59,7 @@ describe('polaris-logger tests', () => {
             message,
             component: appProps.component,
             environment: appProps.environment,
-            repositoryVersion: appProps.repositoryVersion,
+            version: appProps.version,
             eventKindDescription: { systemId: appProps.id },
             system: { id: appProps.id, name: appProps.name },
         });
@@ -72,7 +72,7 @@ describe('polaris-logger tests', () => {
             message,
             component: appProps.component,
             environment: appProps.environment,
-            repositoryVersion: appProps.repositoryVersion,
+            version: appProps.version,
             eventKindDescription: { systemId: appProps.id },
             system: { id: appProps.id, name: appProps.name },
         });
@@ -85,7 +85,7 @@ describe('polaris-logger tests', () => {
             message,
             component: appProps.component,
             environment: appProps.environment,
-            repositoryVersion: appProps.repositoryVersion,
+            version: appProps.version,
             eventKindDescription: { systemId: appProps.id },
             system: { id: appProps.id, name: appProps.name },
         });
@@ -98,7 +98,7 @@ describe('polaris-logger tests', () => {
             message,
             component: appProps.component,
             environment: appProps.environment,
-            repositoryVersion: appProps.repositoryVersion,
+            version: appProps.version,
             eventKindDescription: { systemId: appProps.id },
             system: { id: appProps.id, name: appProps.name },
         });
@@ -111,7 +111,7 @@ describe('polaris-logger tests', () => {
             message,
             component: appProps.component,
             environment: appProps.environment,
-            repositoryVersion: appProps.repositoryVersion,
+            version: appProps.version,
             eventKindDescription: { systemId: appProps.id },
             system: { id: appProps.id, name: appProps.name },
         });
