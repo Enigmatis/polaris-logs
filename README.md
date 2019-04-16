@@ -32,8 +32,8 @@ days.
 This interface represent the application configurable log properties.
 
 Those properties are:
- + systemId
- + systemName
+ + id
+ + name
  + version
  + environment
  + component
