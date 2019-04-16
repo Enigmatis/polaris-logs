@@ -10,8 +10,7 @@ const consoleFullFormat = winston.format.combine(
     winston.format.align(),
     winston.format.printf(info => {
         const { timestamp, level, message, ...args } = info;
-        const ts = timestamp.slice(0, 19).replace('T', ' ');
-        return `${ts} [${level}]: ${message} ${
+        return `${timestamp} [${level}]: ${message} ${
             Object.keys(args).length ? `\n${JSON.stringify(args, null, 2)}` : ''
         }`;
     }),
@@ -22,8 +21,7 @@ const consoleShortFormat = winston.format.combine(
     winston.format.align(),
     winston.format.printf(info => {
         const { timestamp, level, message, throwable } = info;
-        const ts = timestamp.slice(0, 19).replace('T', ' ');
-        return `${ts} [${level}]: ${message} ${
+        return `${timestamp} [${level}]: ${message} ${
             throwable ? `\n${JSON.stringify(throwable, null, 2)}` : ''
         }`;
     }),

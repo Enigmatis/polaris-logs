@@ -34,7 +34,7 @@ This interface represent the application configurable log properties.
 Those properties are:
  + systemId
  + systemName
- + repositoryVersion
+ + version
  + environment
  + component
 
@@ -53,7 +53,7 @@ import { ApplicationLogProperties, LoggerConfiguration, PolarisLogger } from '@e
 const appProps: ApplicationLogProperties = {
     id: 'p0laris-l0gs',
     name: 'polaris-logs',
-    repositoryVersion: 'v1',
+    version: 'v1',
     environment: 'environment',
     component: 'component',
 };
@@ -82,8 +82,8 @@ const logConf: LoggerConfiguration = {
 
 const logger = new PolarisLogger(appProps, logConf);
 
-logger.fatal('fatal message');
-logger.error('error message');
+logger.fatal('fatal message', { elapsedTime: 500, eventKind: 'foo' });
+logger.error('error message', { elapsedTime: 15000, throwable: new Error('oops') });
 logger.warn('warn message');
 logger.info('info message');
 logger.debug('debug message');
