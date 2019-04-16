@@ -1,3 +1,10 @@
+## [2.5.2](https://github.com/Enigmatis/polaris-logs/compare/v2.5.1...v2.5.2) (2019-04-16)
+
+
+### Bug Fixes
+
+* removed the moment-timezone dependency ([e8222d7](https://github.com/Enigmatis/polaris-logs/commit/e8222d7))
+
 ## [2.5.1](https://github.com/Enigmatis/polaris-logs/compare/v2.5.0...v2.5.1) (2019-04-14)
 
 
