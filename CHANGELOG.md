@@ -1,3 +1,10 @@
+## [2.5.4](https://github.com/Enigmatis/polaris-logs/compare/v2.5.3...v2.5.4) (2019-05-12)
+
+
+### Bug Fixes
+
+* iso date to logstash transport ([3db119f](https://github.com/Enigmatis/polaris-logs/commit/3db119f))
+
 ## [2.5.3](https://github.com/Enigmatis/polaris-logs/compare/v2.5.2...v2.5.3) (2019-04-16)
 
 
