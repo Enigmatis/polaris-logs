@@ -28,7 +28,7 @@ const consoleShortFormat = winston.format.combine(
 );
 
 const logstashFormat = winston.format.combine(
-    winston.format.timestamp({ format: timestampFormat }),
+    winston.format.timestamp(),
     winston.format.printf(info => {
         return JSON.stringify(info);
     }),
