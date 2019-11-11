@@ -1,3 +1,11 @@
+## [2.5.5](https://github.com/Enigmatis/polaris-logs/compare/v2.5.4...v2.5.5) (2019-11-11)
+
+
+### Bug Fixes
+
+* security update ([13b9250](https://github.com/Enigmatis/polaris-logs/commit/13b92500d6f3ce897f26c06c00743090d734e802))
+* security update ([fa6c5e2](https://github.com/Enigmatis/polaris-logs/commit/fa6c5e203a42a44142878f89eceb11e4ba796897))
+
 ## [2.5.4](https://github.com/Enigmatis/polaris-logs/compare/v2.5.3...v2.5.4) (2019-05-12)
 
 
