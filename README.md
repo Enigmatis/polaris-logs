@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/Enigmatis/polaris-logs.svg?branch=develop)](https://travis-ci.com/Enigmatis/polaris-logs)
 [![NPM version](https://img.shields.io/npm/v/@enigmatis/polaris-logs.svg?style=flat-square)](https://www.npmjs.com/package/@enigmatis/polaris-logs)
 
-Write your logs easily in a standardic manner!
+Write your logs easily in a standardized manner!
 
 Ever wanted your logs to look pretty, to contain all the data you need in order to monitor your system, and to be written in an extremely easy way? You can now do this, using this library.
 
@@ -31,7 +31,7 @@ log files deleted after ``X`` days after being created. **If provided, it ignore
 + **numberOfDaysToDeleteFile** (*number - optional*) - Number of days till old log files will be deleted, default is 30
 days.
 
-### ApplicationLogProperties
+### ApplicationProperties
 This interface represent the application configurable log properties.
 
 Those properties are:
@@ -51,9 +51,9 @@ This class interacts with the actual winston logger and responsible for logging 
 
 ```TypeScript
 
-import { ApplicationLogProperties, LoggerConfiguration, PolarisLogger } from '@enigmatis/polaris-logs';
+import { ApplicationProperties, LoggerConfiguration, PolarisLogger } from '@enigmatis/polaris-logs';
 
-const appProps: ApplicationLogProperties = {
+const appProps: ApplicationProperties = {
     id: 'p0laris-l0gs',
     name: 'polaris-logs',
     version: 'v1',
@@ -83,7 +83,7 @@ const logConf: LoggerConfiguration = {
     },
 };
 
-const logger = new PolarisLogger(appProps, logConf);
+const logger = new PolarisLogger(logConf, appProps);
 
 logger.fatal('fatal message', { elapsedTime: 500, eventKind: 'foo' });
 logger.error('error message', { elapsedTime: 15000, throwable: new Error('oops') });
