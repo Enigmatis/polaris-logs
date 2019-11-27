@@ -44,12 +44,12 @@ const customLevels = {
         trace: 5,
     },
     colors: {
-        fatal: 'bold',
+        fatal: 'bold redBG',
         error: 'red',
         warn: 'yellow',
         info: 'green',
-        trace: 'magenta',
         debug: 'blue',
+        trace: 'magenta',
     },
 };
 

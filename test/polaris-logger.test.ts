@@ -1,6 +1,6 @@
 import { Logger } from 'winston';
 import { LoggerConfiguration } from '../src/configurations/logger-configuration';
-import { ApplicationLogProperties } from '../src/entities';
+import { ApplicationProperties } from '../src/main';
 import { PolarisLogger } from '../src/polaris-logger';
 import { createLogger } from '../src/winston-logger';
 
@@ -21,7 +21,7 @@ jest.mock('../src/winston-logger', () => {
 });
 
 describe('polaris-logger tests', () => {
-    const appProps: ApplicationLogProperties = {
+    const appProps: ApplicationProperties = {
         id: 'p0laris-l0gs',
         name: 'polaris-logs',
         version: 'v1',
@@ -34,86 +34,71 @@ describe('polaris-logger tests', () => {
     const message: string = 'log message';
 
     test('creating a polaris logger with application properties and configuration - winston createLogger was called with configuration', () => {
-        const logger = new PolarisLogger(appProps, config);
+        const logger = new PolarisLogger(config, appProps);
 
         expect(createLogger).toHaveBeenCalledWith(config);
     });
 
-    test('fatal - logging message - message and application properties are in the log', () => {
-        const logger = new PolarisLogger(appProps, config);
+    test('fatal - logging message - message is in the log', () => {
+        const logger = new PolarisLogger(config);
         logger.fatal(message);
         expect(loggerImplMock.fatal).toHaveBeenCalledWith({
             message,
-            component: appProps.component,
-            environment: appProps.environment,
-            version: appProps.version,
-            eventKindDescription: { systemId: appProps.id },
-            system: { id: appProps.id, name: appProps.name },
         });
     });
 
-    test('error - logging message - message and application properties are in the log', () => {
-        const logger = new PolarisLogger(appProps, config);
+    test('error - logging message - message is in the log', () => {
+        const logger = new PolarisLogger(config);
         logger.error(message);
         expect(loggerImplMock.error).toHaveBeenCalledWith({
             message,
-            component: appProps.component,
-            environment: appProps.environment,
-            version: appProps.version,
-            eventKindDescription: { systemId: appProps.id },
-            system: { id: appProps.id, name: appProps.name },
         });
     });
 
-    test('warn - logging message - message and application properties are in the log', () => {
-        const logger = new PolarisLogger(appProps, config);
+    test('warn - logging message - message is in the log', () => {
+        const logger = new PolarisLogger(config);
         logger.warn(message);
         expect(loggerImplMock.warn).toHaveBeenCalledWith({
             message,
-            component: appProps.component,
-            environment: appProps.environment,
-            version: appProps.version,
-            eventKindDescription: { systemId: appProps.id },
-            system: { id: appProps.id, name: appProps.name },
         });
     });
 
-    test('info - logging message - message and application properties are in the log', () => {
-        const logger = new PolarisLogger(appProps, config);
+    test('info - logging message - message is in the log', () => {
+        const logger = new PolarisLogger(config);
         logger.info(message);
         expect(loggerImplMock.info).toHaveBeenCalledWith({
             message,
-            component: appProps.component,
-            environment: appProps.environment,
-            version: appProps.version,
-            eventKindDescription: { systemId: appProps.id },
-            system: { id: appProps.id, name: appProps.name },
         });
     });
 
-    test('debug - logging message - message and application properties are in the log', () => {
-        const logger = new PolarisLogger(appProps, config);
+    test('debug - logging message - message is in the log', () => {
+        const logger = new PolarisLogger(config);
         logger.debug(message);
         expect(loggerImplMock.debug).toHaveBeenCalledWith({
             message,
-            component: appProps.component,
-            environment: appProps.environment,
-            version: appProps.version,
-            eventKindDescription: { systemId: appProps.id },
-            system: { id: appProps.id, name: appProps.name },
         });
     });
 
-    test('trace - logging message - message and application properties are in the log', () => {
-        const logger = new PolarisLogger(appProps, config);
+    test('trace - logging message - message is in the log', () => {
+        const logger = new PolarisLogger(config);
         logger.trace(message);
         expect(loggerImplMock.trace).toHaveBeenCalledWith({
             message,
-            component: appProps.component,
-            environment: appProps.environment,
-            version: appProps.version,
-            eventKindDescription: { systemId: appProps.id },
-            system: { id: appProps.id, name: appProps.name },
         });
+    });
+
+    test('info - logging message - application properties are in the log', () => {
+        const logger = new PolarisLogger(config, appProps);
+        logger.info(message);
+        expect(loggerImplMock.info).toHaveBeenCalledWith(
+            expect.objectContaining({
+                component: appProps.component,
+                environment: appProps.environment,
+                version: appProps.version,
+                eventKindDescription: { systemId: appProps.id },
+                systemId: appProps.id,
+                systemName: appProps.name,
+            }),
+        );
     });
 });

@@ -62,6 +62,7 @@
   },
   "homepage": "https://github.com/Enigmatis/polaris-logs#readme",
   "dependencies": {
+    "@enigmatis/polaris-common": "^1.0.9",
     "@types/serialize-error": "^2.1.0",
     "@types/winston": "^2.4.4",
     "clean-deep": "^3.1.0",
@@ -74,10 +75,10 @@
   "devDependencies": {
     "@commitlint/cli": "^8.3.3",
     "@commitlint/config-conventional": "^7.6.0",
-    "@semantic-release/changelog": "^3.0.5",
+    "@semantic-release/changelog": "^3.0.6",
     "@semantic-release/git": "^7.0.18",
-    "@types/jest": "^24.0.22",
-    "@types/node": "^12.12.7",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.12",
     "cz-conventional-changelog": "^2.1.0",
     "husky": "^1.3.1",
     "jest": "24.1.0",
@@ -86,13 +87,13 @@
     "rimraf": "^2.7.1",
     "shx": "^0.3.2",
     "travis-deploy-once": "^5.0.11",
-    "ts-jest": "^24.1.0",
+    "ts-jest": "^24.2.0",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "tslint-consistent-codestyle": "^1.16.0",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-plugin-prettier": "^2.0.1",
-    "typedoc": "^0.15.0",
+    "typedoc": "^0.15.3",
     "typescript": "^3.7.2"
   },
   "config": {
@@ -103,7 +104,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "npm run lint:fix && npm t"
+      "pre-commit": "npm run lint:fix"
     }
   }
 }
