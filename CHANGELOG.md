@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/Enigmatis/polaris-logs/compare/v2.5.5...v2.6.0) (2019-11-27)
+
+
+### Features
+
+* log properties changes and made application properties optional ([ae261f1](https://github.com/Enigmatis/polaris-logs/commit/ae261f1c11c9930d4edd929a5fe4d3a14b64b7dc))
+
 ## [2.5.5](https://github.com/Enigmatis/polaris-logs/compare/v2.5.4...v2.5.5) (2019-11-11)
 
 
