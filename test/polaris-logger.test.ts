@@ -11,6 +11,7 @@ const loggerImplMock: { [T in keyof Logger]: any } = {
     info: jest.fn(),
     debug: jest.fn(),
     trace: jest.fn(),
+    on: jest.fn(),
 } as any;
 jest.mock('../src/winston-logger', () => {
     return {

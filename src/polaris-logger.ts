@@ -29,6 +29,10 @@ export class PolarisLogger {
         readonly applicationLogProperties?: ApplicationProperties,
     ) {
         this.logger = createLogger(loggerConfiguration);
+        this.logger.on('error', error => {
+            // tslint:disable-next-line:no-console
+            console.error('logger error :', error);
+        });
     }
 
     public fatal(message: string, polarisLogProperties?: PolarisLogProperties) {

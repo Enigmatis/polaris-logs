@@ -16,6 +16,7 @@ jest.mock('winston', () => {
         },
         createLogger: jest.fn(() => ({
             add: jest.fn(),
+            on: jest.fn(),
         })),
         addColors: jest.fn(),
         transports: {
