@@ -1,4 +1,4 @@
-![Polaris-logo](static/img/polaris-iconsmall.png)
+![Polaris-logo](static/img/polaris-logo.png)
 # polaris-logs
 [![Build Status](https://travis-ci.com/Enigmatis/polaris-logs.svg?branch=develop)](https://travis-ci.com/Enigmatis/polaris-logs)
 [![NPM version](https://img.shields.io/npm/v/@enigmatis/polaris-logs.svg?style=flat-square)](https://www.npmjs.com/package/@enigmatis/polaris-logs)
