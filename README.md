@@ -1,5 +1,7 @@
 ![Polaris-logo](static/img/polaris-logo.png)
+
 # polaris-logs
+
 [![Build Status](https://travis-ci.com/Enigmatis/polaris-logs.svg?branch=develop)](https://travis-ci.com/Enigmatis/polaris-logs)
 [![NPM version](https://img.shields.io/npm/v/@enigmatis/polaris-logs.svg?style=flat-square)](https://www.npmjs.com/package/@enigmatis/polaris-logs)
 
@@ -8,43 +10,49 @@ Write your logs easily in a standardized manner!
 Ever wanted your logs to look pretty, to contain all the data you need in order to monitor your system, and to be written in an extremely easy way? You can now do this, using this library.
 
 ### LoggerConfiguration
-Through this interface you should set the following configuration to the ``PolarisLogger``:
 
-+ **loggerLevel** (*string*) - The level the logger is listening on, can be one of the following levels: ``fatal`` / 
-``error`` / ``warn`` / ``info`` / ``trace`` / ``debug``.
-+ **logstashConfigurations** (*LogstashConfiguration[] - optional*) - Through this property you can set multiple logstash
-hosts and ports (**Notice that we use UDP to write logs to the logstash services**).
-+ **writeToConsole** (*boolean - optional*) - Determines if the logger should write the logs to the console.
-+ **writeFullMessageToConsole** (*boolean - optional*) - Set this property to ``true``, if you decide to write full 
-detailed logs to the console, since only the ``timestamp`` accompanied by the ``log level``, ``message`` and 
-``throwable`` will be written by default.
-+ **logFilePath** (*string - optional*) - If provided, the logs will be written to the specified path.
-+ **dailyRotateFileConfiguration** (*DailyRotateFileConfiguration - optional*) - If you are interested in daily log file
-instead of just **one** log file, see the configuration section below. It creates a log file for each day. Those daily
-log files deleted after ``X`` days after being created. **If provided, it ignores the logFilePath property.**
-+ **customTransports** (*Transport[] - optional*) - Array of custom transports you can provide to the winston logger.
+Through this interface you should set the following configuration to the `PolarisLogger`:
+
+-   **loggerLevel** (_string_) - The level the logger is listening on, can be one of the following levels: `fatal` /
+    `error` / `warn` / `info` / `trace` / `debug`.
+-   **logstashConfigurations** (_LogstashConfiguration[] - optional_) - Through this property you can set multiple logstash
+    hosts and ports (**Notice that we use UDP to write logs to the logstash services**).
+-   **writeToConsole** (_boolean - optional_) - Determines if the logger should write the logs to the console.
+-   **writeFullMessageToConsole** (_boolean - optional_) - Set this property to `true`, if you decide to write full
+    detailed logs to the console, since only the `timestamp` accompanied by the `log level`, `message` and
+    `throwable` will be written by default.
+-   **logFilePath** (_string - optional_) - If provided, the logs will be written to the specified path.
+-   **dailyRotateFileConfiguration** (_DailyRotateFileConfiguration - optional_) - If you are interested in daily log file
+    instead of just **one** log file, see the configuration section below. It creates a log file for each day. Those daily
+    log files deleted after `X` days after being created. **If provided, it ignores the logFilePath property.**
+-   **customTransports** (_Transport[] - optional_) - Array of custom transports you can provide to the winston logger.
 
 ### DailyRotateFileConfiguration
-+ **directoryPath** (*string*) - The directory path, where the daily files will be located.
-+ **fileNamePrefix** (*string*) - The current date in the format of ``DD-MM-YYYY`` will be added to the name prefix.
-+ **fileExtension** (*string*) - The extension of the log file (without the dot).
-+ **numberOfDaysToDeleteFile** (*number - optional*) - Number of days till old log files will be deleted, default is 30
-days.
+
+-   **directoryPath** (_string_) - The directory path, where the daily files will be located.
+-   **fileNamePrefix** (_string_) - The current date in the format of `DD-MM-YYYY` will be added to the name prefix.
+-   **fileExtension** (_string_) - The extension of the log file (without the dot).
+-   **numberOfDaysToDeleteFile** (_number - optional_) - Number of days till old log files will be deleted, default is 30
+    days.
 
 ### ApplicationProperties
+
 This interface represent the application configurable log properties.
 
 Those properties are:
- + id
- + name
- + version
- + environment
- + component
+
+-   id
+-   name
+-   version
+-   environment
+-   component
 
 ### PolarisLogProperties
-This interface represent the log properties that will be logged through the ``PolarisLogger``.
+
+This interface represent the log properties that will be logged through the `PolarisLogger`.
 
 ### PolarisLogger
+
 This class interacts with the actual winston logger and responsible for logging the properties that was provided to him.
 
 ### Example
