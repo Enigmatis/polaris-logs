@@ -1,3 +1,12 @@
+## [2.6.1](https://github.com/Enigmatis/polaris-logs/compare/v2.6.0...v2.6.1) (2019-12-08)
+
+
+### Bug Fixes
+
+* new logo ([fadce6e](https://github.com/Enigmatis/polaris-logs/commit/fadce6efc16a76b6e29526a0d5281ee18879e769))
+* new logo ([f368724](https://github.com/Enigmatis/polaris-logs/commit/f3687243bbcad57669113a7788b9633acbd2efbb))
+* prettier ([ae04482](https://github.com/Enigmatis/polaris-logs/commit/ae0448268b3cdf503091532431db95186bdf779a))
+
 # [2.6.0](https://github.com/Enigmatis/polaris-logs/compare/v2.5.5...v2.6.0) (2019-11-27)
 
 
