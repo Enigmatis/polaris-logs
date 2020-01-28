@@ -6,9 +6,6 @@
     "outDir": "./dist",
     "strict": true,
     "moduleResolution": "node",
-    "typeRoots": [
-      "src/type-declarations"
-    ],
     "types": [
       "jest",
       "node"
