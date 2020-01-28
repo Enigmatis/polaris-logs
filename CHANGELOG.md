@@ -1,3 +1,15 @@
+## [2.6.2](https://github.com/Enigmatis/polaris-logs/compare/v2.6.1...v2.6.2) (2020-01-28)
+
+
+### Bug Fixes
+
+* updated dependencies ([dd26eda](https://github.com/Enigmatis/polaris-logs/commit/dd26eda3141ab221789d9e048eb730e248c714b9))
+
+
+### Performance Improvements
+
+* **request:** requestQuery changed to request and now it is an any ([381051b](https://github.com/Enigmatis/polaris-logs/commit/381051bb666140c7a31b434db1b2093bb431628f))
+
 ## [2.6.1](https://github.com/Enigmatis/polaris-logs/compare/v2.6.0...v2.6.1) (2019-12-08)
 
 
