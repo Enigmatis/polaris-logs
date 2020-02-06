@@ -1,4 +1,5 @@
 export * from './entities';
+export { createLogger } from './winston-logger';
 export { PolarisLogProperties } from './polaris-log-properties';
 export { PolarisLogger } from './polaris-logger';
 export { LoggerConfiguration } from './configurations/logger-configuration';
