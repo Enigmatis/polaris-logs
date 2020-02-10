@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/Enigmatis/polaris-logs/compare/v2.6.4...v2.7.0) (2020-02-10)
+
+
+### Features
+
+* remove request attribute from request ([690055c](https://github.com/Enigmatis/polaris-logs/commit/690055cb931f5f7a522f2e228c1b4c5c494f4a3e))
+
 ## [2.6.4](https://github.com/Enigmatis/polaris-logs/compare/v2.6.3...v2.6.4) (2020-02-10)
 
 
