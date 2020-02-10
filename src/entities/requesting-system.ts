@@ -1,4 +1,4 @@
-export interface SystemLogProperty {
+export interface RequestingSystem {
     name?: string;
     id?: string;
 }

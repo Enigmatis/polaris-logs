@@ -1,22 +1,18 @@
-import {
-    Entity,
-    EventKindDescriptionLogProperty,
-    RealityLogProperty,
-    RequestLogProperty,
-} from './entities';
+import { Entity, EventKindDescription, Reality, Request } from './entities';
 
 export interface PolarisLogProperties {
     throwable?: object;
     elapsedTime?: number;
     logId?: string;
     customProperties?: object;
-    requestId?: string;
     response?: object;
-    recordId?: string;
+    messageId?: string;
     eventKind?: string;
-    eventKindDescription?: EventKindDescriptionLogProperty;
-    reality?: RealityLogProperty;
-    request?: RequestLogProperty;
+    eventKindDescription?: EventKindDescription;
+    reality?: Reality;
+    request?: Request;
     entity?: Entity;
-    entities?: Entity[];
+    upn?: string;
+    ip?: string;
+    host?: string;
 }

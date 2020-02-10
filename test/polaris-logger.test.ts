@@ -1,3 +1,4 @@
+import uuid = require('uuid/v1');
 import { Logger } from 'winston';
 import { LoggerConfiguration } from '../src/configurations/logger-configuration';
 import { ApplicationProperties } from '../src/main';
@@ -34,7 +35,7 @@ describe('polaris-logger tests', () => {
     const message: string = 'log message';
 
     test('creating a polaris logger with application properties and configuration - winston createLogger was called with configuration', () => {
-        const logger = new PolarisLogger(config, appProps);
+        new PolarisLogger(config, appProps);
 
         expect(createLogger).toHaveBeenCalledWith(config);
     });
@@ -44,6 +45,17 @@ describe('polaris-logger tests', () => {
         logger.fatal(message);
         expect(loggerImplMock.fatal).toHaveBeenCalledWith({
             message,
+            messageId: expect.anything(),
+        });
+    });
+
+    test('fatal - logging message & messagId - message & messageId are in the log', () => {
+        const logger = new PolarisLogger(config);
+        const messageId = uuid();
+        logger.fatal(message, { messageId });
+        expect(loggerImplMock.fatal).toHaveBeenCalledWith({
+            message,
+            messageId,
         });
     });
 
@@ -52,6 +64,7 @@ describe('polaris-logger tests', () => {
         logger.error(message);
         expect(loggerImplMock.error).toHaveBeenCalledWith({
             message,
+            messageId: expect.anything(),
         });
     });
 
@@ -60,6 +73,7 @@ describe('polaris-logger tests', () => {
         logger.warn(message);
         expect(loggerImplMock.warn).toHaveBeenCalledWith({
             message,
+            messageId: expect.anything(),
         });
     });
 
@@ -68,6 +82,7 @@ describe('polaris-logger tests', () => {
         logger.info(message);
         expect(loggerImplMock.info).toHaveBeenCalledWith({
             message,
+            messageId: expect.anything(),
         });
     });
 
@@ -76,6 +91,7 @@ describe('polaris-logger tests', () => {
         logger.debug(message);
         expect(loggerImplMock.debug).toHaveBeenCalledWith({
             message,
+            messageId: expect.anything(),
         });
     });
 
@@ -84,6 +100,7 @@ describe('polaris-logger tests', () => {
         logger.trace(message);
         expect(loggerImplMock.trace).toHaveBeenCalledWith({
             message,
+            messageId: expect.anything(),
         });
     });
 
@@ -98,6 +115,7 @@ describe('polaris-logger tests', () => {
                 eventKindDescription: { systemId: appProps.id },
                 systemId: appProps.id,
                 systemName: appProps.name,
+                messageId: expect.anything(),
             }),
         );
     });
