@@ -1,4 +1,8 @@
-export * from './entities';
+export { Entity } from './entities/entity';
+export { EventKindDescription } from './entities/event-kind-description';
+export { Reality } from './entities/reality';
+export { Request } from './entities/request';
+export { RequestingSystem } from './entities/requesting-system';
 export { createLogger } from './winston-logger';
 export { PolarisLogProperties } from './polaris-log-properties';
 export { PolarisLogger } from './polaris-logger';

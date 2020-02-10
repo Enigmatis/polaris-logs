@@ -1,4 +1,7 @@
-import { Entity, EventKindDescription, Reality, Request } from './entities';
+import { Entity } from './entities/entity';
+import { EventKindDescription } from './entities/event-kind-description';
+import { Reality } from './entities/reality';
+import { Request } from './entities/request';
 
 export interface PolarisLogProperties {
     throwable?: object;
