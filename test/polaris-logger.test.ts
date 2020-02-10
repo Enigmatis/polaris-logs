@@ -1,3 +1,4 @@
+import uuid = require('uuid/v1');
 import { Logger } from 'winston';
 import { LoggerConfiguration } from '../src/configurations/logger-configuration';
 import { ApplicationProperties } from '../src/main';
@@ -45,6 +46,16 @@ describe('polaris-logger tests', () => {
         expect(loggerImplMock.fatal).toHaveBeenCalledWith({
             message,
             messageId: expect.anything(),
+        });
+    });
+
+    test('fatal - logging message & messagId - message & messageId are in the log', () => {
+        const logger = new PolarisLogger(config);
+        const messageId = uuid();
+        logger.fatal(message, { messageId });
+        expect(loggerImplMock.fatal).toHaveBeenCalledWith({
+            message,
+            messageId,
         });
     });
 

@@ -5,9 +5,6 @@
   ],
   "jsRules": {},
   "extends": [
-    "tslint:disable-next-line",
-    "tslint:no-submodule-imports",
-    "tslint:no-var-requires",
     "tslint:latest",
     "tslint-eslint-rules",
     "tslint-config-prettier"
@@ -25,6 +22,9 @@
       true,
       "never-prefix"
     ],
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "no-var-requires": false,
+    "no-submodule-imports": false,
+    "no-unused-expression": false
   }
 }
