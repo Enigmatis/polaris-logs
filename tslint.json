@@ -5,6 +5,9 @@
   ],
   "jsRules": {},
   "extends": [
+    "tslint:disable-next-line",
+    "tslint:no-submodule-imports",
+    "tslint:no-var-requires",
     "tslint:latest",
     "tslint-eslint-rules",
     "tslint-config-prettier"
