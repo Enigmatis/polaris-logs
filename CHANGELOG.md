@@ -1,3 +1,17 @@
+## [2.6.4](https://github.com/Enigmatis/polaris-logs/compare/v2.6.3...v2.6.4) (2020-02-10)
+
+
+### Bug Fixes
+
+* tslint ([e129659](https://github.com/Enigmatis/polaris-logs/commit/e129659011a0bb1d7db51483c3840cba39cd96b6))
+
+## [2.6.3](https://github.com/Enigmatis/polaris-logs/compare/v2.6.2...v2.6.3) (2020-02-06)
+
+
+### Bug Fixes
+
+* export ([14c0b34](https://github.com/Enigmatis/polaris-logs/commit/14c0b34a0987d368a018ce58feae6c01dc4c7b2a))
+
 ## [2.6.2](https://github.com/Enigmatis/polaris-logs/compare/v2.6.1...v2.6.2) (2020-01-28)
 
 

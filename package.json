@@ -1,6 +1,6 @@
 {
   "name": "@enigmatis/polaris-logs",
-  "version": "2.6.2",
+  "version": "2.6.4",
   "description": "A logging library",
   "main": "dist/src/main.js",
   "types": "dist/src/main.d.ts",
@@ -65,7 +65,9 @@
     "@enigmatis/polaris-common": "^1.0.10",
     "@types/serialize-error": "^2.1.0",
     "@types/winston": "^2.4.4",
+    "@types/uuid": "^3.4.7",
     "clean-deep": "^3.2.0",
+    "uuid": "^3.4.0",
     "serialize-error": "^3.0.0",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^3.10.0",

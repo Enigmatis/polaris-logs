@@ -5,6 +5,7 @@ import { Logger } from 'winston';
 import { LoggerConfiguration } from './configurations/logger-configuration';
 import { PolarisLogProperties } from './polaris-log-properties';
 import { createLogger } from './winston-logger';
+const uuidv1 = require('uuid/v1');
 
 export class PolarisLogger {
     private static getAppPropertiesToAssign(applicationProperties?: ApplicationProperties) {
@@ -12,9 +13,6 @@ export class PolarisLogger {
             return {
                 systemId: applicationProperties.id,
                 systemName: applicationProperties.name,
-                eventKindDescription: {
-                    systemId: applicationProperties.id,
-                },
                 version: applicationProperties.version,
                 environment: applicationProperties.environment,
                 component: applicationProperties.component,
@@ -56,12 +54,21 @@ export class PolarisLogger {
     }
 
     private buildLog(message: string, polarisLogProperties?: PolarisLogProperties) {
+        const eventKindDescription =
+            this.applicationLogProperties?.id || polarisLogProperties?.request?.requestingSystem?.id
+                ? {
+                      systemId: this.applicationLogProperties?.id,
+                      requestingSystemId: polarisLogProperties?.request?.requestingSystem?.id,
+                  }
+                : undefined;
+        const messageId = polarisLogProperties?.messageId || uuidv1();
         const propertiesWithCustom = {
             message,
             ...(polarisLogProperties && polarisLogProperties.customProperties),
             ...polarisLogProperties,
             ...PolarisLogger.getAppPropertiesToAssign(this.applicationLogProperties),
-            customProperties: undefined,
+            eventKindDescription,
+            messageId,
             throwable:
                 polarisLogProperties &&
                 polarisLogProperties.throwable &&
