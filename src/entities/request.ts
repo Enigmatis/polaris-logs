@@ -6,5 +6,4 @@ export interface Request {
     requestingSystem?: RequestingSystem;
     requestQuery?: any;
     requestingHost?: string;
-    request?: any;
 }
