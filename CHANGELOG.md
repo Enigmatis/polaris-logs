@@ -1,3 +1,10 @@
+## [2.7.1](https://github.com/Enigmatis/polaris-logs/compare/v2.7.0...v2.7.1) (2020-02-18)
+
+
+### Bug Fixes
+
+* updated dependencies ([2c8631d](https://github.com/Enigmatis/polaris-logs/commit/2c8631db278c846c9eb0755f37791c2c7b06c8ff))
+
 # [2.7.0](https://github.com/Enigmatis/polaris-logs/compare/v2.6.4...v2.7.0) (2020-02-10)
 
 
