@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/Enigmatis/polaris-logs/compare/v2.7.1...v2.8.0) (2020-02-20)
+
+
+### Features
+
+* added abstract-polaris-logger.ts ([2e51721](https://github.com/Enigmatis/polaris-logs/commit/2e51721f2da84796e5a9adbfd7817c08af513586))
+
 ## [2.7.1](https://github.com/Enigmatis/polaris-logs/compare/v2.7.0...v2.7.1) (2020-02-18)
 
 
