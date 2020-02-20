@@ -1,3 +1,10 @@
+## [2.8.1](https://github.com/Enigmatis/polaris-logs/compare/v2.8.0...v2.8.1) (2020-02-20)
+
+
+### Bug Fixes
+
+* abstract logger changes ([b49cb73](https://github.com/Enigmatis/polaris-logs/commit/b49cb73b1f0cb57b77442ff2149aff22759caa9f))
+
 # [2.8.0](https://github.com/Enigmatis/polaris-logs/compare/v2.7.1...v2.8.0) (2020-02-20)
 
 
