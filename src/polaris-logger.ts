@@ -2,12 +2,13 @@ import { ApplicationProperties } from '@enigmatis/polaris-common';
 import cleanDeep = require('clean-deep');
 import * as serializeError from 'serialize-error';
 import { Logger } from 'winston';
+import { AbstractPolarisLogger } from './abstract-polaris-logger';
 import { LoggerConfiguration } from './configurations/logger-configuration';
 import { PolarisLogProperties } from './polaris-log-properties';
 import { createLogger } from './winston-logger';
 const uuidv1 = require('uuid/v1');
 
-export class PolarisLogger {
+export class PolarisLogger extends AbstractPolarisLogger {
     private static getAppPropertiesToAssign(applicationProperties?: ApplicationProperties) {
         if (applicationProperties) {
             return {
@@ -26,6 +27,7 @@ export class PolarisLogger {
         loggerConfiguration: LoggerConfiguration,
         readonly applicationLogProperties?: ApplicationProperties,
     ) {
+        super();
         this.logger = createLogger(loggerConfiguration);
     }
 
@@ -45,12 +47,12 @@ export class PolarisLogger {
         this.logger.info(this.buildLog(message, polarisLogProperties));
     }
 
-    public trace(message: string, polarisLogProperties?: PolarisLogProperties) {
-        this.logger.trace(this.buildLog(message, polarisLogProperties));
-    }
-
     public debug(message: string, polarisLogProperties?: PolarisLogProperties) {
         this.logger.debug(this.buildLog(message, polarisLogProperties));
+    }
+
+    public trace(message: string, polarisLogProperties?: PolarisLogProperties) {
+        this.logger.trace(this.buildLog(message, polarisLogProperties));
     }
 
     private buildLog(message: string, polarisLogProperties?: PolarisLogProperties) {
