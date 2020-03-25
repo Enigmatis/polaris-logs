@@ -67,11 +67,11 @@
     "@types/uuid": "^3.4.7",
     "@types/winston": "^2.4.4",
     "clean-deep": "^3.3.0",
+    "logstash-tcp-wins": "^1.0.18",
     "serialize-error": "^3.0.0",
     "uuid": "^3.4.0",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^3.10.0",
-    "winston-logstash-transport": "^2.0.0",
     "winston-transport": "^4.3.0"
   },
   "devDependencies": {
