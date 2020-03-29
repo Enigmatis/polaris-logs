@@ -45,10 +45,12 @@ export abstract class AbstractPolarisLogger {
                   }
                 : undefined;
         const messageId = polarisLogProperties?.messageId || uuidv1();
+
         const propertiesWithCustom = {
             message,
             ...(polarisLogProperties && polarisLogProperties.customProperties),
             ...polarisLogProperties,
+            customProperties: undefined, // in order to remove it, so it won't be a duplicate
             ...AbstractPolarisLogger.getAppPropertiesToAssign(this.applicationLogProperties),
             eventKindDescription,
             messageId,
