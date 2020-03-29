@@ -50,7 +50,7 @@ export abstract class AbstractPolarisLogger {
             message,
             ...(polarisLogProperties && polarisLogProperties.customProperties),
             ...polarisLogProperties,
-            customProperties: undefined, // in order to remove it, so it won't be a duplicate
+            customProperties: undefined, // in order for it to be removed, so it won't be a duplicate
             ...AbstractPolarisLogger.getAppPropertiesToAssign(this.applicationLogProperties),
             eventKindDescription,
             messageId,
