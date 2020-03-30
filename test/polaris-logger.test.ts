@@ -119,4 +119,24 @@ describe('polaris-logger tests', () => {
             }),
         );
     });
+
+    test('info - logging message - with custom properties', () => {
+        const logger = new PolarisLogger(config, appProps);
+        logger.info(message, {
+            customProperties: { arik: 'Hamelech' },
+        });
+
+        const args = loggerImplMock.info.mock.calls[0][0]; // get the first call to your method
+        expect(args).toEqual({
+            arik: 'Hamelech',
+            component: appProps.component,
+            environment: appProps.environment,
+            version: appProps.version,
+            eventKindDescription: { systemId: appProps.id },
+            systemId: appProps.id,
+            systemName: appProps.name,
+            message,
+            messageId: expect.anything(),
+        });
+    });
 });
