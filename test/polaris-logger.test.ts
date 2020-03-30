@@ -1,9 +1,9 @@
 import uuid = require('uuid/v1');
-import {Logger} from 'winston';
-import {LoggerConfiguration} from '../src/configurations/logger-configuration';
-import {ApplicationProperties} from '../src/main';
-import {PolarisLogger} from '../src/polaris-logger';
-import {createLogger} from '../src/winston-logger';
+import { Logger } from 'winston';
+import { LoggerConfiguration } from '../src/configurations/logger-configuration';
+import { ApplicationProperties } from '../src/main';
+import { PolarisLogger } from '../src/polaris-logger';
+import { createLogger } from '../src/winston-logger';
 
 const loggerImplMock: { [T in keyof Logger]: any } = {
     fatal: jest.fn(),
@@ -52,7 +52,7 @@ describe('polaris-logger tests', () => {
     test('fatal - logging message & messagId - message & messageId are in the log', () => {
         const logger = new PolarisLogger(config);
         const messageId = uuid();
-        logger.fatal(message, {messageId});
+        logger.fatal(message, { messageId });
         expect(loggerImplMock.fatal).toHaveBeenCalledWith({
             message,
             messageId,
@@ -112,7 +112,7 @@ describe('polaris-logger tests', () => {
                 component: appProps.component,
                 environment: appProps.environment,
                 version: appProps.version,
-                eventKindDescription: {systemId: appProps.id},
+                eventKindDescription: { systemId: appProps.id },
                 systemId: appProps.id,
                 systemName: appProps.name,
                 messageId: expect.anything(),
@@ -123,7 +123,7 @@ describe('polaris-logger tests', () => {
     test('info - logging message - with custom properties', () => {
         const logger = new PolarisLogger(config, appProps);
         logger.info(message, {
-            customProperties: {arik: 'Hamelech'},
+            customProperties: { arik: 'Hamelech' },
         });
 
         const args = loggerImplMock.info.mock.calls[0][0]; // get the first call to your method
@@ -132,7 +132,7 @@ describe('polaris-logger tests', () => {
             component: appProps.component,
             environment: appProps.environment,
             version: appProps.version,
-            eventKindDescription: {systemId: appProps.id},
+            eventKindDescription: { systemId: appProps.id },
             systemId: appProps.id,
             systemName: appProps.name,
             message,
