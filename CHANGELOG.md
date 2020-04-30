@@ -1,3 +1,10 @@
+## [2.8.2](https://github.com/Enigmatis/polaris-logs/compare/v2.8.1...v2.8.2) (2020-03-30)
+
+
+### Bug Fixes
+
+* bug that duplicated the custom properties ([6020255](https://github.com/Enigmatis/polaris-logs/commit/6020255a282f06d22b19966ec9977183468624e2))
+
 ## [2.8.1](https://github.com/Enigmatis/polaris-logs/compare/v2.8.0...v2.8.1) (2020-02-20)
 
 

@@ -1,4 +1,4 @@
-![Polaris-logo](static/img/polaris-logo.png)
+![Polaris-logo](static/img/polaris-sm.png)
 
 # polaris-logs
 
