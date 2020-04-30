@@ -16,7 +16,7 @@ Through this interface you should set the following configuration to the `Polari
 -   **loggerLevel** (_string_) - The level the logger is listening on, can be one of the following levels: `fatal` /
     `error` / `warn` / `info` / `trace` / `debug`.
 -   **logstashConfigurations** (_LogstashConfiguration[] - optional_) - Through this property you can set multiple logstash
-    hosts and ports (**Notice that we use UDP to write logs to the logstash services**).
+    hosts and ports (**Notice that we use TCP to write logs to the logstash services**).
 -   **writeToConsole** (_boolean - optional_) - Determines if the logger should write the logs to the console.
 -   **writeFullMessageToConsole** (_boolean - optional_) - Set this property to `true`, if you decide to write full
     detailed logs to the console, since only the `timestamp` accompanied by the `log level`, `message` and

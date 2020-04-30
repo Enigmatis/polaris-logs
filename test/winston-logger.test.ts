@@ -1,8 +1,9 @@
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
-import { LogstashTransport } from 'winston-logstash-transport';
 import { LoggerConfiguration } from '../src/configurations/logger-configuration';
 import * as winstonLogger from '../src/winston-logger';
+
+import LogstashTransport = require('logstash-tcp-wins');
 
 jest.mock('winston', () => {
     return {
@@ -16,6 +17,7 @@ jest.mock('winston', () => {
         },
         createLogger: jest.fn(() => ({
             add: jest.fn(),
+            on: jest.fn(),
         })),
         addColors: jest.fn(),
         transports: {
@@ -30,8 +32,10 @@ jest.mock('winston-daily-rotate-file', () => {
         DailyRotateFile: jest.fn(),
     }));
 });
-jest.mock('winston-logstash-transport', () => {
-    return { LogstashTransport: jest.fn() };
+jest.mock('logstash-tcp-wins', () => {
+    return jest.fn(() => ({
+        on: jest.fn(),
+    }));
 });
 
 describe('winston-logger tests', () => {
