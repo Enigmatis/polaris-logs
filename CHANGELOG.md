@@ -1,3 +1,21 @@
+# [3.0.0](https://github.com/Enigmatis/polaris-logs/compare/v2.8.2...v3.0.0) (2020-04-30)
+
+
+### Features
+
+* **logstash:** send logs to logstash via TCP ([d2b262a](https://github.com/Enigmatis/polaris-logs/commit/d2b262a9b63287b6fb30388b52e98bd1bd6a982c))
+* **logstash:** send logs to logstash via TCP ([7ee94cd](https://github.com/Enigmatis/polaris-logs/commit/7ee94cddceb8267376a402cbee0252baa9899bc6))
+
+
+### BREAKING CHANGES
+
+* **logstash:** send logs to logstash via TCP instead of UDP
+
+Closes 48
+* **logstash:** send logs to logstash via TCP instead of UDP
+
+Closes 48
+
 ## [2.8.2](https://github.com/Enigmatis/polaris-logs/compare/v2.8.1...v2.8.2) (2020-03-30)
 
 
