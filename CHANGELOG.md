@@ -1,3 +1,11 @@
+## [3.0.1](https://github.com/Enigmatis/polaris-logs/compare/v3.0.0...v3.0.1) (2020-05-03)
+
+
+### Bug Fixes
+
+* **package:** updated packages and added support for codecov ([931846a](https://github.com/Enigmatis/polaris-logs/commit/931846a081bf6b384d4d69fa61d99a9861f95664))
+* **package:** updated packages and added support for codecov ([4faa9d0](https://github.com/Enigmatis/polaris-logs/commit/4faa9d01a5a5351f1cb1c678058495be9f694db9))
+
 # [3.0.0](https://github.com/Enigmatis/polaris-logs/compare/v2.8.2...v3.0.0) (2020-04-30)
 
 
