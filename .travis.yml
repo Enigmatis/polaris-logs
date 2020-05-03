@@ -5,6 +5,15 @@ os: linux
 node_js:
     - 12
 
+before_script:
+    - npm install -g codecov
+
+script:
+    - npm run coverage
+
+after_success:
+    - codecov
+
 jobs:
     include:
         # Define the release stage that runs semantic-release
