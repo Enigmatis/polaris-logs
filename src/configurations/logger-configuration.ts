@@ -1,10 +1,11 @@
 import * as Transport from 'winston-transport';
 import { DailyRotateFileConfiguration } from './daily-rotate-file-configuration';
-import { LogstashConfiguration } from './logstash-configuration';
+import { SocketAddress } from './socket-address';
 
 export interface LoggerConfiguration {
     loggerLevel: string;
-    logstashConfigurations?: LogstashConfiguration[];
+    udpConfigurations?: SocketAddress[];
+    tcpConfigurations?: SocketAddress[];
     writeToConsole?: boolean;
     writeFullMessageToConsole?: boolean;
     logFilePath?: string;

@@ -1,8 +1,9 @@
+import TCPTransport = require('logstash-tcp-wins');
+import { UDPTransport } from 'udp-transport-winston';
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LoggerConfiguration } from './configurations/logger-configuration';
-
-import LogstashTransport = require('logstash-tcp-wins');
+import { SocketAddress } from './configurations/socket-address';
 
 const timestampFormat: string = 'DD-MM-YYYY HH:mm:ss';
 
@@ -64,23 +65,38 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
     // tslint:disable:no-console
     logger.on('error', error => console.error('logger Error!', error));
 
-    if (loggerConfiguration.logstashConfigurations) {
-        loggerConfiguration.logstashConfigurations.forEach(logstashConfiguration => {
-            const logstashTransport = new LogstashTransport({
-                host: logstashConfiguration.logstashHost,
-                port: logstashConfiguration.logstashPort,
+    if (loggerConfiguration.udpConfigurations) {
+        loggerConfiguration.udpConfigurations.forEach((udpConfiguration: SocketAddress) => {
+            const udpTransport = new UDPTransport({
+                host: udpConfiguration.host,
+                port: udpConfiguration.port,
                 format: logstashFormat,
-                json: true,
             });
-            logstashTransport.on('error', error =>
+            udpTransport.on('error', (error: Error) =>
                 logger.error(
-                    `logstash transport Error! at logstash config: ${JSON.stringify(
-                        logstashConfiguration,
-                    )}`,
+                    `UDP transport Error! at UDP config: ${JSON.stringify(udpConfiguration)}`,
                     error,
                 ),
             );
-            logger.add(logstashTransport);
+            logger.add(udpTransport);
+        });
+    }
+
+    if (loggerConfiguration.tcpConfigurations) {
+        loggerConfiguration.tcpConfigurations.forEach((tcpConfiguration: SocketAddress) => {
+            const tcpTransport = new TCPTransport({
+                host: tcpConfiguration.host,
+                port: tcpConfiguration.port,
+                format: logstashFormat,
+                json: true,
+            });
+            tcpTransport.on('error', (error: Error) =>
+                logger.error(
+                    `TCP transport Error! at TCP config: ${JSON.stringify(tcpConfiguration)}`,
+                    error,
+                ),
+            );
+            logger.add(tcpTransport);
         });
     }
 

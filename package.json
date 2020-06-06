@@ -70,6 +70,7 @@
         "clean-deep": "^3.3.0",
         "logstash-tcp-wins": "^1.0.18",
         "serialize-error": "^3.0.0",
+        "udp-transport-winston": "^1.1.1",
         "uuid": "^3.4.0",
         "winston": "^3.2.1",
         "winston-daily-rotate-file": "^3.10.0",

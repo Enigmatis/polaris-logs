@@ -1,9 +1,9 @@
+import TCPTransport = require('logstash-tcp-wins');
+import { UDPTransport } from 'udp-transport-winston';
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LoggerConfiguration } from '../src/configurations/logger-configuration';
 import * as winstonLogger from '../src/winston-logger';
-
-import LogstashTransport = require('logstash-tcp-wins');
 
 jest.mock('winston', () => {
     return {
@@ -32,6 +32,13 @@ jest.mock('winston-daily-rotate-file', () => {
         DailyRotateFile: jest.fn(),
     }));
 });
+jest.mock('udp-transport-winston', () => {
+    return {
+        UDPTransport: jest.fn(() => ({
+            on: jest.fn(),
+        })),
+    };
+});
 jest.mock('logstash-tcp-wins', () => {
     return jest.fn(() => ({
         on: jest.fn(),
@@ -40,8 +47,10 @@ jest.mock('logstash-tcp-wins', () => {
 
 describe('winston-logger tests', () => {
     const loggerLevel: string = 'info';
-    const logstashHost: string = 'test';
-    const logstashPort: number = 8080;
+    const socketHost: string = 'test';
+    const socketPort: number = 8080;
+    const secondSocketHost: string = 'wow';
+    const secondSocketPort: number = 5050;
     const filePath: string = './temp/file-test.txt';
     const directoryPath: string = './temp/';
     const fileNamePrefix: string = 'rotate-file-test';
@@ -71,61 +80,150 @@ describe('winston-logger tests', () => {
         );
     });
 
-    test('creating logger with configuration of single logstash service', () => {
+    test('creating logger with configuration of single udp address', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
-            logstashConfigurations: [
+            udpConfigurations: [
                 {
-                    logstashHost,
-                    logstashPort,
+                    host: socketHost,
+                    port: socketPort,
                 },
             ],
         };
 
         winstonLogger.createLogger(config);
 
-        expect(LogstashTransport).toHaveBeenCalledTimes(1);
-        expect(LogstashTransport).toHaveBeenCalledWith(
+        expect(UDPTransport).toHaveBeenCalledTimes(1);
+        expect(UDPTransport).toHaveBeenCalledWith(
             expect.objectContaining({
-                host: logstashHost,
-                port: logstashPort,
+                host: socketHost,
+                port: socketPort,
             }),
         );
     });
 
-    test('creating logger with configuration of multiple logstash services', () => {
-        const anotherLogstashHost: string = 'wow';
-        const anotherLogstashPort: number = 5050;
-
+    test('creating logger with configuration of single tcp address', () => {
         const config: LoggerConfiguration = {
             loggerLevel,
-            logstashConfigurations: [
+            tcpConfigurations: [
                 {
-                    logstashHost,
-                    logstashPort,
-                },
-                {
-                    logstashHost: anotherLogstashHost,
-                    logstashPort: anotherLogstashPort,
+                    host: socketHost,
+                    port: socketPort,
                 },
             ],
         };
 
         winstonLogger.createLogger(config);
 
-        expect(LogstashTransport).toHaveBeenCalledTimes(2);
-        expect(LogstashTransport).toHaveBeenNthCalledWith(
-            1,
+        expect(TCPTransport).toHaveBeenCalledTimes(1);
+        expect(TCPTransport).toHaveBeenCalledWith(
             expect.objectContaining({
-                host: logstashHost,
-                port: logstashPort,
+                host: socketHost,
+                port: socketPort,
             }),
         );
-        expect(LogstashTransport).toHaveBeenNthCalledWith(
+    });
+
+    test('creating logger with configuration of multiple udp addresses', () => {
+        const config: LoggerConfiguration = {
+            loggerLevel,
+            udpConfigurations: [
+                {
+                    host: socketHost,
+                    port: socketPort,
+                },
+                {
+                    host: secondSocketHost,
+                    port: secondSocketPort,
+                },
+            ],
+        };
+
+        winstonLogger.createLogger(config);
+
+        expect(UDPTransport).toHaveBeenCalledTimes(2);
+        expect(UDPTransport).toHaveBeenNthCalledWith(
+            1,
+            expect.objectContaining({
+                host: socketHost,
+                port: socketPort,
+            }),
+        );
+        expect(UDPTransport).toHaveBeenNthCalledWith(
             2,
             expect.objectContaining({
-                host: anotherLogstashHost,
-                port: anotherLogstashPort,
+                host: secondSocketHost,
+                port: secondSocketPort,
+            }),
+        );
+    });
+
+    test('creating logger with configuration of multiple tcp addresses', () => {
+        const config: LoggerConfiguration = {
+            loggerLevel,
+            tcpConfigurations: [
+                {
+                    host: socketHost,
+                    port: socketPort,
+                },
+                {
+                    host: secondSocketHost,
+                    port: secondSocketPort,
+                },
+            ],
+        };
+
+        winstonLogger.createLogger(config);
+
+        expect(TCPTransport).toHaveBeenCalledTimes(2);
+        expect(TCPTransport).toHaveBeenNthCalledWith(
+            1,
+            expect.objectContaining({
+                host: socketHost,
+                port: socketPort,
+            }),
+        );
+        expect(TCPTransport).toHaveBeenNthCalledWith(
+            2,
+            expect.objectContaining({
+                host: secondSocketHost,
+                port: secondSocketPort,
+            }),
+        );
+    });
+
+    test('creating logger with configuration of single udp address and single tcp address', () => {
+        const config: LoggerConfiguration = {
+            loggerLevel,
+            udpConfigurations: [
+                {
+                    host: socketHost,
+                    port: socketPort,
+                },
+            ],
+            tcpConfigurations: [
+                {
+                    host: socketHost,
+                    port: socketPort,
+                },
+            ],
+        };
+
+        winstonLogger.createLogger(config);
+
+        expect(UDPTransport).toHaveBeenCalledTimes(1);
+        expect(UDPTransport).toHaveBeenCalledWith(
+            expect.objectContaining({
+                host: socketHost,
+                port: socketPort,
+            }),
+        );
+
+        expect(TCPTransport).toHaveBeenCalledTimes(1);
+        expect(TCPTransport).toHaveBeenCalledWith(
+            expect.objectContaining({
+                host: socketHost,
+                port: socketPort,
             }),
         );
     });
