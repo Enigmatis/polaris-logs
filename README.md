@@ -16,9 +16,9 @@ Through this interface you should set the following configuration to the `Polari
 -   **loggerLevel** (_string_) - The level the logger is listening on, can be one of the following levels: `fatal` /
     `error` / `warn` / `info` / `trace` / `debug`.
 -   **udpConfigurations** (_SocketAddress[] - optional_) - Through this property you can set multiple udp
-    hosts and ports (**to send to logstash or splunk udp data inputs**).
+    hosts and ports (to send to **logstash or splunk udp data inputs**).
 -   **tcpConfigurations** (_SocketAddress[] - optional_) - Through this property you can set multiple tcp
-    hosts and ports (**to send to logstash or splunk tcp data inputs**).
+    hosts and ports (to send to **logstash or splunk tcp data inputs**).
 -   **writeToConsole** (_boolean - optional_) - Determines if the logger should write the logs to the console.
 -   **writeFullMessageToConsole** (_boolean - optional_) - Set this property to `true`, if you decide to write full
     detailed logs to the console, since only the `timestamp` accompanied by the `log level`, `message` and
@@ -71,17 +71,24 @@ const appProps: ApplicationProperties = {
     component: 'component',
 };
 
-const logstashConf = [{
-    logstashHost: '127.0.0.1',
-    logstashPort: 3000,
+const tcpConf = [{
+    host: '127.0.0.1',
+    port: 3000,
 }, {
-    logstashHost: '8.8.8.8',
-    logstashPort: 6000,
+    host: '8.8.8.8',
+    port: 6000,
 }];
+
+const udpConf = [{
+    host: '127.0.0.1',
+    port: 3000,
+}];
+
 
 const logConf: LoggerConfiguration = {
     loggerLevel: 'trace',
-    logstashConfigurations: logstashConf,
+    udpConfigurations: udpConf,
+    tcpConfigurations: tcpConf,
     writeToConsole: true,
     writeFullMessageToConsole: true,
     // logFilePath: 'D:\\example.txt',
