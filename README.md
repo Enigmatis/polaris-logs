@@ -15,10 +15,8 @@ Through this interface you should set the following configuration to the `Polari
 
 -   **loggerLevel** (_string_) - The level the logger is listening on, can be one of the following levels: `fatal` /
     `error` / `warn` / `info` / `trace` / `debug`.
--   **udpConfigurations** (_SocketAddress[] - optional_) - Through this property you can set multiple udp
-    hosts and ports (to send to **logstash or splunk udp data inputs**).
--   **tcpConfigurations** (_SocketAddress[] - optional_) - Through this property you can set multiple tcp
-    hosts and ports (to send to **logstash or splunk tcp data inputs**).
+-   **logstashConfigurations** (_LogstashConfiguration[] - optional_) - Through this property you can set multiple logstash
+    hosts and ports, and a corresponding protocol for each (**LogstashProtocols.UDP** or **LogstashProtocols.TCP**).
 -   **writeToConsole** (_boolean - optional_) - Determines if the logger should write the logs to the console.
 -   **writeFullMessageToConsole** (_boolean - optional_) - Set this property to `true`, if you decide to write full
     detailed logs to the console, since only the `timestamp` accompanied by the `log level`, `message` and
@@ -61,7 +59,7 @@ This class interacts with the actual winston logger and responsible for logging 
 
 ```TypeScript
 
-import { ApplicationProperties, LoggerConfiguration, PolarisLogger } from '@enigmatis/polaris-logs';
+import { ApplicationProperties, LoggerConfiguration, PolarisLogger, LogstashProtocols } from '@enigmatis/polaris-logs';
 
 const appProps: ApplicationProperties = {
     id: 'p0laris-l0gs',
@@ -71,24 +69,20 @@ const appProps: ApplicationProperties = {
     component: 'component',
 };
 
-const tcpConf = [{
-    host: '127.0.0.1',
-    port: 3000,
+const logstashConf = [{
+   logstashHost: '8.8.8.8',
+   logstashPort: 6000,
+   logstashProtocol: LogstashProtocols.UDP
 }, {
-    host: '8.8.8.8',
-    port: 6000,
-}];
-
-const udpConf = [{
-    host: '127.0.0.1',
-    port: 3000,
-}];
+   logstashHost: '8.8.8.8',
+   logstashPort: 6000,
+   logstashProtocol: LogstashProtocols.TCP
+}
 
 
 const logConf: LoggerConfiguration = {
     loggerLevel: 'trace',
-    udpConfigurations: udpConf,
-    tcpConfigurations: tcpConf,
+    logstashConfigurations: logstashConf
     writeToConsole: true,
     writeFullMessageToConsole: true,
     // logFilePath: 'D:\\example.txt',
