@@ -82,7 +82,7 @@ const logstashConf = [{
 
 const logConf: LoggerConfiguration = {
     loggerLevel: 'trace',
-    logstashConfigurations: logstashConf
+    logstashConfigurations: logstashConf,
     writeToConsole: true,
     writeFullMessageToConsole: true,
     // logFilePath: 'D:\\example.txt',
