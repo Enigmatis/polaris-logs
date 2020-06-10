@@ -1,9 +1,9 @@
+const LogstashTransport = require('winston3-logstash-transport');
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LoggerConfiguration } from '../src/configurations/logger-configuration';
+import { LogstashProtocol } from '../src/configurations/logstash-protocol';
 import * as winstonLogger from '../src/winston-logger';
-
-import LogstashTransport = require('logstash-tcp-wins');
 
 jest.mock('winston', () => {
     return {
@@ -32,9 +32,9 @@ jest.mock('winston-daily-rotate-file', () => {
         DailyRotateFile: jest.fn(),
     }));
 });
-jest.mock('logstash-tcp-wins', () => {
+jest.mock('winston3-logstash-transport', () => {
     return jest.fn(() => ({
-        on: jest.fn(),
+        // on: jest.fn(),
     }));
 });
 
@@ -42,6 +42,7 @@ describe('winston-logger tests', () => {
     const loggerLevel: string = 'info';
     const logstashHost: string = 'test';
     const logstashPort: number = 8080;
+    const logstashProtocol: LogstashProtocol = LogstashProtocol.UDP;
     const filePath: string = './temp/file-test.txt';
     const directoryPath: string = './temp/';
     const fileNamePrefix: string = 'rotate-file-test';
@@ -76,8 +77,9 @@ describe('winston-logger tests', () => {
             loggerLevel,
             logstashConfigurations: [
                 {
-                    logstashHost,
-                    logstashPort,
+                    host: logstashHost,
+                    port: logstashPort,
+                    protocol: logstashProtocol,
                 },
             ],
         };
@@ -89,6 +91,7 @@ describe('winston-logger tests', () => {
             expect.objectContaining({
                 host: logstashHost,
                 port: logstashPort,
+                mode: logstashProtocol,
             }),
         );
     });
@@ -96,17 +99,20 @@ describe('winston-logger tests', () => {
     test('creating logger with configuration of multiple logstash services', () => {
         const anotherLogstashHost: string = 'wow';
         const anotherLogstashPort: number = 5050;
+        const anotherLogstashProtocol: LogstashProtocol = LogstashProtocol.TCP;
 
         const config: LoggerConfiguration = {
             loggerLevel,
             logstashConfigurations: [
                 {
-                    logstashHost,
-                    logstashPort,
+                    host: logstashHost,
+                    port: logstashPort,
+                    protocol: logstashProtocol,
                 },
                 {
-                    logstashHost: anotherLogstashHost,
-                    logstashPort: anotherLogstashPort,
+                    host: anotherLogstashHost,
+                    port: anotherLogstashPort,
+                    protocol: anotherLogstashProtocol,
                 },
             ],
         };
@@ -119,6 +125,7 @@ describe('winston-logger tests', () => {
             expect.objectContaining({
                 host: logstashHost,
                 port: logstashPort,
+                mode: logstashProtocol,
             }),
         );
         expect(LogstashTransport).toHaveBeenNthCalledWith(
@@ -126,6 +133,7 @@ describe('winston-logger tests', () => {
             expect.objectContaining({
                 host: anotherLogstashHost,
                 port: anotherLogstashPort,
+                mode: anotherLogstashProtocol,
             }),
         );
     });
@@ -172,7 +180,7 @@ describe('winston-logger tests', () => {
         expect(DailyRotateFile).toHaveBeenCalledWith(
             expect.objectContaining({
                 datePattern: 'DD-MM-YYYY',
-                filename: `${directoryPath}${fileNamePrefix}${'-%DATE%'}.${fileExtension}`,
+                filename: `${directoryPath}${fileNamePrefix}-%DATE%.${fileExtension}`,
                 maxFiles: `${numberOfDaysToDeleteFile}d`,
             }),
         );

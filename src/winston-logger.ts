@@ -1,8 +1,7 @@
+const LogstashTransport = require('winston3-logstash-transport');
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LoggerConfiguration } from './configurations/logger-configuration';
-
-import LogstashTransport = require('logstash-tcp-wins');
 
 const timestampFormat: string = 'DD-MM-YYYY HH:mm:ss';
 
@@ -62,24 +61,16 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
         exitOnError: false, // do not exit on handled exceptions
     });
     // tslint:disable:no-console
-    logger.on('error', error => console.error('logger Error!', error));
+    logger.on('error', error => console.error('logger error!', error));
 
     if (loggerConfiguration.logstashConfigurations) {
         loggerConfiguration.logstashConfigurations.forEach(logstashConfiguration => {
             const logstashTransport = new LogstashTransport({
-                host: logstashConfiguration.logstashHost,
-                port: logstashConfiguration.logstashPort,
+                host: logstashConfiguration.host,
+                port: logstashConfiguration.port,
+                mode: logstashConfiguration.protocol,
                 format: logstashFormat,
-                json: true,
             });
-            logstashTransport.on('error', error =>
-                logger.error(
-                    `logstash transport Error! at logstash config: ${JSON.stringify(
-                        logstashConfiguration,
-                    )}`,
-                    error,
-                ),
-            );
             logger.add(logstashTransport);
         });
     }
