@@ -79,7 +79,6 @@ const logstashConf = [{
    logstashProtocol: LogstashProtocols.TCP
 }
 
-
 const logConf: LoggerConfiguration = {
     loggerLevel: 'trace',
     logstashConfigurations: logstashConf,
