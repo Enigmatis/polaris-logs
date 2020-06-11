@@ -2,6 +2,7 @@ const LogstashTransport = require('winston3-logstash-transport');
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LoggerConfiguration } from './configurations/logger-configuration';
+import { Logger } from './logger-with-custom-levels';
 
 const timestampFormat = 'DD-MM-YYYY HH:mm:ss';
 
@@ -53,8 +54,8 @@ const customLevels = {
     },
 };
 
-export const createLogger = (loggerConfiguration: LoggerConfiguration): winston.Logger => {
-    const logger = winston.createLogger({
+export const createLogger = (loggerConfiguration: LoggerConfiguration): Logger => {
+    const logger = <Logger>winston.createLogger({
         level: loggerConfiguration.loggerLevel,
         levels: customLevels.levels,
         format: winston.format.json(),

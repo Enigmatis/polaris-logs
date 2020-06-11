@@ -2,8 +2,8 @@ const cleanDeep = require('clean-deep');
 import { ApplicationProperties } from '@enigmatis/polaris-common';
 import { serializeError } from 'serialize-error';
 import { v4 as uuidv4 } from 'uuid';
-import { Logger } from 'winston';
 import { LoggerConfiguration } from './configurations/logger-configuration';
+import { Logger } from './logger-with-custom-levels';
 import { PolarisLogProperties } from './polaris-log-properties';
 import { createLogger } from './winston-logger';
 
