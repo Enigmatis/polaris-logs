@@ -1,13 +1,17 @@
 import cleanDeep = require('clean-deep');
 const uuidv1 = require('uuid/v1');
 import { ApplicationProperties } from '@enigmatis/polaris-common';
+import * as apolloTypes from 'apollo-server-types';
 import * as serializeError from 'serialize-error';
 import { Logger } from 'winston';
 import { LoggerConfiguration } from './configurations/logger-configuration';
 import { PolarisLogProperties } from './polaris-log-properties';
 import { createLogger } from './winston-logger';
-
-export abstract class AbstractPolarisLogger {
+type apolloLogger = apolloTypes.Logger & {
+    fatal(message: string, ...args: any[]): void;
+    trace(message: string, ...args: any[]): void;
+};
+export abstract class AbstractPolarisLogger implements apolloLogger {
     private static getAppPropertiesToAssign(applicationProperties?: ApplicationProperties) {
         if (applicationProperties) {
             return {
