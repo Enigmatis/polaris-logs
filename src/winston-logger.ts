@@ -95,11 +95,9 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration): winston.
             new DailyRotateFile({
                 format: logstashFormat,
                 datePattern: 'DD-MM-YYYY',
-                filename: `${dailyFileConf.directoryPath}${
-                    dailyFileConf.fileNamePrefix
-                }${'-%DATE%'}.${dailyFileConf.fileExtension}`,
+                filename: `${dailyFileConf.directoryPath}${dailyFileConf.fileNamePrefix}-%DATE%.${dailyFileConf.fileExtension}`,
                 maxFiles: dailyFileConf.numberOfDaysToDeleteFile
-                    ? `${dailyFileConf.numberOfDaysToDeleteFile}${'d'}`
+                    ? `${dailyFileConf.numberOfDaysToDeleteFile}d`
                     : '30d',
             }),
         );
