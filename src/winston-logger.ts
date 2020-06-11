@@ -1,8 +1,9 @@
-const LogstashTransport = require('winston3-logstash-transport');
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LoggerConfiguration } from './configurations/logger-configuration';
 import { Logger } from './logger-with-custom-levels';
+
+const LogstashTransport = require('winston3-logstash-transport');
 
 const timestampFormat = 'DD-MM-YYYY HH:mm:ss';
 
