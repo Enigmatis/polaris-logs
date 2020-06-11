@@ -32,7 +32,7 @@ describe('polaris-logger tests', () => {
     const config: LoggerConfiguration = {
         loggerLevel: 'info',
     };
-    const message: string = 'log message';
+    const message = 'log message';
 
     test('creating a polaris logger with application properties and configuration - winston createLogger was called with configuration', () => {
         new PolarisLogger(config, appProps);

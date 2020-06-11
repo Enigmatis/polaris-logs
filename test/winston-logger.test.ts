@@ -32,22 +32,18 @@ jest.mock('winston-daily-rotate-file', () => {
         DailyRotateFile: jest.fn(),
     }));
 });
-jest.mock('winston3-logstash-transport', () => {
-    return jest.fn(() => ({
-        // on: jest.fn(),
-    }));
-});
+jest.mock('winston3-logstash-transport', () => jest.fn());
 
 describe('winston-logger tests', () => {
-    const loggerLevel: string = 'info';
-    const logstashHost: string = 'test';
-    const logstashPort: number = 8080;
+    const loggerLevel = 'info';
+    const logstashHost = 'test';
+    const logstashPort = 8080;
     const logstashProtocol: LogstashProtocol = LogstashProtocol.UDP;
-    const filePath: string = './temp/file-test.txt';
-    const directoryPath: string = './temp/';
-    const fileNamePrefix: string = 'rotate-file-test';
-    const fileExtension: string = 'txt';
-    const numberOfDaysToDeleteFile: number = 55;
+    const filePath = './temp/file-test.txt';
+    const directoryPath = './temp/';
+    const fileNamePrefix = 'rotate-file-test';
+    const fileExtension = 'txt';
+    const numberOfDaysToDeleteFile = 55;
 
     test('creating logger with basic configuration', () => {
         const config: LoggerConfiguration = {
@@ -97,8 +93,8 @@ describe('winston-logger tests', () => {
     });
 
     test('creating logger with configuration of multiple logstash services', () => {
-        const anotherLogstashHost: string = 'wow';
-        const anotherLogstashPort: number = 5050;
+        const anotherLogstashHost = 'wow';
+        const anotherLogstashPort = 5050;
         const anotherLogstashProtocol: LogstashProtocol = LogstashProtocol.TCP;
 
         const config: LoggerConfiguration = {

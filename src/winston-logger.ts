@@ -3,12 +3,12 @@ import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LoggerConfiguration } from './configurations/logger-configuration';
 
-const timestampFormat: string = 'DD-MM-YYYY HH:mm:ss';
+const timestampFormat = 'DD-MM-YYYY HH:mm:ss';
 
 const consoleFullFormat = winston.format.combine(
     winston.format.timestamp({ format: timestampFormat }),
     winston.format.align(),
-    winston.format.printf(info => {
+    winston.format.printf((info) => {
         const { timestamp, level, message, ...args } = info;
         return `${timestamp} [${level}]: ${message} ${
             Object.keys(args).length ? `\n${JSON.stringify(args, null, 2)}` : ''
@@ -19,7 +19,7 @@ const consoleFullFormat = winston.format.combine(
 const consoleShortFormat = winston.format.combine(
     winston.format.timestamp({ format: timestampFormat }),
     winston.format.align(),
-    winston.format.printf(info => {
+    winston.format.printf((info) => {
         const { timestamp, level, message, throwable } = info;
         return `${timestamp} [${level}]: ${message} ${
             throwable ? `\n${JSON.stringify(throwable, null, 2)}` : ''
@@ -29,7 +29,7 @@ const consoleShortFormat = winston.format.combine(
 
 const logstashFormat = winston.format.combine(
     winston.format.timestamp({ format: timestampFormat }),
-    winston.format.printf(info => {
+    winston.format.printf((info) => {
         return JSON.stringify(info);
     }),
 );
@@ -61,10 +61,10 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
         exitOnError: false, // do not exit on handled exceptions
     });
     // tslint:disable:no-console
-    logger.on('error', error => console.error('logger error!', error));
+    logger.on('error', (error) => console.error('logger error!', error));
 
     if (loggerConfiguration.logstashConfigurations) {
-        loggerConfiguration.logstashConfigurations.forEach(logstashConfiguration => {
+        loggerConfiguration.logstashConfigurations.forEach((logstashConfiguration) => {
             const logstashTransport = new LogstashTransport({
                 host: logstashConfiguration.host,
                 port: logstashConfiguration.port,
@@ -113,7 +113,7 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
     }
 
     if (loggerConfiguration.customTransports) {
-        loggerConfiguration.customTransports.forEach(customTransport => {
+        loggerConfiguration.customTransports.forEach((customTransport) => {
             logger.add(customTransport);
         });
     }
