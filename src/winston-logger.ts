@@ -53,7 +53,7 @@ const customLevels = {
     },
 };
 
-export const createLogger = (loggerConfiguration: LoggerConfiguration) => {
+export const createLogger = (loggerConfiguration: LoggerConfiguration): winston.Logger => {
     const logger = winston.createLogger({
         level: loggerConfiguration.loggerLevel,
         levels: customLevels.levels,

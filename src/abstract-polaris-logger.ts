@@ -41,7 +41,7 @@ export abstract class AbstractPolarisLogger {
 
     public abstract trace(message: string, ...args: any[]): void;
 
-    protected buildLog(message: string, polarisLogProperties?: PolarisLogProperties) {
+    protected buildLog(message: string, polarisLogProperties?: PolarisLogProperties): any {
         const eventKindDescription =
             this.applicationLogProperties?.id || polarisLogProperties?.request?.requestingSystem?.id
                 ? {
