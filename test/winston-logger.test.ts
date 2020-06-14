@@ -2,6 +2,7 @@ const LogstashTransport = require('winston3-logstash-transport');
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LoggerConfiguration } from '../src/configurations/logger-configuration';
+import { LoggerLevel } from '../src/configurations/logger-level';
 import { LogstashProtocol } from '../src/configurations/logstash-protocol';
 import * as winstonLogger from '../src/winston-logger';
 
@@ -35,7 +36,7 @@ jest.mock('winston-daily-rotate-file', () => {
 jest.mock('winston3-logstash-transport', () => jest.fn());
 
 describe('winston-logger tests', () => {
-    const loggerLevel = 'info';
+    const loggerLevel = LoggerLevel.INFO;
     const logstashHost = 'test';
     const logstashPort = 8080;
     const logstashProtocol: LogstashProtocol = LogstashProtocol.UDP;

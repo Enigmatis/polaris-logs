@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { LoggerConfiguration } from '../src/configurations/logger-configuration';
 import { Logger } from '../src/logger-with-custom-levels';
-import { ApplicationProperties } from '../src/main';
+import { ApplicationProperties, LoggerLevel } from '../src/main';
 import { PolarisLogger } from '../src/polaris-logger';
 import { createLogger } from '../src/winston-logger';
 
@@ -30,7 +30,7 @@ describe('polaris-logger tests', () => {
         component: 'component',
     };
     const config: LoggerConfiguration = {
-        loggerLevel: 'info',
+        loggerLevel: LoggerLevel.INFO,
     };
     const message = 'log message';
 
