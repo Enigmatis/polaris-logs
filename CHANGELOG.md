@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/Enigmatis/polaris-logs/compare/v4.0.0...v4.0.1) (2020-06-14)
+
+
+### Bug Fixes
+
+* updated npmignore ([8c90202](https://github.com/Enigmatis/polaris-logs/commit/8c90202295f40ab2539cb9f4c887b30388e1ee1c))
+
 # [4.0.0](https://github.com/Enigmatis/polaris-logs/compare/v3.0.1...v4.0.0) (2020-06-14)
 
 
