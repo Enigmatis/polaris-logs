@@ -4,10 +4,11 @@ node_modules/
 
 src/
 test/
+coverage/
 docs/
 gulpfile.js
 tsconfig.json
-tslint.json
+.eslintrc
 .prettierrc
 typings.json
 typings

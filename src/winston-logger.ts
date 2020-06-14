@@ -62,7 +62,6 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration): Logger =
         format: winston.format.json(),
         exitOnError: false, // do not exit on handled exceptions
     });
-    // tslint:disable:no-console
     logger.on('error', (error) => console.error('logger error!', error));
 
     if (loggerConfiguration.logstashConfigurations) {
