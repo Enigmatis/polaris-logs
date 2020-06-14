@@ -1,3 +1,13 @@
+# [4.0.0](https://github.com/Enigmatis/polaris-logs/compare/v3.0.1...v4.0.0) (2020-06-14)
+
+
+* refactor!: logstash transport changes ([bb18e1f](https://github.com/Enigmatis/polaris-logs/commit/bb18e1fd0a534dd6fabcc39ec13de22ecdeb829a))
+
+
+### BREAKING CHANGES
+
+* refactor to use different logstash transport.
+
 ## [3.0.1](https://github.com/Enigmatis/polaris-logs/compare/v3.0.0...v3.0.1) (2020-05-03)
 
 
