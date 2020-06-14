@@ -1,4 +1,7 @@
+import { LogstashProtocol } from './logstash-protocol';
+
 export interface LogstashConfiguration {
-    logstashHost: string;
-    logstashPort: number;
+    host: string;
+    port: number;
+    protocol: LogstashProtocol;
 }

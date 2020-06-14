@@ -13,10 +13,10 @@ Ever wanted your logs to look pretty, to contain all the data you need in order 
 
 Through this interface you should set the following configuration to the `PolarisLogger`:
 
--   **loggerLevel** (_string_) - The level the logger is listening on, can be one of the following levels: `fatal` /
-    `error` / `warn` / `info` / `trace` / `debug`.
+-   **loggerLevel** (_LoggerLevel_) - The level the logger is listening on, can be one of the following levels: `fatal` /
+    `error` / `warn` / `info` / `debug` / `trace`.
 -   **logstashConfigurations** (_LogstashConfiguration[] - optional_) - Through this property you can set multiple logstash
-    hosts and ports (**Notice that we use TCP to write logs to the logstash services**).
+    hosts, ports and protocols (**Notice that you can use either TCP or UDP for each logstash config**).
 -   **writeToConsole** (_boolean - optional_) - Determines if the logger should write the logs to the console.
 -   **writeFullMessageToConsole** (_boolean - optional_) - Set this property to `true`, if you decide to write full
     detailed logs to the console, since only the `timestamp` accompanied by the `log level`, `message` and
@@ -37,7 +37,7 @@ Through this interface you should set the following configuration to the `Polari
 
 ### ApplicationProperties
 
-This interface represent the application configurable log properties.
+This interface represents the application configurable log properties.
 
 Those properties are:
 
@@ -49,7 +49,7 @@ Those properties are:
 
 ### PolarisLogProperties
 
-This interface represent the log properties that will be logged through the `PolarisLogger`.
+This interface represents the log properties that will be logged through the `PolarisLogger`.
 
 ### PolarisLogger
 
@@ -59,7 +59,14 @@ This class interacts with the actual winston logger and responsible for logging 
 
 ```TypeScript
 
-import { ApplicationProperties, LoggerConfiguration, PolarisLogger } from '@enigmatis/polaris-logs';
+import {
+    ApplicationProperties,
+    LoggerConfiguration,
+    LoggerLevel,
+    LogstashConfiguration,
+    LogstashProtocol,
+    PolarisLogger,
+} from '@enigmatis/polaris-logs';
 
 const appProps: ApplicationProperties = {
     id: 'p0laris-l0gs',
@@ -69,16 +76,21 @@ const appProps: ApplicationProperties = {
     component: 'component',
 };
 
-const logstashConf = [{
-    logstashHost: '127.0.0.1',
-    logstashPort: 3000,
-}, {
-    logstashHost: '8.8.8.8',
-    logstashPort: 6000,
-}];
+const logstashConf: LogstashConfiguration[] = [
+    {
+        host: '127.0.0.1',
+        port: 3000,
+        protocol: LogstashProtocol.TCP,
+    },
+    {
+        host: '8.8.8.8',
+        port: 6000,
+        protocol: LogstashProtocol.UDP,
+    },
+];
 
 const logConf: LoggerConfiguration = {
-    loggerLevel: 'trace',
+    loggerLevel: LoggerLevel.TRACE,
     logstashConfigurations: logstashConf,
     writeToConsole: true,
     writeFullMessageToConsole: true,

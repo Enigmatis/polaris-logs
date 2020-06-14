@@ -1,11 +1,11 @@
 import { Entity, EventKindDescription, Reality, Request } from './entities';
 
 export interface PolarisLogProperties {
-    throwable?: object;
+    throwable?: any;
     elapsedTime?: number;
     logId?: string;
-    customProperties?: object;
-    response?: object;
+    customProperties?: any;
+    response?: any;
     messageId?: string;
     eventKind?: string;
     eventKindDescription?: EventKindDescription;

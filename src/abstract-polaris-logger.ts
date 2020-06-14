@@ -1,11 +1,12 @@
-import cleanDeep = require('clean-deep');
-const uuidv1 = require('uuid/v1');
 import { ApplicationProperties } from '@enigmatis/polaris-common';
-import * as serializeError from 'serialize-error';
-import { Logger } from 'winston';
+import { serializeError } from 'serialize-error';
+import { v4 as uuidv4 } from 'uuid';
 import { LoggerConfiguration } from './configurations/logger-configuration';
+import { Logger } from './logger-with-custom-levels';
 import { PolarisLogProperties } from './polaris-log-properties';
 import { createLogger } from './winston-logger';
+
+const cleanDeep = require('clean-deep');
 
 export abstract class AbstractPolarisLogger {
     private static getAppPropertiesToAssign(applicationProperties?: ApplicationProperties) {
@@ -30,13 +31,18 @@ export abstract class AbstractPolarisLogger {
     }
 
     public abstract fatal(message: string, ...args: any[]): void;
+
     public abstract error(message: string, ...args: any[]): void;
+
     public abstract warn(message: string, ...args: any[]): void;
+
     public abstract info(message: string, ...args: any[]): void;
+
     public abstract debug(message: string, ...args: any[]): void;
+
     public abstract trace(message: string, ...args: any[]): void;
 
-    protected buildLog(message: string, polarisLogProperties?: PolarisLogProperties) {
+    protected buildLog(message: string, polarisLogProperties?: PolarisLogProperties): any {
         const eventKindDescription =
             this.applicationLogProperties?.id || polarisLogProperties?.request?.requestingSystem?.id
                 ? {
@@ -44,7 +50,7 @@ export abstract class AbstractPolarisLogger {
                       requestingSystemId: polarisLogProperties?.request?.requestingSystem?.id,
                   }
                 : undefined;
-        const messageId = polarisLogProperties?.messageId || uuidv1();
+        const messageId = polarisLogProperties?.messageId || uuidv4();
 
         const propertiesWithCustom = {
             message,
