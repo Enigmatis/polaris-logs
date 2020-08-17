@@ -1,9 +1,9 @@
-import { LogstashTransport, LogstashOption } from 'winston-logstash-ts';
 import { LogstashProtocol } from '../configurations/logstash-protocol';
+import { LogstashOption, LogstashTransport } from 'winston-logstash-ts';
+
 const sizeof = require('object-sizeof');
 
-const MAX_UDP_PACKET_SIZE_IN_BYTES = 65507;
-
+const MAX_UDP_PACKET_SIZE_IN_BYTES = 65535;
 type DynamicProtocolOptions = Omit<LogstashOption, 'protocol'>;
 
 export class DynamicLogstashTransport extends LogstashTransport {
