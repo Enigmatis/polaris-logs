@@ -8,7 +8,8 @@
         "moduleResolution": "node",
         "types": ["jest", "node"],
         "declaration": true,
-        "lib": ["es6", "es2017", "esnext"]
+        "lib": ["es6", "es2017", "esnext"],
+        "skipLibCheck": true
     },
     "exclude": ["node_modules"]
 }
