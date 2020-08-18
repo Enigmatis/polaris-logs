@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/Enigmatis/polaris-logs/compare/v4.0.1...v4.1.0) (2020-08-18)
+
+
+### Features
+
+* **logstash:** Tcp udp transport ([#74](https://github.com/Enigmatis/polaris-logs/issues/74)) ([0d889e3](https://github.com/Enigmatis/polaris-logs/commit/0d889e3668ae833ba47a85c7e61c588530858487))
+
 ## [4.0.1](https://github.com/Enigmatis/polaris-logs/compare/v4.0.0...v4.0.1) (2020-06-14)
 
 
