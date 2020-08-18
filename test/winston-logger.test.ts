@@ -1,10 +1,10 @@
+const LogstashTransport = require('winston3-logstash-transport');
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LoggerConfiguration } from '../src/configurations/logger-configuration';
 import { LoggerLevel } from '../src/configurations/logger-level';
 import { LogstashProtocol } from '../src/configurations/logstash-protocol';
 import * as winstonLogger from '../src/winston-logger';
-import { LogstashTransport } from 'winston-logstash-ts';
 
 jest.mock('winston', () => {
     return {
@@ -34,8 +34,6 @@ jest.mock('winston-daily-rotate-file', () => {
     }));
 });
 jest.mock('winston3-logstash-transport', () => jest.fn());
-
-jest.mock('winston-logstash-ts');
 
 describe('winston-logger tests', () => {
     const loggerLevel = LoggerLevel.INFO;
@@ -85,11 +83,14 @@ describe('winston-logger tests', () => {
 
         winstonLogger.createLogger(config);
 
-        expect(LogstashTransport).toHaveBeenCalledWith({
-            host: logstashHost,
-            port: logstashPort,
-            protocol: logstashProtocol,
-        });
+        expect(LogstashTransport).toHaveBeenCalledTimes(1);
+        expect(LogstashTransport).toHaveBeenCalledWith(
+            expect.objectContaining({
+                host: logstashHost,
+                port: logstashPort,
+                mode: logstashProtocol,
+            }),
+        );
     });
 
     test('creating logger with configuration of multiple logstash services', () => {
@@ -115,37 +116,23 @@ describe('winston-logger tests', () => {
 
         winstonLogger.createLogger(config);
 
-        expect(LogstashTransport).toHaveBeenCalledWith({
-            host: logstashHost,
-            port: logstashPort,
-            protocol: logstashProtocol,
-        });
-        expect(LogstashTransport).toHaveBeenCalledWith({
-            host: anotherLogstashHost,
-            port: anotherLogstashPort,
-            protocol: anotherLogstashProtocol,
-        });
-    });
-
-    test('creating logger with configuration of dynamic logstash service', () => {
-        const anotherLogstashProtocol: LogstashProtocol = LogstashProtocol.DYNAMIC;
-        const config: LoggerConfiguration = {
-            loggerLevel,
-            logstashConfigurations: [
-                {
-                    host: logstashHost,
-                    port: logstashPort,
-                    protocol: anotherLogstashProtocol,
-                },
-            ],
-        };
-
-        winstonLogger.createLogger(config);
-
-        expect(LogstashTransport).toHaveBeenCalledWith({
-            host: logstashHost,
-            port: logstashPort,
-        });
+        expect(LogstashTransport).toHaveBeenCalledTimes(2);
+        expect(LogstashTransport).toHaveBeenNthCalledWith(
+            1,
+            expect.objectContaining({
+                host: logstashHost,
+                port: logstashPort,
+                mode: logstashProtocol,
+            }),
+        );
+        expect(LogstashTransport).toHaveBeenNthCalledWith(
+            2,
+            expect.objectContaining({
+                host: anotherLogstashHost,
+                port: anotherLogstashPort,
+                mode: anotherLogstashProtocol,
+            }),
+        );
     });
 
     test('creating logger with configuration for console writing', () => {
