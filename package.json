@@ -17,8 +17,7 @@
         "lint": "eslint \"{src,test}/**/*.ts\"",
         "lint:fix": "eslint \"{src,test}/**/*.ts\" --fix",
         "test": "jest",
-        "coverage": "jest --coverage",
-        "run": "ts-node ./src/foo.ts"
+        "coverage": "jest --coverage"
     },
     "repository": {
         "type": "git",
