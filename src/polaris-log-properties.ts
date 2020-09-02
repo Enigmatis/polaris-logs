@@ -12,7 +12,7 @@ export interface PolarisLogProperties {
     reality?: Reality;
     request?: Request;
     entity?: Entity;
-    entities?: [Entity];
+    entities?: Entity[];
     upn?: string;
     ip?: string;
     host?: string;

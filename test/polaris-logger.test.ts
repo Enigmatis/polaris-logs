@@ -139,4 +139,51 @@ describe('polaris-logger tests', () => {
             recordId: expect.anything(),
         });
     });
+
+    test('info - logging message with entity in options - entity is in the log', () => {
+        const logger = new PolarisLogger(config, appProps);
+        logger.info(message, {
+            entity: {
+                id: '0',
+            },
+        });
+        expect(loggerImplMock.info).toHaveBeenCalledWith(
+            expect.objectContaining({
+                message,
+                recordId: expect.anything(),
+                entity: {
+                    id: '0',
+                },
+            }),
+        );
+    });
+
+    test('info - logging message with entities in options - entities is in the log', () => {
+        const logger = new PolarisLogger(config, appProps);
+        logger.info(message, {
+            entities: [{ id: '0' }, { id: '1' }, { id: '2' }],
+        });
+        expect(loggerImplMock.info).toHaveBeenCalledWith(
+            expect.objectContaining({
+                message,
+                recordId: expect.anything(),
+                entities: [{ id: '0' }, { id: '1' }, { id: '2' }],
+            }),
+        );
+    });
+
+    test('info - logging message with entity and entities in options - entities is in the log', () => {
+        const logger = new PolarisLogger(config, appProps);
+        logger.info(message, {
+            entity: { id: '2' },
+            entities: [{ id: '0' }, { id: '1' }],
+        });
+        expect(loggerImplMock.info).toHaveBeenCalledWith(
+            expect.objectContaining({
+                message,
+                recordId: expect.anything(),
+                entities: [{ id: '0' }, { id: '1' }, { id: '2' }],
+            }),
+        );
+    });
 });
