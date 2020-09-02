@@ -45,17 +45,17 @@ describe('polaris-logger tests', () => {
         logger.fatal(message);
         expect(loggerImplMock.fatal).toHaveBeenCalledWith({
             message,
-            messageId: expect.anything(),
+            recordId: expect.anything(),
         });
     });
 
     test('fatal - logging message & messagId - message & messageId are in the log', () => {
         const logger = new PolarisLogger(config);
-        const messageId = uuidv4();
-        logger.fatal(message, { messageId });
+        const recordId = uuidv4();
+        logger.fatal(message, { recordId });
         expect(loggerImplMock.fatal).toHaveBeenCalledWith({
             message,
-            messageId,
+            recordId: recordId,
         });
     });
 
@@ -64,7 +64,7 @@ describe('polaris-logger tests', () => {
         logger.error(message);
         expect(loggerImplMock.error).toHaveBeenCalledWith({
             message,
-            messageId: expect.anything(),
+            recordId: expect.anything(),
         });
     });
 
@@ -73,7 +73,7 @@ describe('polaris-logger tests', () => {
         logger.warn(message);
         expect(loggerImplMock.warn).toHaveBeenCalledWith({
             message,
-            messageId: expect.anything(),
+            recordId: expect.anything(),
         });
     });
 
@@ -82,7 +82,7 @@ describe('polaris-logger tests', () => {
         logger.info(message);
         expect(loggerImplMock.info).toHaveBeenCalledWith({
             message,
-            messageId: expect.anything(),
+            recordId: expect.anything(),
         });
     });
 
@@ -91,7 +91,7 @@ describe('polaris-logger tests', () => {
         logger.debug(message);
         expect(loggerImplMock.debug).toHaveBeenCalledWith({
             message,
-            messageId: expect.anything(),
+            recordId: expect.anything(),
         });
     });
 
@@ -100,7 +100,7 @@ describe('polaris-logger tests', () => {
         logger.trace(message);
         expect(loggerImplMock.trace).toHaveBeenCalledWith({
             message,
-            messageId: expect.anything(),
+            recordId: expect.anything(),
         });
     });
 
@@ -115,7 +115,7 @@ describe('polaris-logger tests', () => {
                 eventKindDescription: { systemId: appProps.id },
                 systemId: appProps.id,
                 systemName: appProps.name,
-                messageId: expect.anything(),
+                recordId: expect.anything(),
             }),
         );
     });
@@ -136,7 +136,7 @@ describe('polaris-logger tests', () => {
             systemId: appProps.id,
             systemName: appProps.name,
             message,
-            messageId: expect.anything(),
+            recordId: expect.anything(),
         });
     });
 });
