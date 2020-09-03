@@ -6,12 +6,13 @@ export interface PolarisLogProperties {
     logId?: string;
     customProperties?: any;
     response?: any;
-    messageId?: string;
+    recordId?: string;
     eventKind?: string;
     eventKindDescription?: EventKindDescription;
     reality?: Reality;
     request?: Request;
     entity?: Entity;
+    entities?: Entity[];
     upn?: string;
     ip?: string;
     host?: string;

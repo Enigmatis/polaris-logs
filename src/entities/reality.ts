@@ -1,5 +1,5 @@
 export interface Reality {
     type?: string;
-    id?: number;
+    id?: string;
     name?: string;
 }
