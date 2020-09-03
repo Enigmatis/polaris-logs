@@ -64,15 +64,6 @@ export abstract class AbstractPolarisLogger {
         return cleanDeep(propertiesWithCustom);
     }
 
-    private setEntityOrEntities(polarisLogProperties?: PolarisLogProperties): void {
-        if (polarisLogProperties?.entities && polarisLogProperties?.entity) {
-            if (!polarisLogProperties.entities.includes(polarisLogProperties.entity)) {
-                polarisLogProperties.entities.push(polarisLogProperties.entity);
-            }
-            polarisLogProperties.entity = undefined;
-        }
-    }
-
     private getEventKindDescription(
         polarisLogProperties?: PolarisLogProperties,
     ): EventKindDescription | undefined {
@@ -83,5 +74,14 @@ export abstract class AbstractPolarisLogger {
                   requestingSystemId: polarisLogProperties?.request?.requestingSystem?.id,
               }
             : undefined;
+    }
+
+    private setEntityOrEntities(polarisLogProperties?: PolarisLogProperties): void {
+        if (polarisLogProperties?.entities && polarisLogProperties?.entity) {
+            if (!polarisLogProperties.entities.includes(polarisLogProperties.entity)) {
+                polarisLogProperties.entities.push(polarisLogProperties.entity);
+            }
+            polarisLogProperties.entity = undefined;
+        }
     }
 }
