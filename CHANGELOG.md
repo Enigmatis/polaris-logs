@@ -1,3 +1,10 @@
+## [4.1.1](https://github.com/Enigmatis/polaris-logs/compare/v4.1.0...v4.1.1) (2020-09-03)
+
+
+### Bug Fixes
+
+* Schema validator fixes ([#75](https://github.com/Enigmatis/polaris-logs/issues/75)) ([2c5836b](https://github.com/Enigmatis/polaris-logs/commit/2c5836b6444b62316330a3bcd0ce8b18b908a187))
+
 # [4.1.0](https://github.com/Enigmatis/polaris-logs/compare/v4.0.1...v4.1.0) (2020-08-18)
 
 
