@@ -55,7 +55,7 @@ describe('polaris-logger tests', () => {
         logger.fatal(message, { recordId });
         expect(loggerImplMock.fatal).toHaveBeenCalledWith({
             message,
-            recordId: recordId,
+            recordId,
         });
     });
 

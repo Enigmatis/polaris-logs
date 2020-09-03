@@ -5,7 +5,7 @@ import { LoggerConfiguration } from './configurations/logger-configuration';
 import { Logger } from './logger-with-custom-levels';
 import { PolarisLogProperties } from './polaris-log-properties';
 import { createLogger } from './winston-logger';
-import { EventKindDescription } from './entities';
+import { Entity, EventKindDescription } from './entities';
 
 const cleanDeep = require('clean-deep');
 
@@ -65,13 +65,11 @@ export abstract class AbstractPolarisLogger {
     }
 
     private setEntityOrEntities(polarisLogProperties?: PolarisLogProperties): void {
-        if (polarisLogProperties != null) {
-            if (polarisLogProperties.entities != null && polarisLogProperties.entity != null) {
-                if (!polarisLogProperties.entities.includes(polarisLogProperties.entity)) {
-                    polarisLogProperties.entities.push(polarisLogProperties.entity);
-                    polarisLogProperties.entity = undefined;
-                }
+        if (polarisLogProperties?.entities && polarisLogProperties?.entity) {
+            if (!polarisLogProperties.entities.includes(polarisLogProperties.entity)) {
+                polarisLogProperties.entities.push(polarisLogProperties.entity);
             }
+            polarisLogProperties.entity = undefined;
         }
     }
 

@@ -7,10 +7,10 @@ import { LogstashTransport } from 'winston-logstash-ts';
 import { LogstashProtocol } from './configurations/logstash-protocol';
 
 const consoleTimestampFormat = 'DD-MM-YYYY HH:mm:ss';
-const timestampFormat = 'YYYY-MM-DD HH:mm:ssZ';
+const logstashTimestampFormat = 'YYYY-MM-DD HH:mm:ssZ';
 
 const consoleFullFormat = winston.format.combine(
-    winston.format.timestamp({ format: timestampFormat }),
+    winston.format.timestamp({ format: consoleTimestampFormat }),
     winston.format.align(),
     winston.format.printf((info) => {
         const { timestamp, level, message, ...args } = info;
@@ -32,7 +32,7 @@ const consoleShortFormat = winston.format.combine(
 );
 
 const logstashFormat = winston.format.combine(
-    winston.format.timestamp({ format: timestampFormat }),
+    winston.format.timestamp({ format: logstashTimestampFormat }),
     winston.format.printf((info) => {
         return JSON.stringify(info);
     }),

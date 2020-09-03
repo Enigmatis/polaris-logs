@@ -16,8 +16,8 @@ Through this interface you should set the following configuration to the `Polari
 -   **loggerLevel** (_LoggerLevel_) - The level the logger is listening on, can be one of the following levels: `fatal` /
     `error` / `warn` / `info` / `debug` / `trace`.
 -   **logstashConfigurations** (_LogstashConfiguration[] - optional_) - Through this property you can set multiple logstash
-    hosts, ports and protocols (**Notice that you can use TCP/UDP or DYNAMIC for each logstash config**).
-    Use DYNAMIC to make the library decide which protocol to use.
+    hosts, ports and protocols (**Notice that you can use `TCP`/`UDP` or `DYNAMIC` for each logstash config**).
+    Use `DYNAMIC` to make polaris-logs decide which protocol to use according to the size of the log.
 -   **writeToConsole** (_boolean - optional_) - Determines if the logger should write the logs to the console.
 -   **writeFullMessageToConsole** (_boolean - optional_) - Set this property to `true`, if you decide to write full
     detailed logs to the console, since only the `timestamp` accompanied by the `log level`, `message` and
@@ -77,9 +77,6 @@ const appProps: ApplicationProperties = {
     component: 'component',
 };
 
-/*
-Use this if you want to manually configure your transports for TCP/UDP or both
-*/
 const logstashConf: LogstashConfiguration[] = [
     {
         host: '127.0.0.1',
@@ -91,17 +88,12 @@ const logstashConf: LogstashConfiguration[] = [
         port: 6000,
         protocol: LogstashProtocol.UDP,
     },
-];
-
-/*
-Use this if you want that the library will decide what protocol to use(TCP or UDP).
-*/
-const dynamicLogstashConf: LogstashConfiguration[] = [
     {
         host: '127.0.0.1',
         port: 3000,
         protocol: LogstashProtocol.DYNAMIC,
-    }];
+    }
+];
 
 const logConf: LoggerConfiguration = {
     loggerLevel: LoggerLevel.TRACE,
