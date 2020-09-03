@@ -1,6 +1,6 @@
 {
     "name": "@enigmatis/polaris-logs",
-    "version": "4.1.1",
+    "version": "5.0.0",
     "description": "A logging library",
     "main": "dist/src/main.js",
     "types": "dist/src/main.d.ts",

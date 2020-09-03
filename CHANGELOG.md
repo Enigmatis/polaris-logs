@@ -1,3 +1,13 @@
+# [5.0.0](https://github.com/Enigmatis/polaris-logs/compare/v4.1.1...v5.0.0) (2020-09-03)
+
+
+* refactor!: new version for changes in log properties (#76) ([1623dde](https://github.com/Enigmatis/polaris-logs/commit/1623ddefe11b051f8c9046e5bec0e77d533b293d)), closes [#76](https://github.com/Enigmatis/polaris-logs/issues/76)
+
+
+### BREAKING CHANGES
+
+* update to 5.0.0
+
 ## [4.1.1](https://github.com/Enigmatis/polaris-logs/compare/v4.1.0...v4.1.1) (2020-09-03)
 
 
