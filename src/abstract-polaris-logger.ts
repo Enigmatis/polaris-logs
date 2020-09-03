@@ -5,7 +5,7 @@ import { LoggerConfiguration } from './configurations/logger-configuration';
 import { Logger } from './logger-with-custom-levels';
 import { PolarisLogProperties } from './polaris-log-properties';
 import { createLogger } from './winston-logger';
-import { Entity, EventKindDescription } from './entities';
+import { EventKindDescription } from './entities';
 
 const cleanDeep = require('clean-deep');
 
