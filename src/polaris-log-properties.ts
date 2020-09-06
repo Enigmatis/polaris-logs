@@ -7,6 +7,7 @@ export interface PolarisLogProperties {
     customProperties?: any;
     response?: any;
     recordId?: string;
+    messageId?: string;
     eventKind?: string;
     eventKindDescription?: EventKindDescription;
     reality?: Reality;
