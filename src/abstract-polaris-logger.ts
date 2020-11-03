@@ -61,7 +61,69 @@ export abstract class AbstractPolarisLogger {
                 polarisLogProperties.throwable &&
                 serializeError(polarisLogProperties.throwable),
         };
+        this.serializeMapsOfProperties(propertiesWithCustom, polarisLogProperties);
         return cleanDeep(propertiesWithCustom);
+    }
+
+    private serializeMapsOfProperties(
+        properties: any,
+        polarisLogProperties?: PolarisLogProperties,
+    ) {
+        if (polarisLogProperties?.entity?.secondaryIds) {
+            Object.assign(properties.entity, {
+                secondaryIds: JSON.stringify(
+                    Object.fromEntries(polarisLogProperties.entity.secondaryIds),
+                ),
+            });
+        }
+        if (polarisLogProperties?.entity?.operationalData) {
+            Object.assign(properties.entity, {
+                operationalData: JSON.stringify(
+                    Object.fromEntries(polarisLogProperties.entity.operationalData),
+                ),
+            });
+        }
+        if (polarisLogProperties?.groupId?.secondaryIds) {
+            Object.assign(properties.groupId, {
+                secondaryIds: JSON.stringify(
+                    Object.fromEntries(polarisLogProperties.groupId.secondaryIds),
+                ),
+            });
+        }
+        if (
+            polarisLogProperties?.entity?.correlationIds &&
+            polarisLogProperties?.entity?.correlationIds.length > 0
+        ) {
+            const correlationIdsStringified = polarisLogProperties?.entity?.correlationIds.map(
+                (value) => {
+                    if (value) {
+                        return {
+                            id: value.id,
+                            name: value.name,
+                            secondaryIds: JSON.stringify(Object.fromEntries(value.secondaryIds!)),
+                        };
+                    }
+                },
+            );
+            Object.assign(polarisLogProperties.entity.correlationIds, correlationIdsStringified);
+        }
+        if (
+            polarisLogProperties?.entity?.subEntities &&
+            polarisLogProperties?.entity?.subEntities.length > 0
+        ) {
+            const subEntitiesStringified = polarisLogProperties.entity.subEntities.map((value) => {
+                if (value) {
+                    return {
+                        id: value.id,
+                        name: value.name,
+                        centralPoint: value.centralPoint,
+                        operationalData: JSON.stringify(Object.fromEntries(value.operationalData!)),
+                        secondaryIds: JSON.stringify(Object.fromEntries(value.secondaryIds!)),
+                    };
+                }
+            });
+            Object.assign(polarisLogProperties.entity.subEntities, subEntitiesStringified);
+        }
     }
 
     private setEntityOrEntities(polarisLogProperties?: PolarisLogProperties): void {
