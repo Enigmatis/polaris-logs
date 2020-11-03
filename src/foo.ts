@@ -22,8 +22,8 @@ logger.debug('message', {
             { id: 'b', secondaryIds },
         ],
         subEntities: [
-            { id: 'dc', secondaryIds },
-            { id: 'es', secondaryIds },
+            { id: 'dc', secondaryIds, operationalData: secondaryIds },
+            { id: 'es', operationalData: secondaryIds, secondaryIds },
         ],
     },
 });

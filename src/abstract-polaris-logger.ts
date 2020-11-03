@@ -94,7 +94,7 @@ export abstract class AbstractPolarisLogger {
             polarisLogProperties?.entity?.correlationIds &&
             polarisLogProperties?.entity?.correlationIds.length > 0
         ) {
-            const correlationIdsStringified = polarisLogProperties?.entity?.correlationIds.map(
+            const formattedCorrelationIds = polarisLogProperties?.entity?.correlationIds.map(
                 (value) => {
                     if (value) {
                         return {
@@ -105,13 +105,13 @@ export abstract class AbstractPolarisLogger {
                     }
                 },
             );
-            Object.assign(polarisLogProperties.entity.correlationIds, correlationIdsStringified);
+            Object.assign(polarisLogProperties.entity.correlationIds, formattedCorrelationIds);
         }
         if (
             polarisLogProperties?.entity?.subEntities &&
             polarisLogProperties?.entity?.subEntities.length > 0
         ) {
-            const subEntitiesStringified = polarisLogProperties.entity.subEntities.map((value) => {
+            const formattedSubEntities = polarisLogProperties.entity.subEntities.map((value) => {
                 if (value) {
                     return {
                         id: value.id,
@@ -122,7 +122,7 @@ export abstract class AbstractPolarisLogger {
                     };
                 }
             });
-            Object.assign(polarisLogProperties.entity.subEntities, subEntitiesStringified);
+            Object.assign(polarisLogProperties.entity.subEntities, formattedSubEntities);
         }
     }
 
