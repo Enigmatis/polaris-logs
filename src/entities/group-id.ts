@@ -1,7 +1,9 @@
+import { KeyValuePair } from './KeyValuePair';
+
 export interface GroupId {
     id: string;
     name?: string;
-    secondaryIds?: Map<string, any>;
+    secondaryIds?:  Array<KeyValuePair<string, any>>;
     action: Action;
 }
 

@@ -1,3 +1,5 @@
+import { Action } from './entities/group-id';
+import { KeyValuePair } from './entities/KeyValuePair';
 import { LoggerLevel, PolarisLogger } from './main';
 
 const logger = new PolarisLogger({
@@ -5,14 +7,16 @@ const logger = new PolarisLogger({
     writeFullMessageToConsole: true,
     writeToConsole: true,
 });
-const secondaryIds = new Map<string, any>([
-    ['a', true],
-    ['b', false],
-    ['c', true],
-    ['d', true],
-    ['e', false],
+const keyVal: KeyValuePair<string, any> = {key: 'a', value: true};
+const secondaryIds = new Array<KeyValuePair<string, any>>(keyVal, keyVal, keyVal, keyVal, keyVal);
+const map = new Map<string, any>([
+    ['a', "abc"],
+    ['b', 'abc'],
+    ['c', 'abc'],
+    ['d', 'abc'],
+    ['e', 'abc'],
 ]);
-console.log(JSON.stringify(Object.fromEntries(secondaryIds)));
+console.log(JSON.stringify(Object.fromEntries(map)));
 logger.debug('message', {
     entity: {
         secondaryIds,
@@ -26,4 +30,8 @@ logger.debug('message', {
             { id: 'es', operationalData: secondaryIds, secondaryIds },
         ],
     },
+    groupId: {
+        id: 'a',
+        action: Action.WRAP
+    }
 });
