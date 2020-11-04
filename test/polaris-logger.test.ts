@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
 import { LoggerConfiguration } from '../src/configurations/logger-configuration';
-import { Action } from '../src/entities/group-id';
 import { Logger } from '../src/logger-with-custom-levels';
 import { ApplicationProperties, LoggerLevel } from '../src/main';
 import { PolarisLogger } from '../src/polaris-logger';
@@ -191,13 +190,13 @@ describe('polaris-logger tests', () => {
     test('info - logging message with groupId - groupId is in the log', () => {
         const logger = new PolarisLogger(config, appProps);
         logger.info(message, {
-            groupId: { id: '0', action: Action.SPLIT },
+            groupId: { id: '0', action: 'Split' },
         });
         expect(loggerImplMock.info).toHaveBeenCalledWith(
             expect.objectContaining({
                 message,
                 recordId: expect.anything(),
-                groupId: { id: '0', action: Action.SPLIT },
+                groupId: { id: '0', action: 'Split' },
             }),
         );
     });
