@@ -14,5 +14,4 @@ export interface Entity {
     subEntities?: SubEntity[];
     criticalFields?: KeyValuePair<string, any>[];
     centralPoint?: CentralPoint;
-    isClassified?: boolean;
 }
