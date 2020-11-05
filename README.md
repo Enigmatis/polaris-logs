@@ -52,6 +52,25 @@ Those properties are:
 
 This interface represents the log properties that will be logged through the `PolarisLogger`.
 
+Those properties are:
+- `throwable`: The throwable object, if an error occurred. *any | Optional*
+- `elapsedTime`: You can provide an elapsed execution time of the operation. *number | Optional*
+- `logId`: You can provide a unique log id for each log. *string | Optional*
+- `customProperties`: You can provide custom properties, and it will be piped to the log. *any | Optional*
+- `response`: The response sent to the client. *any | Optional*
+- `messageId`: A unique identifier of the request/operation process. Something like a transaction id of a process. *string | Optional*
+- `recordId`: A unique identifier of the log(generated automatically). *string | Optional*
+- `eventKind`: The kind of event that happened. An event id. *string | Optional*
+- `eventKindDescription`: A description of the event kind that occurred. *EventKindDescription | Optional*
+- `reality`: You can provide The reality which the operation took place in. *Reality | Optional*
+- `request`: The request sent by the client. *Request | Optional*
+- `entity`: You can provide an entity of your query you want to record. Note that in case you log both entity and entities properties, entity will merged into entities and only entities will be logged. *Entity | Optional*
+- `entities`: You can provide entities of your query you want to record. Note that in case you log both entity and entities properties, entity will merged into entities and only entities will be logged. *Entity[] | Optional*
+- `upn`: The user identifier that executed the operation. *string | Optional*
+- `ip`: The ip address of the server that the request came from. *string | Optional*
+- `host`: The server/container name where the event occurred. *string | Optional*
+- `groupId`: The attributes that defines the relation between the entities to the event that occurred. *GroupId | Optional*
+
 ### PolarisLogger
 
 This class interacts with the actual winston logger and responsible for logging the properties that was provided to him.
