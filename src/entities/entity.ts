@@ -4,7 +4,7 @@ import { Reality } from './reality';
 import { SubEntity } from './sub-entity';
 
 export interface Entity {
-    id?: string;
+    id: string;
     reality?: Reality;
     name?: string;
     secondaryIds?: Record<string, any>[];
