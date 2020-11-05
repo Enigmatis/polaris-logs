@@ -1,5 +1,4 @@
 import * as winston from 'winston';
-import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LoggerConfiguration } from './configurations/logger-configuration';
 import { Logger } from './logger-with-custom-levels';
 import { DynamicLogstashTransport } from './transports/dynamic-logstash-transport';
@@ -97,27 +96,6 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration): Logger =
                         ? consoleFullFormat
                         : consoleShortFormat,
                 ),
-            }),
-        );
-    }
-
-    if (loggerConfiguration.dailyRotateFileConfiguration) {
-        const dailyFileConf = loggerConfiguration.dailyRotateFileConfiguration;
-        logger.add(
-            new DailyRotateFile({
-                format: logstashFormat,
-                datePattern: 'DD-MM-YYYY',
-                filename: `${dailyFileConf.directoryPath}${dailyFileConf.fileNamePrefix}-%DATE%.${dailyFileConf.fileExtension}`,
-                maxFiles: dailyFileConf.numberOfDaysToDeleteFile
-                    ? `${dailyFileConf.numberOfDaysToDeleteFile}d`
-                    : '30d',
-            }),
-        );
-    } else if (loggerConfiguration.logFilePath) {
-        logger.add(
-            new winston.transports.File({
-                format: logstashFormat,
-                filename: loggerConfiguration.logFilePath,
             }),
         );
     }

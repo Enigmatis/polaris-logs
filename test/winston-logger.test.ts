@@ -1,5 +1,4 @@
 import * as winston from 'winston';
-import * as DailyRotateFile from 'winston-daily-rotate-file';
 import { LoggerConfiguration } from '../src/configurations/logger-configuration';
 import { LoggerLevel } from '../src/configurations/logger-level';
 import { LogstashProtocol } from '../src/configurations/logstash-protocol';
@@ -33,7 +32,6 @@ jest.mock('winston-daily-rotate-file', () => {
         DailyRotateFile: jest.fn(),
     }));
 });
-jest.mock('winston3-logstash-transport', () => jest.fn());
 
 jest.mock('winston-logstash-ts');
 
@@ -42,11 +40,6 @@ describe('winston-logger tests', () => {
     const logstashHost = 'test';
     const logstashPort = 8080;
     const logstashProtocol: LogstashProtocol = LogstashProtocol.UDP;
-    const filePath = './temp/file-test.txt';
-    const directoryPath = './temp/';
-    const fileNamePrefix = 'rotate-file-test';
-    const fileExtension = 'txt';
-    const numberOfDaysToDeleteFile = 55;
 
     test('creating logger with basic configuration', () => {
         const config: LoggerConfiguration = {
@@ -157,127 +150,5 @@ describe('winston-logger tests', () => {
         winstonLogger.createLogger(config);
 
         expect(winston.transports.Console).toHaveBeenCalled();
-    });
-
-    test('creating logger with configuration of file writing', () => {
-        const config: LoggerConfiguration = {
-            loggerLevel,
-            logFilePath: filePath,
-        };
-
-        winstonLogger.createLogger(config);
-
-        expect(winston.transports.File).toHaveBeenCalledWith(
-            expect.objectContaining({
-                filename: filePath,
-            }),
-        );
-    });
-
-    test('creating logger with configuration of rotate file writing', () => {
-        const config: LoggerConfiguration = {
-            loggerLevel,
-            dailyRotateFileConfiguration: {
-                directoryPath,
-                fileNamePrefix,
-                fileExtension,
-                numberOfDaysToDeleteFile,
-            },
-        };
-
-        winstonLogger.createLogger(config);
-
-        expect(DailyRotateFile).toHaveBeenCalledWith(
-            expect.objectContaining({
-                datePattern: 'DD-MM-YYYY',
-                filename: `${directoryPath}${fileNamePrefix}-%DATE%.${fileExtension}`,
-                maxFiles: `${numberOfDaysToDeleteFile}d`,
-            }),
-        );
-    });
-
-    test('creating logger with configuration of default days for rotate file writing', () => {
-        const config: LoggerConfiguration = {
-            loggerLevel,
-            dailyRotateFileConfiguration: {
-                directoryPath,
-                fileNamePrefix,
-                fileExtension,
-            },
-        };
-
-        winstonLogger.createLogger(config);
-
-        expect(DailyRotateFile).toHaveBeenCalledWith(
-            expect.objectContaining({
-                maxFiles: '30d',
-            }),
-        );
-    });
-
-    test('creating logger with configuration of console and file writing', () => {
-        const config: LoggerConfiguration = {
-            loggerLevel,
-            writeToConsole: true,
-            logFilePath: filePath,
-        };
-
-        winstonLogger.createLogger(config);
-
-        expect(winston.transports.Console).toHaveBeenCalled();
-        expect(winston.transports.File).toHaveBeenCalled();
-    });
-
-    test('creating logger with configuration of console and rotate file writing', () => {
-        const config: LoggerConfiguration = {
-            loggerLevel,
-            writeToConsole: true,
-            dailyRotateFileConfiguration: {
-                directoryPath,
-                fileNamePrefix,
-                fileExtension,
-            },
-        };
-
-        winstonLogger.createLogger(config);
-
-        expect(winston.transports.Console).toHaveBeenCalled();
-        expect(DailyRotateFile).toHaveBeenCalled();
-    });
-
-    test('creating logger with configuration of file and rotate file', () => {
-        const config: LoggerConfiguration = {
-            loggerLevel,
-            logFilePath: filePath,
-            dailyRotateFileConfiguration: {
-                directoryPath,
-                fileNamePrefix,
-                fileExtension,
-            },
-        };
-
-        winstonLogger.createLogger(config);
-
-        expect(winston.transports.File).not.toHaveBeenCalled();
-        expect(DailyRotateFile).toHaveBeenCalled();
-    });
-
-    test('creating logger with configuration of console and file and rotate file writing', () => {
-        const config: LoggerConfiguration = {
-            loggerLevel,
-            writeToConsole: true,
-            logFilePath: filePath,
-            dailyRotateFileConfiguration: {
-                directoryPath,
-                fileNamePrefix,
-                fileExtension,
-            },
-        };
-
-        winstonLogger.createLogger(config);
-
-        expect(winston.transports.Console).toHaveBeenCalled();
-        expect(winston.transports.File).not.toHaveBeenCalled();
-        expect(DailyRotateFile).toHaveBeenCalled();
     });
 });

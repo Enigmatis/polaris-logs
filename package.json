@@ -67,8 +67,7 @@
         "winston": "^3.3.3",
         "winston-daily-rotate-file": "^4.5.0",
         "winston-logstash-ts": "^0.2.3",
-        "winston-transport": "^4.4.0",
-        "winston3-logstash-transport": "^1.0.1-c"
+        "winston-transport": "^4.4.0"
     },
     "devDependencies": {
         "@commitlint/cli": "^11.0.0",
