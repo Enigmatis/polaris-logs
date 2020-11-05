@@ -22,19 +22,7 @@ Through this interface you should set the following configuration to the `Polari
 -   **writeFullMessageToConsole** (_boolean - optional_) - Set this property to `true`, if you decide to write full
     detailed logs to the console, since only the `timestamp` accompanied by the `log level`, `message` and
     `throwable` will be written by default.
--   **logFilePath** (_string - optional_) - If provided, the logs will be written to the specified path.
--   **dailyRotateFileConfiguration** (_DailyRotateFileConfiguration - optional_) - If you are interested in daily log file
-    instead of just **one** log file, see the configuration section below. It creates a log file for each day. Those daily
-    log files deleted after `X` days after being created. **If provided, it ignores the logFilePath property.**
 -   **customTransports** (_Transport[] - optional_) - Array of custom transports you can provide to the winston logger.
-
-### DailyRotateFileConfiguration
-
--   **directoryPath** (_string_) - The directory path, where the daily files will be located.
--   **fileNamePrefix** (_string_) - The current date in the format of `DD-MM-YYYY` will be added to the name prefix.
--   **fileExtension** (_string_) - The extension of the log file (without the dot).
--   **numberOfDaysToDeleteFile** (_number - optional_) - Number of days till old log files will be deleted, default is 30
-    days.
 
 ### ApplicationProperties
 
@@ -53,27 +41,28 @@ Those properties are:
 This interface represents the log properties that will be logged through the `PolarisLogger`.
 
 Those properties are:
-- `throwable`: The throwable object, if an error occurred. *any | Optional*
-- `elapsedTime`: You can provide an elapsed execution time of the operation. *number | Optional*
-- `logId`: You can provide a unique log id for each log. *string | Optional*
-- `customProperties`: You can provide custom properties, and it will be piped to the log. *any | Optional*
-- `response`: The response sent to the client. *any | Optional*
-- `messageId`: A unique identifier of the request/operation process. Something like a transaction id of a process. *string | Optional*
-- `recordId`: A unique identifier of the log(generated automatically). *string | Optional*
-- `eventKind`: The kind of event that happened. An event id. *string | Optional*
-- `eventKindDescription`: A description of the event kind that occurred. *EventKindDescription | Optional*
-- `reality`: You can provide The reality which the operation took place in. *Reality | Optional*
-- `request`: The request sent by the client. *Request | Optional*
-- `entity`: You can provide an entity of your query you want to record. Note that in case you log both entity and entities properties, entity will merged into entities and only entities will be logged. *Entity | Optional*
-- `entities`: You can provide entities of your query you want to record. Note that in case you log both entity and entities properties, entity will merged into entities and only entities will be logged. *Entity[] | Optional*
-- `upn`: The user identifier that executed the operation. *string | Optional*
-- `ip`: The ip address of the server that the request came from. *string | Optional*
-- `host`: The server/container name where the event occurred. *string | Optional*
-- `groupId`: The attributes that defines the relation between the entities to the event that occurred. *GroupId | Optional*
+
+-   `throwable`: The throwable object, if an error occurred. _any | Optional_
+-   `elapsedTime`: You can provide an elapsed execution time of the operation. _number | Optional_
+-   `logId`: You can provide a unique log id for each log. _string | Optional_
+-   `customProperties`: You can provide custom properties, and it will be piped to the log. _any | Optional_
+-   `response`: The response sent to the client. _any | Optional_
+-   `messageId`: A unique identifier of the request/operation process. Something like a transaction id of a process. _string | Optional_
+-   `recordId`: A unique identifier of the log(generated automatically). _string | Optional_
+-   `eventKind`: The kind of event that happened. An event id. _string | Optional_
+-   `eventKindDescription`: A description of the event kind that occurred. _EventKindDescription | Optional_
+-   `reality`: You can provide The reality which the operation took place in. _Reality | Optional_
+-   `request`: The request sent by the client. _Request | Optional_
+-   `entity`: You can provide an entity of your query you want to record. Note that in case you log both entity and entities properties, entity will merged into entities and only entities will be logged. _Entity | Optional_
+-   `entities`: You can provide entities of your query you want to record. Note that in case you log both entity and entities properties, entity will merged into entities and only entities will be logged. _Entity[] | Optional_
+-   `upn`: The user identifier that executed the operation. _string | Optional_
+-   `ip`: The ip address of the server that the request came from. _string | Optional_
+-   `host`: The server/container name where the event occurred. _string | Optional_
+-   `groupId`: The attributes that defines the relation between the entities to the event that occurred. _GroupId | Optional_
 
 ### PolarisLogger
 
-This class interacts with the actual winston logger and responsible for logging the properties that was provided to him.
+This class interacts with the actual winston logger and responsible for logging provided properties.
 
 ### Example
 
@@ -119,13 +108,6 @@ const logConf: LoggerConfiguration = {
     logstashConfigurations: logstashConf,
     writeToConsole: true,
     writeFullMessageToConsole: true,
-    // logFilePath: 'D:\\example.txt',
-    dailyRotateFileConfiguration: {
-        directoryPath: 'D:\\',
-        fileNamePrefix: 'polaris',
-        fileExtension: 'txt',
-        numberOfDaysToDeleteFile: 60,
-    },
 };
 
 const logger = new PolarisLogger(logConf, appProps);
