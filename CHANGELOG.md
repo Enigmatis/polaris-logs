@@ -1,3 +1,10 @@
+## [4.2.1](https://github.com/Enigmatis/polaris-logs/compare/v4.2.0...v4.2.1) (2020-11-05)
+
+
+### Reverts
+
+* Revert "BREAKING CHANGE: updated and added new log properties (#81)" (#82) ([a16cf8c](https://github.com/Enigmatis/polaris-logs/commit/a16cf8c29b40de16e5f5a50a203fdba1b0459d07)), closes [#81](https://github.com/Enigmatis/polaris-logs/issues/81) [#82](https://github.com/Enigmatis/polaris-logs/issues/82)
+
 # [4.2.0](https://github.com/Enigmatis/polaris-logs/compare/v4.1.1...v4.2.0) (2020-09-06)
 
 
