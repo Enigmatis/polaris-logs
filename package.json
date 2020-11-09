@@ -19,18 +19,6 @@
         "test": "jest",
         "coverage": "jest --coverage"
     },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Enigmatis/polaris-logs.git"
-    },
-    "keywords": [
-        "polaris-logs"
-    ],
-    "author": "Enigmatis",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Enigmatis/polaris-logs/issues"
-    },
     "release": {
         "plugins": [
             "@semantic-release/commit-analyzer",
@@ -56,6 +44,18 @@
                 "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
             }
         ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Enigmatis/polaris-logs.git"
+    },
+    "keywords": [
+        "polaris-logs"
+    ],
+    "author": "Enigmatis",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Enigmatis/polaris-logs/issues"
     },
     "homepage": "https://github.com/Enigmatis/polaris-logs#readme",
     "dependencies": {
