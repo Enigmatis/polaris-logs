@@ -186,4 +186,18 @@ describe('polaris-logger tests', () => {
             }),
         );
     });
+
+    test('info - logging message with groupId - groupId is in the log', () => {
+        const logger = new PolarisLogger(config, appProps);
+        logger.info(message, {
+            groupId: { id: '0', action: 'Split' },
+        });
+        expect(loggerImplMock.info).toHaveBeenCalledWith(
+            expect.objectContaining({
+                message,
+                recordId: expect.anything(),
+                groupId: { id: '0', action: 'Split' },
+            }),
+        );
+    });
 });
