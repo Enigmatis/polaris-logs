@@ -17,7 +17,8 @@
         "lint": "eslint \"{src,test}/**/*.ts\"",
         "lint:fix": "eslint \"{src,test}/**/*.ts\" --fix",
         "test": "jest",
-        "coverage": "jest --coverage"
+        "coverage": "jest --coverage",
+        "semantic-release": "npx semantic-release"
     },
     "release": {
         "plugins": [
