@@ -1,6 +1,8 @@
+import { SecondaryId } from './secondary-id';
+
 export interface GroupId {
     id: string;
     name?: string;
-    secondaryIds?: Record<string, any>[];
+    secondaryIds?: SecondaryId[];
     action: string;
 }
