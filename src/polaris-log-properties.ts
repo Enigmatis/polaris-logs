@@ -1,5 +1,5 @@
 import { Entity, EventKindDescription, Reality, Request } from './entities';
-import { GroupId } from './entities/group-id';
+import { GroupId } from './entities';
 
 export interface PolarisLogProperties {
     throwable?: any;
