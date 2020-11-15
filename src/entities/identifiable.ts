@@ -1,7 +1,7 @@
-import { SecondaryId } from './secondary-id';
+import { JsonObject } from './json-object';
 
 export interface Identifiable {
     id: string;
     name?: string;
-    secondaryIds?: SecondaryId[];
+    secondaryIds?: JsonObject;
 }

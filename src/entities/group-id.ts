@@ -1,8 +1,8 @@
-import { SecondaryId } from './secondary-id';
+import { JsonObject } from './json-object';
 
 export interface GroupId {
     id: string;
     name?: string;
-    secondaryIds?: SecondaryId[];
+    secondaryIds?: JsonObject;
     action: string;
 }
