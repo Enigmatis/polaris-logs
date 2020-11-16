@@ -59,7 +59,7 @@ Those properties are:
 -   `ip`: The ip address of the server that the request came from. _string | Optional_
 -   `host`: The server/container name where the event occurred. _string | Optional_
 -   `groupId`: The attributes that defines the relation between the entities to the event that occurred. _GroupId | Optional_
--   `operationalData`: The operational data. _object | Optional_
+-   `operationalData`: The operational data . _object | Optional_
 
 ### PolarisLogger
 
