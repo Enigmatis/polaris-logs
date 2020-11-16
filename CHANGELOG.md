@@ -1,3 +1,10 @@
+# [5.0.0-beta.3](https://github.com/Enigmatis/polaris-logs/compare/v5.0.0-beta.2...v5.0.0-beta.3) (2020-11-16)
+
+
+### Bug Fixes
+
+* add property into log properties ([33d46d1](https://github.com/Enigmatis/polaris-logs/commit/33d46d1213281f6b591657f735f84498a0890ee4))
+
 # [5.0.0-beta.2](https://github.com/Enigmatis/polaris-logs/compare/v5.0.0-beta.1...v5.0.0-beta.2) (2020-11-15)
 
 
