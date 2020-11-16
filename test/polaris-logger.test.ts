@@ -200,4 +200,18 @@ describe('polaris-logger tests', () => {
             }),
         );
     });
+
+    test('info - logging message with operationalData - operationalData is in the log', () => {
+        const logger = new PolarisLogger(config, appProps);
+        logger.info(message, {
+            operationalData: { id: '0', action: 'Split' },
+        });
+        expect(loggerImplMock.info).toHaveBeenCalledWith(
+            expect.objectContaining({
+                message,
+                recordId: expect.anything(),
+                operationalData: { id: '0', action: 'Split' },
+            }),
+        );
+    });
 });
