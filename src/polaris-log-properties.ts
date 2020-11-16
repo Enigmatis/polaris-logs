@@ -1,5 +1,4 @@
-import { Entity, EventKindDescription, JsonObject, Reality, Request } from './entities';
-import { GroupId } from './entities';
+import { Entity, EventKindDescription, JsonObject, Reality, Request, GroupId } from './entities';
 
 export interface PolarisLogProperties {
     throwable?: any;
