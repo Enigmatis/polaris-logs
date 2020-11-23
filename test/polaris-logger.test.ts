@@ -112,7 +112,6 @@ describe('polaris-logger tests', () => {
                 component: appProps.component,
                 environment: appProps.environment,
                 version: appProps.version,
-                eventKindDescription: { systemId: appProps.id },
                 systemId: appProps.id,
                 systemName: appProps.name,
                 recordId: expect.anything(),
@@ -132,7 +131,6 @@ describe('polaris-logger tests', () => {
             component: appProps.component,
             environment: appProps.environment,
             version: appProps.version,
-            eventKindDescription: { systemId: appProps.id },
             systemId: appProps.id,
             systemName: appProps.name,
             message,
@@ -204,13 +202,43 @@ describe('polaris-logger tests', () => {
     test('info - logging message with operationalData - operationalData is in the log', () => {
         const logger = new PolarisLogger(config, appProps);
         logger.info(message, {
-            operationalData: { id: '0', action: 'Split' },
+            operationalData: { id: '0', action: 'Split', key: true },
         });
         expect(loggerImplMock.info).toHaveBeenCalledWith(
             expect.objectContaining({
                 message,
                 recordId: expect.anything(),
-                operationalData: { id: '0', action: 'Split' },
+                operationalData: { id: '0', action: 'Split', key: true },
+            }),
+        );
+    });
+
+    test('info - logging message with eventKindDescription - eventKindDescription is in the log', () => {
+        const logger = new PolarisLogger(config, appProps);
+        logger.info(message, {
+            eventKindDescription: { id: '0', action: 'Split', key: true },
+        });
+        expect(loggerImplMock.info).toHaveBeenCalledWith(
+            expect.objectContaining({
+                message,
+                recordId: expect.anything(),
+                eventKindDescription: { id: '0', action: 'Split', key: true },
+            }),
+        );
+    });
+
+    test('info - logging message with empty properties - empty properties not written in log', () => {
+        const logger = new PolarisLogger(config, appProps);
+        logger.info(message, {
+            ip: '0.0.0.0',
+            operationalData: {},
+            entities: [],
+        });
+        expect(loggerImplMock.info).toHaveBeenCalledWith(
+            expect.objectContaining({
+                message,
+                recordId: expect.anything(),
+                ip: '0.0.0.0',
             }),
         );
     });

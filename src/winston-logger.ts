@@ -6,7 +6,7 @@ import { LogstashTransport } from 'winston-logstash-ts';
 import { LogstashProtocol } from './configurations/logstash-protocol';
 
 const consoleTimestampFormat = 'DD-MM-YYYY HH:mm:ss';
-const logstashTimestampFormat = 'YYYY-MM-DD HH:mm:ssZ';
+const logstashTimestampFormat = 'YYYY-MM-DDTHH:mm:ss.sssZ';
 
 const consoleFullFormat = winston.format.combine(
     winston.format.timestamp({ format: consoleTimestampFormat }),

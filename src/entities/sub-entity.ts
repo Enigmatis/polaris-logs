@@ -1,11 +1,10 @@
 import { CentralPoint } from './central-point';
-import { JsonObject } from './json-object';
 
 export interface SubEntity {
     id: string;
     name?: string;
-    secondaryIds?: JsonObject;
-    operationalData?: JsonObject;
-    criticalFields?: JsonObject;
+    secondaryIds?: Record<string, any>;
+    operationalData?: Record<string, any>;
+    criticalFields?: Record<string, any>;
     centralPoint?: CentralPoint;
 }
