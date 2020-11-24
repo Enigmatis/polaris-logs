@@ -1,3 +1,39 @@
+# [5.0.0-beta.4](https://github.com/Enigmatis/polaris-logs/compare/v5.0.0-beta.3...v5.0.0-beta.4) (2020-11-24)
+
+
+### Bug Fixes
+
+* fix log properties structure and logic ([362fd2e](https://github.com/Enigmatis/polaris-logs/commit/362fd2e54b8d8d7a717567ddb085acc05912596d))
+* fix log properties structure and logic ([#91](https://github.com/Enigmatis/polaris-logs/issues/91)) ([ef63dd6](https://github.com/Enigmatis/polaris-logs/commit/ef63dd696797c4fd0dbd7fd5f84e550a63308ba1)), closes [#85](https://github.com/Enigmatis/polaris-logs/issues/85) [#84](https://github.com/Enigmatis/polaris-logs/issues/84) [#85](https://github.com/Enigmatis/polaris-logs/issues/85) [#84](https://github.com/Enigmatis/polaris-logs/issues/84) [#83](https://github.com/Enigmatis/polaris-logs/issues/83)
+
+
+### BREAKING CHANGES
+
+* updated and added new log properties (#83)
+
+* feat!: updated and added new log properties
+* updated and added new log properties
+
+* refactor: update npm packages
+
+* refactor: cr fixes
+
+* refactor: another cr fixes
+* removed files related configurations.
+
+* refactor!: entity must have an id
+
+Co-authored-by: itaykl <itaykl123@gmail.com>
+Co-authored-by: osher-sade <osher.sade@gmail.com>
+
+Co-authored-by: itaykl <43351063+itaykl@users.noreply.github.com>
+Co-authored-by: itaykl <itaykl123@gmail.com>
+Co-authored-by: osher-sade <osher.sade@gmail.com>
+
+* chore(release): 5.0.0 [skip ci]
+
+# [5.0.0](https://github.com/Enigmatis/polaris-logs/compare/v4.2.1...v5.0.0) (2020-11-09)
+
 # [5.0.0-beta.3](https://github.com/Enigmatis/polaris-logs/compare/v5.0.0-beta.2...v5.0.0-beta.3) (2020-11-16)
 
 
