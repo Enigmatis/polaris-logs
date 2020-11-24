@@ -1,5 +1,4 @@
 export * from './entities';
-export { createLogger } from './winston-logger';
 export { AbstractPolarisLogger } from './abstract-polaris-logger';
 export { PolarisLogger } from './polaris-logger';
 export { PolarisLogProperties } from './polaris-log-properties';
@@ -7,4 +6,5 @@ export { LoggerConfiguration } from './configurations/logger-configuration';
 export { LogstashConfiguration } from './configurations/logstash-configuration';
 export { LogstashProtocol } from './configurations/logstash-protocol';
 export { LoggerLevel } from './configurations/logger-level';
+export { createLogger } from './winston-logger';
 export { ApplicationProperties } from '@enigmatis/polaris-common';
