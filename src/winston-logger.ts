@@ -1,9 +1,7 @@
 import * as winston from 'winston';
 import { LoggerConfiguration } from './configurations/logger-configuration';
 import { Logger } from './logger-with-custom-levels';
-import { DynamicLogstashTransport } from './transports/dynamic-logstash-transport';
-import { LogstashTransport } from 'winston-logstash-ts';
-import { LogstashProtocol } from './configurations/logstash-protocol';
+import { LogstashTransport } from 'winston-dynamic-logstash-transport';
 
 const consoleTimestampFormat = 'DD-MM-YYYY HH:mm:ss';
 
@@ -65,22 +63,13 @@ export const createLogger = (loggerConfiguration: LoggerConfiguration): Logger =
     logger.on('error', (error) => console.error('logger error!', error));
 
     if (loggerConfiguration.logstashConfigurations) {
-        let logstashTransport: LogstashTransport | DynamicLogstashTransport;
         loggerConfiguration.logstashConfigurations.forEach((logstashConfiguration) => {
-            if (logstashConfiguration.protocol === LogstashProtocol.DYNAMIC) {
-                logstashTransport = new DynamicLogstashTransport({
-                    host: logstashConfiguration.host,
-                    port: logstashConfiguration.port,
-                    format: logstashFormat,
-                });
-            } else {
-                logstashTransport = new LogstashTransport({
-                    host: logstashConfiguration.host,
-                    port: logstashConfiguration.port,
-                    protocol: logstashConfiguration.protocol,
-                    format: logstashFormat,
-                });
-            }
+            const logstashTransport = new LogstashTransport({
+                host: logstashConfiguration.host,
+                port: logstashConfiguration.port,
+                protocol: logstashConfiguration.protocol,
+                format: logstashFormat,
+            });
             logger.add(logstashTransport);
         });
     }

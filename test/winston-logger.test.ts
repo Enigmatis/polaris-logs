@@ -3,7 +3,7 @@ import { LoggerConfiguration } from '../src/configurations/logger-configuration'
 import { LoggerLevel } from '../src/configurations/logger-level';
 import { LogstashProtocol } from '../src/configurations/logstash-protocol';
 import * as winstonLogger from '../src/winston-logger';
-import { LogstashTransport } from 'winston-logstash-ts';
+import { LogstashTransport } from 'winston-dynamic-logstash-transport';
 
 jest.mock('winston', () => {
     return {
@@ -27,7 +27,7 @@ jest.mock('winston', () => {
     };
 });
 
-jest.mock('winston-logstash-ts');
+jest.mock('winston-dynamic-logstash-transport');
 
 describe('winston-logger tests', () => {
     const loggerLevel = LoggerLevel.INFO;
@@ -115,14 +115,14 @@ describe('winston-logger tests', () => {
     });
 
     test('creating logger with configuration of dynamic logstash service', () => {
-        const anotherLogstashProtocol: LogstashProtocol = LogstashProtocol.DYNAMIC;
+        const dynamicLogstashProtocol: LogstashProtocol = LogstashProtocol.DYNAMIC;
         const config: LoggerConfiguration = {
             loggerLevel,
             logstashConfigurations: [
                 {
                     host: logstashHost,
                     port: logstashPort,
-                    protocol: anotherLogstashProtocol,
+                    protocol: dynamicLogstashProtocol,
                 },
             ],
         };
@@ -132,6 +132,7 @@ describe('winston-logger tests', () => {
         expect(LogstashTransport).toHaveBeenCalledWith({
             host: logstashHost,
             port: logstashPort,
+            protocol: dynamicLogstashProtocol,
         });
     });
 
