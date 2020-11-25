@@ -72,11 +72,10 @@
     "dependencies": {
         "@enigmatis/polaris-common": "^1.4.5",
         "clean-deep": "^3.4.0",
-        "object-sizeof": "^1.6.1",
         "serialize-error": "^7.0.1",
         "uuid": "^8.3.1",
         "winston": "^3.3.3",
-        "winston-logstash-ts": "^0.2.3",
+        "winston-dynamic-logstash-transport": "^0.0.2",
         "winston-transport": "^4.4.0"
     },
     "devDependencies": {
