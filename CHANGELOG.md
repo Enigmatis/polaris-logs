@@ -1,3 +1,10 @@
+# [5.0.0-beta.5](https://github.com/Enigmatis/polaris-logs/compare/v5.0.0-beta.4...v5.0.0-beta.5) (2020-11-25)
+
+
+### Bug Fixes
+
+* changed logstash transport logic ([#92](https://github.com/Enigmatis/polaris-logs/issues/92)) ([22e5a84](https://github.com/Enigmatis/polaris-logs/commit/22e5a84555e69520dba8fd4f75c7a66558905299))
+
 # [5.0.0-beta.4](https://github.com/Enigmatis/polaris-logs/compare/v5.0.0-beta.3...v5.0.0-beta.4) (2020-11-24)
 
 
