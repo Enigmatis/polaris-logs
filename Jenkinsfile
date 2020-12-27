@@ -12,7 +12,10 @@ pipeline {
             }
         }
 
-        stage('Check changes: polaris logs repo') {
+        stage('Check changes: polaris logs repo') {            
+            when {
+                changeset "polaris/logs/**"
+            }
             steps {
                 echo "building polaris logs repo"
                 sh "npm run build"
