@@ -27,10 +27,13 @@ pipeline {
                 sh "npm t"
             }
         }
-
         stage("release polaris logs repo") {
             steps {
-                sh "npx semantic release"
+                echo "{$env.BRANCH_NAME}"
+                if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME.contains('release') || env.BRANCH_NAME.contains('development')) {
+                    echo "release branch: {$env.BRANCH_NAME}"
+                    sh "npm run semantic-release"
+                }
             }
         }
 
