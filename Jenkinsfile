@@ -6,8 +6,10 @@ pipeline {
     agent any
     stages {
         stage("npm install") {
-            checkout scm
-            sh "npm i"
+            steps {
+                checkout scm
+                sh "npm i"
+            }
         }
 
         stage('Check changes: polaris logs repo') {
@@ -21,11 +23,15 @@ pipeline {
         }
 
         stage('npm test') {
-            sh "npm t"
+            steps {
+                sh "npm t"
+            }
         }
 
         stage("release polaris logs repo") {
-            sh "npx semantic release"
+            steps {
+                sh "npx semantic release"
+            }
         }
 
         stage("Clean directory") {
