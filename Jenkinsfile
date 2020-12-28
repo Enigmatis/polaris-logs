@@ -18,7 +18,7 @@ node {
 
     stage("Run tests"){
         try{
-            sh "npm i && npm run test:ci"
+            sh "npm i && npm run test"
         }
         catch(err){
             junit "test/*.xml"
