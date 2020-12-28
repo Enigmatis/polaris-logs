@@ -2,7 +2,7 @@
 
 properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '7', numToKeepStr: ''))])
 
-pipeline {
+node {
     agent any
     stages {
         stage("npm install") {
