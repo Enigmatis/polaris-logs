@@ -3,44 +3,38 @@
 properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '7', numToKeepStr: ''))])
 
 node {
-    agent any
-    stages {
-        stage("npm install") {
-            steps {
-                checkout scm
-                sh "npm i"
-            }
-        }
+    stage("Clean directory"){
+        deleteDir()
+    }
 
-        stage('Check changes: polaris logs repo') {            
-            when {
-                changeset "polaris/logs/**"
-            }
-            steps {
-                echo "building polaris logs repo"
-                sh "npm run build"
-            }
-        }
+    stage("Checkout"){
+        checkout scm
+    }
 
-        stage('npm test') {
-            steps {
-                sh "npm t"
-            }
-        }
-        stage("release polaris logs repo") {
-            steps {
-                echo "{$env.BRANCH_NAME}"
-                if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME.contains('release') || env.BRANCH_NAME.contains('development')) {
-                    echo "release branch: {$env.BRANCH_NAME}"
-                    sh "npm run semantic-release"
-                }
-            }
-        }
+    stage("Install dependencies & build"){
+        sh "npm install"
+        sh "npm run build"
+    }
 
-        stage("Clean directory") {
-            steps {
-                deleteDir()
-            }
+    stage("Run tests"){
+        try{
+            sh "npm i && npm run test:ci"
+        }
+        catch(err){
+            junit "test/*.xml"
+            throw err
         }
     }
+
+     stage("release polaris logs repo") {
+        echo "{$env.BRANCH_NAME}"
+           if (env.BRANCH_NAME == 'master') {
+                echo "release branch: {$env.BRANCH_NAME}"
+                sh "npm run semantic-release"
+           }
+     }
+
+     stage("Clean directory") {
+           deleteDir()
+     }
 }
