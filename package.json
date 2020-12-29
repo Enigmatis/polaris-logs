@@ -1,6 +1,6 @@
 {
     "name": "@enigmatis/polaris-logs",
-    "version": "5.0.0",
+    "version": "5.0.0-beta.5",
     "description": "A logging library",
     "main": "dist/src/main.js",
     "types": "dist/src/main.d.ts",
@@ -17,19 +17,8 @@
         "lint": "eslint \"{src,test}/**/*.ts\"",
         "lint:fix": "eslint \"{src,test}/**/*.ts\" --fix",
         "test": "jest",
-        "coverage": "jest --coverage"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Enigmatis/polaris-logs.git"
-    },
-    "keywords": [
-        "polaris-logs"
-    ],
-    "author": "Enigmatis",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Enigmatis/polaris-logs/issues"
+        "coverage": "jest --coverage",
+        "semantic-release": "npx semantic-release"
     },
     "release": {
         "plugins": [
@@ -55,18 +44,38 @@
                 ],
                 "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
             }
+        ],
+        "branches": [
+            {
+                "name": "development",
+                "channel": "beta",
+                "prerelease": "beta"
+            },
+            {
+                "name": "master"
+            }
         ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Enigmatis/polaris-logs.git"
+    },
+    "keywords": [
+        "polaris-logs"
+    ],
+    "author": "Enigmatis",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Enigmatis/polaris-logs/issues"
     },
     "homepage": "https://github.com/Enigmatis/polaris-logs#readme",
     "dependencies": {
         "@enigmatis/polaris-common": "^1.4.5",
         "clean-deep": "^3.4.0",
-        "object-sizeof": "^1.6.1",
         "serialize-error": "^7.0.1",
         "uuid": "^8.3.1",
         "winston": "^3.3.3",
-        "winston-daily-rotate-file": "^4.5.0",
-        "winston-logstash-ts": "^0.2.3",
+        "winston-dynamic-logstash-transport": "^0.0.2",
         "winston-transport": "^4.4.0"
     },
     "devDependencies": {
@@ -75,22 +84,22 @@
         "@semantic-release/changelog": "^5.0.1",
         "@semantic-release/git": "^9.0.0",
         "@types/jest": "^26.0.15",
-        "@types/node": "^14.14.6",
+        "@types/node": "^14.14.9",
         "@types/serialize-error": "^4.0.1",
         "@types/uuid": "^8.3.0",
         "@types/winston": "^2.4.4",
-        "@typescript-eslint/eslint-plugin": "^4.6.1",
-        "@typescript-eslint/parser": "^4.6.1",
-        "eslint": "^7.12.1",
+        "@typescript-eslint/eslint-plugin": "^4.8.2",
+        "@typescript-eslint/parser": "^4.8.2",
+        "eslint": "^7.14.0",
         "eslint-config-prettier": "^6.15.0",
         "eslint-plugin-prettier": "^3.1.4",
         "husky": "^4.3.0",
         "jest": "^26.6.3",
-        "prettier": "^2.1.2",
+        "prettier": "^2.2.0",
         "rimraf": "^3.0.2",
-        "semantic-release": "^17.2.2",
-        "ts-jest": "^26.4.3",
-        "typescript": "^4.0.5"
+        "semantic-release": "^17.3.0",
+        "ts-jest": "^26.4.4",
+        "typescript": "^4.1.2"
     },
     "husky": {
         "hooks": {

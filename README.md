@@ -13,7 +13,7 @@ Ever wanted your logs to look pretty, to contain all the data you need in order 
 
 Through this interface you should set the following configuration to the `PolarisLogger`:
 
--   **loggerLevel** (_LoggerLevel_) - The level the logger is listening on, can be one of the following levels: `fatal` /
+-   **loggerLevel** (_LoggerLevel | string_) - The level the logger is listening on, can be one of the following levels: `fatal` /
     `error` / `warn` / `info` / `debug` / `trace`.
 -   **logstashConfigurations** (_LogstashConfiguration[] - optional_) - Through this property you can set multiple logstash
     hosts, ports and protocols (**Notice that you can use `TCP`/`UDP` or `DYNAMIC` for each logstash config**).
@@ -59,6 +59,7 @@ Those properties are:
 -   `ip`: The ip address of the server that the request came from. _string | Optional_
 -   `host`: The server/container name where the event occurred. _string | Optional_
 -   `groupId`: The attributes that defines the relation between the entities to the event that occurred. _GroupId | Optional_
+-   `operationalData`: The operational data . _object | Optional_
 
 ### PolarisLogger
 

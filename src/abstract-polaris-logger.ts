@@ -5,7 +5,6 @@ import { LoggerConfiguration } from './configurations/logger-configuration';
 import { Logger } from './logger-with-custom-levels';
 import { PolarisLogProperties } from './polaris-log-properties';
 import { createLogger } from './winston-logger';
-import { EventKindDescription } from './entities';
 
 const cleanDeep = require('clean-deep');
 
@@ -44,7 +43,6 @@ export abstract class AbstractPolarisLogger {
     public abstract trace(message: string, ...args: any[]): void;
 
     protected buildLog(message: string, polarisLogProperties?: PolarisLogProperties): any {
-        const eventKindDescription = this.getEventKindDescription(polarisLogProperties);
         this.setEntityOrEntities(polarisLogProperties);
         const recordId = polarisLogProperties?.recordId || uuidv4();
 
@@ -54,7 +52,6 @@ export abstract class AbstractPolarisLogger {
             ...polarisLogProperties,
             customProperties: undefined, // in order for it to be removed, so it won't be a duplicate
             ...AbstractPolarisLogger.getAppPropertiesToAssign(this.applicationLogProperties),
-            eventKindDescription,
             recordId,
             throwable:
                 polarisLogProperties &&
@@ -71,17 +68,5 @@ export abstract class AbstractPolarisLogger {
             }
             polarisLogProperties.entity = undefined;
         }
-    }
-
-    private getEventKindDescription(
-        polarisLogProperties?: PolarisLogProperties,
-    ): EventKindDescription | undefined {
-        return this.applicationLogProperties?.id ||
-            polarisLogProperties?.request?.requestingSystem?.id
-            ? {
-                  systemId: this.applicationLogProperties?.id,
-                  requestingSystemId: polarisLogProperties?.request?.requestingSystem?.id,
-              }
-            : undefined;
     }
 }

@@ -1,3 +1,131 @@
+# [5.0.0-beta.5](https://github.com/Enigmatis/polaris-logs/compare/v5.0.0-beta.4...v5.0.0-beta.5) (2020-11-25)
+
+
+### Bug Fixes
+
+* changed logstash transport logic ([#92](https://github.com/Enigmatis/polaris-logs/issues/92)) ([22e5a84](https://github.com/Enigmatis/polaris-logs/commit/22e5a84555e69520dba8fd4f75c7a66558905299))
+
+# [5.0.0-beta.4](https://github.com/Enigmatis/polaris-logs/compare/v5.0.0-beta.3...v5.0.0-beta.4) (2020-11-24)
+
+
+### Bug Fixes
+
+* fix log properties structure and logic ([362fd2e](https://github.com/Enigmatis/polaris-logs/commit/362fd2e54b8d8d7a717567ddb085acc05912596d))
+* fix log properties structure and logic ([#91](https://github.com/Enigmatis/polaris-logs/issues/91)) ([ef63dd6](https://github.com/Enigmatis/polaris-logs/commit/ef63dd696797c4fd0dbd7fd5f84e550a63308ba1)), closes [#85](https://github.com/Enigmatis/polaris-logs/issues/85) [#84](https://github.com/Enigmatis/polaris-logs/issues/84) [#85](https://github.com/Enigmatis/polaris-logs/issues/85) [#84](https://github.com/Enigmatis/polaris-logs/issues/84) [#83](https://github.com/Enigmatis/polaris-logs/issues/83)
+
+
+### BREAKING CHANGES
+
+* updated and added new log properties (#83)
+
+* feat!: updated and added new log properties
+* updated and added new log properties
+
+* refactor: update npm packages
+
+* refactor: cr fixes
+
+* refactor: another cr fixes
+* removed files related configurations.
+
+* refactor!: entity must have an id
+
+Co-authored-by: itaykl <itaykl123@gmail.com>
+Co-authored-by: osher-sade <osher.sade@gmail.com>
+
+Co-authored-by: itaykl <43351063+itaykl@users.noreply.github.com>
+Co-authored-by: itaykl <itaykl123@gmail.com>
+Co-authored-by: osher-sade <osher.sade@gmail.com>
+
+* chore(release): 5.0.0 [skip ci]
+
+# [5.0.0](https://github.com/Enigmatis/polaris-logs/compare/v4.2.1...v5.0.0) (2020-11-09)
+
+# [5.0.0-beta.3](https://github.com/Enigmatis/polaris-logs/compare/v5.0.0-beta.2...v5.0.0-beta.3) (2020-11-16)
+
+
+### Bug Fixes
+
+* add property into log properties ([33d46d1](https://github.com/Enigmatis/polaris-logs/commit/33d46d1213281f6b591657f735f84498a0890ee4))
+
+# [5.0.0-beta.2](https://github.com/Enigmatis/polaris-logs/compare/v5.0.0-beta.1...v5.0.0-beta.2) (2020-11-15)
+
+
+### Bug Fixes
+
+* polaris logs properties update ([#88](https://github.com/Enigmatis/polaris-logs/issues/88)) ([9f75c88](https://github.com/Enigmatis/polaris-logs/commit/9f75c88632ad02cc0688b05473d0d762e88179bd))
+
+# [5.0.0-beta.1](https://github.com/Enigmatis/polaris-logs/compare/v4.2.1...v5.0.0-beta.1) (2020-11-09)
+
+
+### Bug Fixes
+
+* commit fix beta ([e39f11e](https://github.com/Enigmatis/polaris-logs/commit/e39f11ec1e92647384e42760c33359a7c63fbd02))
+* commit fix beta ([afd61b6](https://github.com/Enigmatis/polaris-logs/commit/afd61b6fd9eac5fcbe196c62519c69d9d1ca6735))
+* commit fix beta ([e2b1f76](https://github.com/Enigmatis/polaris-logs/commit/e2b1f768b7294784879dab59a14389e2718fca52))
+* update merge ([#86](https://github.com/Enigmatis/polaris-logs/issues/86)) ([2d3697f](https://github.com/Enigmatis/polaris-logs/commit/2d3697fcc7973f7b275bfd7db43e7a6e86b61e95)), closes [#85](https://github.com/Enigmatis/polaris-logs/issues/85) [#84](https://github.com/Enigmatis/polaris-logs/issues/84) [#85](https://github.com/Enigmatis/polaris-logs/issues/85) [#84](https://github.com/Enigmatis/polaris-logs/issues/84) [#83](https://github.com/Enigmatis/polaris-logs/issues/83)
+
+
+### chore
+
+* **deps:** bump node-fetch from 2.6.0 to 2.6.1 ([#78](https://github.com/Enigmatis/polaris-logs/issues/78)) ([562ddc7](https://github.com/Enigmatis/polaris-logs/commit/562ddc70bb97c67512b4e1490f990d0ad80e9281)), closes [#85](https://github.com/Enigmatis/polaris-logs/issues/85) [#84](https://github.com/Enigmatis/polaris-logs/issues/84)
+
+
+* refactor!: removed files related configurations (#84) ([1208aba](https://github.com/Enigmatis/polaris-logs/commit/1208aba38d81d6de79d1662b2f268c589d294a0f)), closes [#84](https://github.com/Enigmatis/polaris-logs/issues/84)
+* BREAKING CHANGE: updated and added new log properties (#83) ([58ef423](https://github.com/Enigmatis/polaris-logs/commit/58ef42332baa5705f82d14902e3b310d5d04579b)), closes [#83](https://github.com/Enigmatis/polaris-logs/issues/83)
+
+
+### BREAKING CHANGES
+
+* **deps:** updated and added new log properties (#83)
+
+* feat!: updated and added new log properties
+* **deps:** updated and added new log properties
+
+* refactor: update npm packages
+
+* refactor: cr fixes
+
+* refactor: another cr fixes
+* **deps:** removed files related configurations.
+
+* refactor!: entity must have an id
+
+Co-authored-by: itaykl <itaykl123@gmail.com>
+Co-authored-by: osher-sade <osher.sade@gmail.com>
+
+Co-authored-by: itaykl <43351063+itaykl@users.noreply.github.com>
+Co-authored-by: itaykl <itaykl123@gmail.com>
+Co-authored-by: osher-sade <osher.sade@gmail.com>
+
+Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+Co-authored-by: chenshoo <chenshooker@gmail.com>
+Co-authored-by: itaykl <43351063+itaykl@users.noreply.github.com>
+Co-authored-by: itaykl <itaykl123@gmail.com>
+Co-authored-by: osher-sade <osher.sade@gmail.com>
+* updated and added new log properties (#83)
+
+* feat!: updated and added new log properties
+* updated and added new log properties
+
+* refactor: update npm packages
+
+* refactor: cr fixes
+
+* refactor: another cr fixes
+* removed files related configurations.
+
+* refactor!: entity must have an id
+
+Co-authored-by: itaykl <itaykl123@gmail.com>
+Co-authored-by: osher-sade <osher.sade@gmail.com>
+
+Co-authored-by: itaykl <43351063+itaykl@users.noreply.github.com>
+Co-authored-by: itaykl <itaykl123@gmail.com>
+Co-authored-by: osher-sade <osher.sade@gmail.com>
+
+* chore(release): 5.0.0 [skip ci]
+
 # [5.0.0](https://github.com/Enigmatis/polaris-logs/compare/v4.2.1...v5.0.0) (2020-11-09)
 
 
