@@ -27,7 +27,7 @@ node {
 
      stage("release polaris logs repo") {
         echo "{$env.BRANCH_NAME}"
-           if (env.BRANCH_NAME == 'master') {
+           if (env.BRANCH_NAME == 'master') || (env.BRANCH_NAME == 'development'){
                 echo "release branch: {$env.BRANCH_NAME}"
                 sh "npm run semantic-release"
            }
