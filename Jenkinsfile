@@ -29,7 +29,7 @@ node {
         echo "{$env.BRANCH_NAME}"
            if ((env.BRANCH_NAME == 'master') || (env.BRANCH_NAME == 'development')) {
                 echo "release branch: ${env.BRANCH_NAME}"
-                sh "npx run semantic-release"
+                sh "npx semantic-release"
            }
      }
 
