@@ -28,13 +28,6 @@ jest.mock('winston', () => {
 });
 
 jest.mock('winston-dynamic-logstash-transport');
-jest.mock('winston-daily-rotate-file', () => {
-    return jest.fn().mockImplementation(() => ({
-        DailyRotateFile: jest.fn(),
-    }));
-});
-
-jest.mock('winston-logstash-ts');
 
 describe('winston-logger tests', () => {
     const loggerLevel = LoggerLevel.INFO;
