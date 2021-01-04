@@ -26,11 +26,15 @@ node {
     }
 
      stage("Release") {
-        echo "{$env.BRANCH_NAME}"
-           if ((env.BRANCH_NAME == 'master') || (env.BRANCH_NAME == 'development')) {
-                echo "release branch: ${env.BRANCH_NAME}"
-                sh "npx semantic-release"
+        withCredentials([string(credentialsId:'GitHubToken', variable: 'GITHUB_TOKEN')]) {
+           withCredentials([string(credentialsId:'NpmToken', variable: 'NPM_TOKEN')]) {
+               echo "{$env.BRANCH_NAME}"
+               if ((env.BRANCH_NAME == 'master') || (env.BRANCH_NAME == 'development')) {
+                   echo "release branch: ${env.BRANCH_NAME}"
+                   sh "npx semantic-release"
+               }
            }
+        }
      }
 
      stage("Clean directory") {
