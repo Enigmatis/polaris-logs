@@ -1,3 +1,43 @@
+# [5.0.0-beta.6](https://github.com/Enigmatis/polaris-logs/compare/v5.0.0-beta.5...v5.0.0-beta.6) (2021-01-05)
+
+
+### Bug Fixes
+
+* Add jenkins ([#98](https://github.com/Enigmatis/polaris-logs/issues/98)) ([998f4fc](https://github.com/Enigmatis/polaris-logs/commit/998f4fca23a1a1ca8aa49c647ffacca29e41c474)), closes [#85](https://github.com/Enigmatis/polaris-logs/issues/85) [#84](https://github.com/Enigmatis/polaris-logs/issues/84) [#85](https://github.com/Enigmatis/polaris-logs/issues/85) [#84](https://github.com/Enigmatis/polaris-logs/issues/84) [#83](https://github.com/Enigmatis/polaris-logs/issues/83) [#96](https://github.com/Enigmatis/polaris-logs/issues/96)
+
+
+### Features
+
+* replaced travis to jenkins ([#97](https://github.com/Enigmatis/polaris-logs/issues/97)) ([f660282](https://github.com/Enigmatis/polaris-logs/commit/f6602829ea8c68f2fa1afc10ba04243329451b91))
+
+
+### BREAKING CHANGES
+
+* updated and added new log properties (#83)
+
+* feat!: updated and added new log properties
+* updated and added new log properties
+
+* refactor: update npm packages
+
+* refactor: cr fixes
+
+* refactor: another cr fixes
+* removed files related configurations.
+
+* refactor!: entity must have an id
+
+Co-authored-by: itaykl <itaykl123@gmail.com>
+Co-authored-by: osher-sade <osher.sade@gmail.com>
+
+Co-authored-by: itaykl <43351063+itaykl@users.noreply.github.com>
+Co-authored-by: itaykl <itaykl123@gmail.com>
+Co-authored-by: osher-sade <osher.sade@gmail.com>
+
+* chore(release): 5.0.0 [skip ci]
+
+# [5.0.0](https://github.com/Enigmatis/polaris-logs/compare/v4.2.1...v5.0.0) (2020-11-09)
+
 # [5.0.0-beta.5](https://github.com/Enigmatis/polaris-logs/compare/v5.0.0-beta.4...v5.0.0-beta.5) (2020-11-25)
 
 

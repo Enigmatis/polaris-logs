@@ -47,7 +47,7 @@ node {
             }
         }
     }
-
+  
     stage("Clean directory") {
           deleteDir()
     }
